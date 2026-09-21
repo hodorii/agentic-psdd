@@ -123,6 +123,8 @@ Focus on capabilities and outcomes, not code structure.
 - User testing
 - Marketing/business activities
 
+**Exception — document-deliverable specs**: when the spec's own contractual output *is* a document (e.g., an architecture design doc, a scalability review report — not code), tasks that write, structure, or substantiate that document are the spec's Coding-equivalent deliverable, not "Documentation tasks" — they stay in scope. Check design.md's planned output files (or spec.json) to tell which case applies. This never widens to docs that merely accompany a code deliverable (comments, README, usage guides) — those stay excluded regardless of spec type.
+
 ## Task Plan Review Gate
 
 Before writing `tasks.md`, review the draft task plan and repair local issues until the plan passes or a true spec gap is discovered.
