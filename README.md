@@ -10,6 +10,8 @@ AGENTS.md                           the project's own file — a pointer block i
 .agents/skills/<skill>               -> ../../methodology/skills/<skill>   (one symlink per skill)
 .claude/skills/<skill>                -> ../../methodology/skills/<skill>   (one symlink per skill)
 .kiro/settings/templates            -> ../../methodology/templates
+.kiro/settings/.methodology-skills-manifest   list of skill names install.sh placed, so a later
+                                     run can prune ones since removed/renamed upstream
 ```
 Skills are symlinked one by one, not as a whole `.agents/skills`/`.claude/skills` directory — a project already using its own skills there keeps them; only the `kiro-*` names come from `methodology/skills/`. Templates stay a single whole-directory symlink. `AGENTS.md` is deliberately never a symlink: many agent CLIs treat a project's root `AGENTS.md` as their own memory file and write to it in place, which through a symlink would corrupt the source `methodology/AGENTS.md`. Instead, `install.sh` prepends a managed block —
 ```

@@ -3,8 +3,27 @@
 #        install.sh copy [project-root]   — copy files instead (no dependency on methodology/)
 set -eu
 MODE=${1:-}; ROOT=${2:-$(cd "$(dirname "$0")/.." && pwd)}
-SRC=$(cd "$(dirname "$0")" && pwd)
+SRC=$(cd "$(dirname "$0")" && pwd -P)
 [ "$MODE" = link ] || [ "$MODE" = copy ] || { echo "usage: $0 link|copy [project-root]" >&2; exit 2; }
+
+# link mode hardcodes symlink targets as '../../methodology/...', so it only
+# works when '$ROOT/methodology' physically resolves to this same repo (a
+# submodule/subtree/symlink named 'methodology' at the project root). Catch a
+# mismatch here — before touching anything in the project — instead of
+# silently laying down dangling symlinks.
+if [ "$MODE" = link ]; then
+  target=$(cd "$ROOT/methodology" 2>/dev/null && pwd -P) || target=
+  if [ "$target" != "$SRC" ]; then
+    cat >&2 <<EOF
+error: link mode requires '$ROOT/methodology' to resolve to this methodology repo ($SRC), but it $([ -z "$target" ] && echo "doesn't exist" || echo "resolves to '$target' instead").
+Add/point it there first, e.g.:
+  git submodule add <url> methodology && methodology/install.sh link
+or use 'install.sh copy $ROOT' instead, which has no such dependency.
+EOF
+    exit 2
+  fi
+fi
+
 cd "$ROOT"
 mkdir -p .agents .claude .kiro/settings
 
@@ -48,6 +67,19 @@ write_agents_md
 # --- skills: place each methodology skill individually so a project's own
 # skills sitting alongside kiro-* ones (or a different set entirely) are
 # left untouched instead of being hidden behind one whole-directory symlink.
+# A manifest of the names we placed lets a later run prune skills that were
+# since removed (or renamed) upstream — otherwise link mode leaves dangling
+# symlinks and copy mode leaves stale copies behind forever.
+SKILLS_MANIFEST=.kiro/settings/.methodology-skills-manifest
+skill_exists_in_src() { [ -d "$SRC/skills/$1" ]; }
+prune_removed_skills() { # $1 = target skills dir
+  dest=$1
+  [ -f "$SKILLS_MANIFEST" ] || return 0
+  while IFS= read -r old_name; do
+    [ -n "$old_name" ] || continue
+    skill_exists_in_src "$old_name" || rm -rf "$dest/$old_name"
+  done < "$SKILLS_MANIFEST"
+}
 place_skills() { # $1 = target skills dir (.agents/skills or .claude/skills)
   dest=$1
   # migrate off a prior whole-directory symlink (or any non-directory) first —
@@ -55,6 +87,7 @@ place_skills() { # $1 = target skills dir (.agents/skills or .claude/skills)
   # would reach into methodology/skills/ itself via the old symlink.
   [ -d "$dest" ] && [ ! -L "$dest" ] || rm -f "$dest"
   mkdir -p "$dest"
+  prune_removed_skills "$dest"
   for skill_dir in "$SRC"/skills/*/; do
     name=$(basename "$skill_dir")
     place "$dest/$name" "../../methodology/skills/$name" "$skill_dir"
@@ -62,6 +95,7 @@ place_skills() { # $1 = target skills dir (.agents/skills or .claude/skills)
 }
 place_skills .agents/skills
 place_skills .claude/skills
+for skill_dir in "$SRC"/skills/*/; do basename "$skill_dir"; done > "$SKILLS_MANIFEST"
 
 place .kiro/settings/templates ../../methodology/templates "$SRC/templates"
 echo "installed ($MODE) into $ROOT"
