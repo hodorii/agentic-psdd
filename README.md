@@ -12,6 +12,8 @@ AGENTS.md                           the project's own file — a pointer block i
 .kiro/settings/templates            -> ../../methodology/templates
 .kiro/settings/.methodology-skills-manifest   list of skill names install.sh placed, so a later
                                      run can prune ones since removed/renamed upstream
+.kiro/settings/.methodology-files-manifest    copy mode only: SHA-256 per placed file, so a later
+                                     run refuses to overwrite files the project edited by hand
 ```
 Skills are symlinked one by one, not as a whole `.agents/skills`/`.claude/skills` directory — a project already using its own skills there keeps them; only the `kiro-*` names come from `methodology/skills/`. Templates stay a single whole-directory symlink. `AGENTS.md` is deliberately never a symlink: many agent CLIs treat a project's root `AGENTS.md` as their own memory file and write to it in place, which through a symlink would corrupt the source `methodology/AGENTS.md`. Instead, `install.sh` prepends a managed block —
 ```
@@ -26,7 +28,7 @@ Full methodology: `methodology/AGENTS.md` — read it before doing anything here
 - Subtree: `git subtree add --prefix=methodology <url> main --squash && methodology/install.sh link`
 - Copy (no dependency): `git clone <url> /tmp/m && /tmp/m/install.sh copy /path/to/project`
 
-`install.sh link` symlinks each methodology skill individually under `.agents/skills/` and `.claude/skills/`, replaces `.kiro/settings/templates` with a symlink, and prepends/refreshes the pointer block in the project's own `AGENTS.md`; `copy` does the same with real files (one directory per skill, full content in the pointer block's place) and can be re-run to update.
+`install.sh link` symlinks each methodology skill individually under `.agents/skills/` and `.claude/skills/`, replaces `.kiro/settings/templates` with a symlink, and prepends/refreshes the pointer block in the project's own `AGENTS.md`; `copy` does the same with real files (one directory per skill, full content in the pointer block's place) and can be re-run to update. A copy install records the SHA-256 of every file it placed; a later run (either mode) stops with exit 3 and lists any of those files the project has since edited, so hand edits are never silently discarded — move them into `.kiro/steering/` or a project-owned skill, or pass `--force` to overwrite.
 
 ## Language
 Spec artifacts are written in whatever `spec.json.language` says for that spec (`templates/specs/init.json` ships `"ko"` as the default value new specs are created with). This is a per-project, per-spec setting, not something the methodology hardcodes — change the template's default or edit an individual spec's `spec.json` to switch. Internal reasoning stays in English regardless (`AGENTS.md`'s `Reason in English` rule) so mixed-language teams get consistent tool behavior; only the artifacts written for humans follow `spec.json.language`.

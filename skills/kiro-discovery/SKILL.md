@@ -10,7 +10,7 @@ Inputs
 - project_state.json (optional)
 
 Outputs
-- Core Indicators: PATH_DETECTED, BOUNDARIES_DEFINED, SPEC_ROUTES
+- Core Indicators: PATH_DETECTED, BOUNDARIES_DEFINED, SPEC_ROUTES, DECISION
 
 Boundaries
 - Determine path without enacting changes outside the discovery phase.
@@ -20,4 +20,6 @@ Rules
 - Infer PATH_DETECTED from metadata
 - Define SPEC_ROUTES and relevant boundaries
 - Write brief.md / roadmap.md from `templates/brief.md` / `templates/roadmap.md` in this skill's directory
+- Record evidence for and against the idea; tag each finding `cited` (source named) or `assumption`
+- Close with DECISION: `GO` (problem and evidence hold; route to specs), `NEEDS_CLARIFICATION` (named unknowns and who resolves them), or `STOP` (decisive reason recorded). A documented STOP is a valid outcome, not a failure; resolve unknowns by editing brief.md, not by rerunning discovery
 - Stop after outputting path and next-step guidance

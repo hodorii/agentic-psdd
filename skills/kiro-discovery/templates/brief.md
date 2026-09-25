@@ -32,3 +32,10 @@
 
 ## Constraints
 [기술·호환·기타 제약]
+
+## Evidence
+- **For**: [근거 — cited | assumption]
+- **Against**: [근거 — cited | assumption]
+
+## Decision
+[GO | NEEDS_CLARIFICATION | STOP] — [사유 1줄; NEEDS_CLARIFICATION은 미해결 항목과 해결 주체, STOP은 결정적 사유]

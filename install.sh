@@ -1,10 +1,19 @@
 #!/usr/bin/env sh
-# Usage: install.sh link [project-root]   — symlink the conventional locations to methodology/ (relative links)
-#        install.sh copy [project-root]   — copy files instead (no dependency on methodology/)
+# Usage: install.sh link [project-root] [--force]  — symlink the conventional locations to methodology/ (relative links)
+#        install.sh copy [project-root] [--force]  — copy files instead (no dependency on methodology/)
+# --force: overwrite files a previous copy install placed and the project has since edited by hand
 set -eu
-MODE=${1:-}; ROOT=${2:-$(cd "$(dirname "$0")/.." && pwd)}
+MODE=${1:-}; FORCE=0; ROOT=
+[ $# -gt 0 ] && shift
+for arg in "$@"; do
+  case $arg in
+    --force) FORCE=1 ;;
+    *) ROOT=$arg ;;
+  esac
+done
+[ -n "$ROOT" ] || ROOT=$(cd "$(dirname "$0")/.." && pwd)
 SRC=$(cd "$(dirname "$0")" && pwd -P)
-[ "$MODE" = link ] || [ "$MODE" = copy ] || { echo "usage: $0 link|copy [project-root]" >&2; exit 2; }
+[ "$MODE" = link ] || [ "$MODE" = copy ] || { echo "usage: $0 link|copy [project-root] [--force]" >&2; exit 2; }
 
 # link mode hardcodes symlink targets as '../../methodology/...', so it only
 # works when '$ROOT/methodology' physically resolves to this same repo (a
@@ -26,6 +35,43 @@ fi
 
 cd "$ROOT"
 mkdir -p .agents .claude .kiro/settings
+
+# --- hand-edit protection: a copy install records the SHA-256 of every file it
+# placed. Before a later run (link or copy) replaces those files, any file whose
+# current hash differs from the recorded one is a project edit — the run stops
+# and lists them instead of silently discarding the work. --force overrides.
+FILES_MANIFEST=.kiro/settings/.methodology-files-manifest
+hash_file() {
+  if command -v sha256sum >/dev/null 2>&1; then sha256sum "$1" | cut -d' ' -f1
+  else shasum -a 256 "$1" | cut -d' ' -f1; fi
+}
+modified_placed_files() { # prints each recorded file that still exists with a different hash
+  [ -f "$FILES_MANIFEST" ] || return 0
+  while IFS= read -r line; do
+    [ -n "$line" ] || continue
+    recorded=${line%% *}; path=${line#* }
+    [ -f "$path" ] && [ ! -L "$path" ] || continue
+    [ "$(hash_file "$path")" = "$recorded" ] || printf '%s\n' "$path"
+  done < "$FILES_MANIFEST"
+}
+modified=$(modified_placed_files)
+if [ -n "$modified" ] && [ "$FORCE" != 1 ]; then
+  {
+    echo "error: these files were placed by a previous copy install and edited in the project since; this run would overwrite them:"
+    printf '%s\n' "$modified" | sed 's/^/  /'
+    echo "Move the edits into .kiro/steering or a project-owned skill, or re-run with --force to discard them."
+  } >&2
+  exit 3
+fi
+write_files_manifest() { # $@ = placed directories; copy mode only
+  : > "$FILES_MANIFEST"
+  for dir in "$@"; do
+    [ -d "$dir" ] && [ ! -L "$dir" ] || continue
+    find "$dir" -type f | LC_ALL=C sort | while IFS= read -r f; do
+      printf '%s %s\n' "$(hash_file "$f")" "$f"
+    done >> "$FILES_MANIFEST"
+  done
+}
 
 place() { # $1 = target path in project, $2 = relative link, $3 = source path
   rm -rf "$1"
@@ -98,4 +144,15 @@ place_skills .claude/skills
 for skill_dir in "$SRC"/skills/*/; do basename "$skill_dir"; done > "$SKILLS_MANIFEST"
 
 place .kiro/settings/templates ../../methodology/templates "$SRC/templates"
+
+if [ "$MODE" = copy ]; then
+  placed_dirs=.kiro/settings/templates
+  for dest in .agents/skills .claude/skills; do
+    for skill_dir in "$SRC"/skills/*/; do placed_dirs="$placed_dirs $dest/$(basename "$skill_dir")"; done
+  done
+  # shellcheck disable=SC2086
+  write_files_manifest $placed_dirs
+else
+  rm -f "$FILES_MANIFEST"
+fi
 echo "installed ($MODE) into $ROOT"

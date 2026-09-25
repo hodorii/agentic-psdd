@@ -16,6 +16,7 @@ Requirements should clarify the feature boundary in user- or operator-observable
 ## Scope and Coverage Review
 
 - The draft must cover the feature's core user journeys, major scope boundaries, primary error cases, and meaningful edge conditions that are visible to the user or operator.
+- Rate each coverage area `Clear` / `Partial` / `Missing`: functional scope and behavior, domain and data model, user flow and UX, non-functional (performance, scale, reliability, observability), integrations and external dependencies, edge cases and failure handling, constraints and trade-offs, terminology and consistency, completion signals (what "done" looks like to the user). `Partial`/`Missing` areas that affect user-visible behavior are gaps to repair or clarify.
 - If the feature touches adjacent systems, specs, or workflows, the draft must make clear what this feature expects from them and what it does not own when that distinction affects user-visible behavior or operator expectations.
 - Business/domain rules, compliance constraints, security/privacy expectations, and operational constraints that materially shape user-visible behavior must be reflected explicitly when they are in scope.
 - If coverage is missing because the draft is incomplete, repair the draft and review again.
@@ -43,10 +44,12 @@ Before applying judgment, verify these mechanically:
 - **Acceptance criteria exist**: Every requirement group has at least one `N.M: [condition] → [result]` line; flag `$\rightarrow$` or `->` in place of `→`.
 - **Cross-requirement analysis**: flag logical inconsistencies (individually valid, jointly impossible), conflicting constraints, unstated assumptions (undefined terms or referenced behaviors), and missing failure/boundary cases.
 - **No implementation language**: Scan for technology-specific terms (database names, framework names, API patterns) that belong in design, not requirements. Flag any found.
+- **Tagged findings**: every issue the gate raises carries one tag — `[Gap]` (obligation absent), `[Ambiguity]` (two readings), `[Conflict]` (criteria jointly impossible), `[Assumption]` (undefined term or unstated dependency) — and names the criterion ID or section it applies to. A finding phrased as implementation verification ("verify that the service…") is a design or test concern, not a requirements finding.
 
 ## Review Loop
 
 - Run mechanical checks first, then judgment-based review.
 - If issues are local to the draft, repair the draft and re-run the review gate.
 - Keep the loop bounded: no more than 2 review-and-repair passes before escalating a real ambiguity back to the user.
+- Clarification dialogue: rank open questions by impact × uncertainty, ask at most 5, exactly one at a time; offer 2–5 options with a `Recommended:` mark when the answer space is known, otherwise ask for a short answer; integrate each answer into the affected criterion before asking the next; stop when the user says done.
 - Write `requirements.md` only after the review gate passes.
