@@ -10,14 +10,14 @@
 
 ## L1 Process: <name>  (valueChainRef: VC-...-<unit>)
 ### L2 Activity: <name>  (1.1)
-  ### L3 FunctionGroup/UI: <name>  (1.1, 1.2)
-    ### L4 Step: <name>
-      ### L5 DetailStep: <name>
+#### L3 FunctionGroup/UI: <name>  (1.1, 1.2)
+##### L4 Step: <name>
+###### L5 DetailStep: <name>
         Logic(AST):
           - IF <cond> THEN <action>
           - ELSE THROW <error>
-      ### L5 DetailStep: ...
-    ### L4 Step: ...
+###### L5 DetailStep: ...
+##### L4 Step: ...
 ### L2 Activity: ...
 ### ✅ 검토 요청 (L1: <name>)
 승인(✓) 또는 수정 사항을 입력하세요.
