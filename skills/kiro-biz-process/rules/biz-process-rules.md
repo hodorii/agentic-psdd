@@ -33,9 +33,9 @@
 
 ## 6. Approval gate (informed consent)
 - Ask for user review right after each L1 Process: understanding-based consent, not a rubber stamp.
-- `-y`: auto-approve every level (requirements and value chain approved beforehand).
+- `-y`: full drill-down, then a single gate for all levels (requirements and value chain approved beforehand).
 
 ## 7. Value chain status
 - Missing: `$kiro-steering` Bootstrap drafts it from `{{TEMPLATES}}/steering/value-chain.md`.
 - `status: draft`: present it to the owner for approval; never approve it or proceed on it.
-- `status: approved`: read-only SSoT. `bizProcessRef` is optional; the BizProcess → Unit link (`valueChainRef`) alone is valid.
+- `status: approved`, or no `status` at all (a file from before drafts existed): read-only SSoT; suggest the owner add `status: approved`. `bizProcessRef` is optional; the BizProcess → Unit link (`valueChainRef`) alone is valid.

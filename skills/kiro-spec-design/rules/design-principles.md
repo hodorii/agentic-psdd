@@ -8,13 +8,13 @@
 - **Self-contained**: design.md restates every decision it depends on; research.md is background only.
 
 ## Section Rules (order = `{{TEMPLATES}}/specs/design.md`)
-- **Boundary Commitments**: In-Scope / Out-of-Scope / Allowed Dependencies (external libs + version, internal direction) / Revalidation Triggers — all four non-empty.
+- **Boundary Commitments**: In-Scope (This Spec Owns) / Out-of-Scope / Allowed Dependencies (external libs + version, internal direction) / Revalidation Triggers — all four non-empty.
 - **Architecture**: Boundary Map (Mermaid) when 3+ components interact. Technology Stack only for layers this feature touches (tool + version + role). Key Decisions as `decision — reason` one-liners; alternatives in research.md.
 - **System Flows**: Mermaid sequence/state for non-obvious flows only; omit the section otherwise. Tag decisions with requirement IDs.
-- **Components & Interfaces**: one block per component — Intent, Requirements (IDs), public signatures in the implementation language including error types. Dependencies table (Inbound/Outbound/External, P0/P1/P2) only for external integrations or cross-boundary contracts. Presentational/UI components: summary bullets only.
+- **Components and Interfaces**: one block per component — Intent, Requirements (IDs), public signatures in the implementation language including error types. Dependencies table (Inbound/Outbound/External, P0/P1/P2) only for external integrations or cross-boundary contracts. Presentational/UI components: summary bullets only.
 - **Data Models**: domain types, persistence, invariants; if the interface blocks already cover it, say so.
 - **Error Handling / Testing Strategy**: feature-specific decisions only, tagged with requirement IDs; level mapping and Depth from `rules/verification-mapping.md`; baseline practices live in steering.
-- **File Structure Plan**: every component has a file path; paths must not imply ownership beyond In-Scope.
+- **File Structure Plan**: every component has a file path and a deliverable type (`code | document | data | config | analysis`, read by `kiro-impl`); paths must not imply ownership beyond In-Scope (This Spec Owns).
 
 ## Mermaid
 - Plain Mermaid, no styling. Node IDs alphanumeric/underscore; labels without `()[]"/`. Subgraphs sparingly.

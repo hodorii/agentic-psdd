@@ -2,7 +2,7 @@
 
 ## {{label.summary}}
 - **{{label.feature}}**: `<feature-name>`
-- **{{label.discovery_scope}}**: New Feature / Extension / Simple Addition / Complex Integration
+- **{{label.discovery_scope}}**: [New Feature / Extension / Simple Addition / Complex Integration]
 - **{{label.key_findings}}**:
   - Finding 1
   - Finding 2
@@ -12,10 +12,10 @@
 <!-- Document notable investigation steps and their outcomes. Group entries by topic for readability. -->
 
 ### [Topic or Question]
-- **{{label.context}}**: What triggered this investigation?
-- **{{label.sources_consulted}}**: Links, documentation, API references, benchmarks
-- **{{label.findings}}**: Concise bullet points summarizing the insights
-- **{{label.implications}}**: How this affects architecture, contracts, or implementation
+- **{{label.context}}**: [what triggered this investigation]
+- **{{label.sources_consulted}}**: [links, documentation, API references, benchmarks]
+- **{{label.findings}}**: [concise bullets summarizing the insights]
+- **{{label.implications}}**: [effect on architecture, contracts, or implementation]
 
 <!-- Repeat the subsection for each major topic. -->
 

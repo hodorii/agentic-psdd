@@ -17,7 +17,7 @@
 
 ## Review Process
 1. **Analyze**: check the 4 criteria, focus on critical issues
-2. **Critical Issues (≤3)**: each with Issue, Impact, Suggestion, Traceability (requirement ID), Evidence (design section)
+2. **Critical Issues (≤3)**: each with Issue, Impact, Recommendation, Traceability (requirement ID), Evidence (design section)
 3. **Strengths**: 1-2
 4. **Decide**: GO (no critical mismatch, requirements met, clear implementation path) or NO-GO (fundamental conflict, critical gap, excessive complexity)
 
