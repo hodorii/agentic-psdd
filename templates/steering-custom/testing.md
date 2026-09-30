@@ -1,13 +1,13 @@
-# Testing Standards
+# {{label.title_testing_standards}}
 
 [Purpose: guide what to test, where tests live, and how to structure them]
 
-## Philosophy
+## {{label.philosophy}}
 - Test behavior, not implementation
 - Prefer fast, reliable tests; minimize brittle mocks
 - Cover critical paths deeply; breadth over 100% pursuit
 
-## Organization
+## {{label.organization}}
 Options:
 - Co-located: `component.tsx` + `component.test.tsx`
 - Separate: `/src/...` and `/tests/...`
@@ -17,12 +17,12 @@ Naming:
 - Files: `*.test.*` or `*.spec.*`
 - Suites: what is under test; Cases: expected behavior
 
-## Test Types
+## {{label.test_types}}
 - Unit: single unit, mocked dependencies, very fast
 - Integration: multiple units together, mock externals only
 - E2E: full flows, minimal mocks, only for critical journeys
 
-## Structure (AAA)
+## {{label.test_structure_aaa}}
 ```typescript
 it('does X when Y', () => {
   // Arrange
@@ -34,12 +34,12 @@ it('does X when Y', () => {
 });
 ```
 
-## Mocking & Data
+## {{label.mocking_data}}
 - Mock externals (API/DB); never mock the system under test
 - Use factories/fixtures; reset state between tests
 - Keep test data minimal and intention-revealing
 
-## Coverage
+## {{label.coverage}}
 - Target: [% overall]; higher for critical domains
 - Enforce thresholds in CI; exceptions require review rationale
 

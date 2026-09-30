@@ -1,17 +1,18 @@
-# Requirements — <feature>
+# {{label.title_requirements}} — <feature>
 
-## 정의
-[A]를 위해 [B]를 하는 [C]이다.
+## {{label.definition}}
+{{label.definition_sentence}}
 
-## Boundary Context
-- **In scope**: 
-- **Out of scope**: 
+## {{label.scope}}
+- **{{label.in_scope}}**: 
+- **{{label.out_of_scope}}**: 
+- **{{label.adjacent_expectations}}**: 
 
-## Acceptance Criteria
+## {{label.requirements}}
 
 ### 1. [요구사항 영역]
-- 1.1: [조건] → [결과]
-- 1.2: [조건] → [결과]
+- 1.1: [조건] 결과
+- 1.2: [조건] 결과
 
 ### 2. [요구사항 영역]
-- 2.1: [조건] → [결과]
+- 2.1: [조건] 결과

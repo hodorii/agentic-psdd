@@ -110,20 +110,20 @@ Focus on capabilities and outcomes, not code structure.
 - E2E/Validation tasks (phase 4) must derive their scenarios from `biz-process.md` L1~L4 user flows, cross-checked against requirements, and reference the source node via `_BizProcess:`.
 - The Coverage Review (§ Coverage Review) should report biz-process node coverage when `biz-process.md` is present — every L1~L3 node traced to at least one task.
 
-### 8. Code-Only Focus
+### 8. Deliverable Focus
+
+The spec's deliverable is whatever achieves its `Definition` — code, document, data, config or analysis; design.md File Structure Plan names it.
 
 **Include ONLY**:
-- Coding tasks (implementation)
-- Testing tasks (unit, integration, E2E)
-- Technical setup tasks (infrastructure, configuration)
+- Tasks that produce the deliverable (code, or the document/data/config/analysis the spec owns)
+- Verification tasks for it (code: unit, integration, E2E; non-code: requirement-to-location check, review)
+- Technical setup the deliverable needs
 
 **Exclude**:
 - Deployment tasks
-- Documentation tasks
+- Docs that merely accompany a code deliverable (comments, README, usage guides)
 - User testing
 - Marketing/business activities
-
-**Exception — document-deliverable specs**: when the spec's own contractual output *is* a document (e.g., an architecture design doc, a scalability review report — not code), tasks that write, structure, or substantiate that document are the spec's Coding-equivalent deliverable, not "Documentation tasks" — they stay in scope. Check design.md's planned output files (or spec.json) to tell which case applies. This never widens to docs that merely accompany a code deliverable (comments, README, usage guides) — those stay excluded regardless of spec type.
 
 ## Task Plan Review Gate
 

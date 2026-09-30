@@ -17,7 +17,7 @@ Outputs
 - Core Indicators: VERDICT, REASONS, REMEDIATION
 
 Boundaries
-- Review only; no code changes.
+- Review only; no deliverable changes.
 
 Rules
 - Read TASKS_MD produced by kiro-spec-tasks
