@@ -18,10 +18,10 @@ AGENTS.md                           the project's own file — a pointer block i
 Skills are symlinked one by one, not as a whole `.agents/skills`/`.claude/skills` directory — a project already using its own skills there keeps them; only the `kiro-*` names come from `methodology/skills/`. Templates stay a single whole-directory symlink. `AGENTS.md` is deliberately never a symlink: many agent CLIs treat a project's root `AGENTS.md` as their own memory file and write to it in place, which through a symlink would corrupt the source `methodology/AGENTS.md`. Instead, `install.sh` prepends a managed block —
 ```
 <!-- methodology:begin -->
-Full methodology: `methodology/AGENTS.md` — read it before doing anything here.
+Spec-driven work (`$kiro-*` skills, `.kiro/specs`, `.kiro/steering`): read `methodology/AGENTS.md` first. Other work does not need it.
 <!-- methodology:end -->
 ```
-— to the top of the project's own `AGENTS.md` and leaves everything else in the file as-is; re-running install refreshes only that block, wherever it currently sits. Paths used by skills are names (`{{SPECS}}`, `{{STEERING}}`, `{{REFERENCE}}`, `{{TEMPLATES}}`, `{{SKILLS}}`) resolved by the `## Paths` table in `methodology/AGENTS.md`.
+— to the top of the project's own `AGENTS.md` and leaves everything else in the file as-is. The block is conditional so sessions that do no spec work never load the methodology router (lazy loading, MoE); re-running install refreshes only that block, wherever it currently sits. Paths used by skills are names (`{{SPECS}}`, `{{STEERING}}`, `{{REFERENCE}}`, `{{TEMPLATES}}`, `{{SKILLS}}`) resolved by the `## Paths` table in `methodology/AGENTS.md`.
 
 ## Install
 - Submodule: `git submodule add <url> methodology && methodology/install.sh link`
