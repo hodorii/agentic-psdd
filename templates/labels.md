@@ -207,3 +207,6 @@
 | tech_choice | 선택 기술 | Choice |
 | role | 역할 | Role |
 | property_test | 속성 기반 | Property-based |
+| name | 이름 | Name |
+| parent | 상위 | Parent |
+| validation | 검증 조건 | Validation |

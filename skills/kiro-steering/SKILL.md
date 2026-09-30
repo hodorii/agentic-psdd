@@ -20,7 +20,7 @@ Boundaries
 Rules
 - Read brief.md produced by kiro-orchestrate
 - Mode by state: **Bootstrap** when `product.md`, `tech.md` or `structure.md` is absent; **Sync** when a feature passes `kiro-verify-completion` or on request
-- Bootstrap: write the missing baseline files; if value-chain.md is absent, draft it from `{{TEMPLATES}}/steering/value-chain.md` using brief.md and product.md, `status: draft`, `owner:` named, each Mega and Unit tagged `evidence: cited <source> | assumption`, then ask the owner to approve
+- Bootstrap: write the missing baseline files; if value-chain.md is absent, draft it from `{{TEMPLATES}}/steering/value-chain.md` using brief.md and product.md, `status: draft`, `owner:` named, one table row per Mega, Main and Unit, Evidence column `cited <source>` or `assumption`, then ask the owner to approve
 - Sync: compare the feature's deliverable and design Key Decisions with steering; add what changed (additive, `updated_at`, reason) to product, tech, structure and boundary commitments; mark the feature `[x]` in `{{STEERING}}/roadmap.md`; list value-chain changes as proposals; report drift found. STEERING_SYNC = files updated, roadmap check, proposals
 - Read `rules/steering-principles.md` from this skill's directory for content granularity and lean-maintenance rules
 - Read `{{TEMPLATES}}/steering/{product,tech,structure}.md` for baseline file structure
