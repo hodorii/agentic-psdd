@@ -38,7 +38,7 @@
 - 호스트 CLI가 루트 `AGENTS.md`를 in-place 덮어쓰기하지 않게 되어 symlink가 안전해지는 경우(포인터 블록 방식의 전제)
 - `spec.json` 필드 또는 `phase` 값 집합 변경(`kiro-spec-status`가 SSoT)
 - Kiro IDE `.kiro/specs`, `.kiro/steering` 규약 변경
-- 스킬 추가, 삭제, 개명(매니페스트 정리 로직과 `AGENTS.md` Workflow 절 동시 갱신 필요)
+- 스킬 추가, 삭제, 개명(매니페스트 정리 로직과 `kiro-spec-status/rules/workflow.md` 동시 갱신 필요)
 - 서브에이전트 구조화 출력(`- STATUS:`, `- VERDICT:`, `- NEXT_ACTION:`) 파싱 형식 변경
 
 ## 아키텍처
