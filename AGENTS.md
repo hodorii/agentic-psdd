@@ -22,7 +22,7 @@ Skills refer to these names; relocate by editing this table.
 - **SRP**: 파일 하나 = 책임 하나.
   - **Small Units**: 함수·클래스·파일 크기는 steering `tech.md` 코드 품질 기준 이하. 초과 = 분리 신호, 유지 시 사유 명시.
 - **Self-Documenting**: 주석 없이 이해되는 산출물.
-  - **Descriptable Name**: 이름이 내용(WHAT)을 말한다.
+  - **Descriptable Name**: 이름이 내용(WHAT)을 말한다. 이름(제목, 라벨, 요구사항명)에 가운뎃점(·) 금지 — 둘은 `와/과`, 셋 이상은 쉼표.
   - **Why-Only Comment**: 코드 주석 기본 없음. 코드로 드러나지 않는 이유(WHY)만 한 줄. WHAT·요구사항/태스크 ID·경위 금지 — 추적은 `_Requirements:`와 git. 공개 API 문서 주석·라이선스 헤더·생성 코드 제외.
 - **Goal Delivery**: 구현은 프로그램 작성이 아니라 스펙 `Definition`의 목표를 달성하는 산출물 전달 — 코드·문서·데이터·설정·분석. 검증은 산출물 유형별 증거(코드: 실패 테스트 → 통과; 비코드: 적용 전 미충족 목록 → 요구사항 ID별 산출물 위치).
 - **지침 / 히스토리 분리**: `{{SKILLS}}`·`{{STEERING}}`에는 앞으로의 규칙만. 경위·결정·검증 기록은 `{{SPECS}}`와 git.
