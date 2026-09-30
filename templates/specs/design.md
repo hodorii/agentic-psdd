@@ -61,6 +61,7 @@
 - **{{label.e2e_test}}**: [biz-process L2 flows]
 - **{{label.acceptance_test}}**: [criteria met + real run]
 - **{{label.performance_test}}**: [numbers when needed]
+- **{{label.property_test}}**: [P<n>: statement — requirement IDs — input domain; code only]
 
 ## {{label.file_structure_plan}}
 ```
