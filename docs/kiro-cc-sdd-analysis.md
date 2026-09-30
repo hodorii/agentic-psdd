@@ -6,7 +6,7 @@
 - Kiro: IDE 제품 — 사용자가 Feature / Bugfix / Quick 선택, UI 게이트, wave 동시 실행, Hooks, PBT로 자동화, 정합성 보강.
 - cc-sdd: 에이전트 스킬 묶음 — discovery 자동 경로 분류(A~E), spec.json 승인 플래그, TDD, 서브에이전트 리뷰 루프, Boundary-first 추적.
 - agentic-psdd: cc-sdd 골격 계승 + Kiro bugfix 흡수 + 가치사슬, biz-process, `## 정의` 추가. 라벨 표로 헤딩 현지화(두 원형 모두 없음).
-- 이 저장소의 공백 3건(§6): discovery 경로 정의 누락, spec-batch 범위 축소(cross-spec review 없음), 태스크 실행 방식 미정.
+- agentic-psdd 공백과 네 방법론 비교: `sdd-comparison.md`.
 
 ## 1. 흐름
 | 단계 | Kiro | cc-sdd |
@@ -54,17 +54,7 @@
 - Kiro: 출력 언어 규칙 문서화 없음(UNVERIFIED)
 
 ## 6. agentic-psdd 대조
-| 항목 | Kiro | cc-sdd | agentic-psdd |
-|---|---|---|---|
-| 요구사항 표기 | `WHEN … SHALL` | EARS 문장형 | `N.M: [조건] 결과` |
-| 추가 산출물 | — | research.md, spec.json | + biz-process.md(L1~L6), `Definition` 절, value-chain |
-| bugfix | 있음(PBT) | 없음(경로 B) | 있음(Kiro 3블록 계승, PBT 없음) |
-| 경계 | — | Candidates → Commitments → `_Boundary:_` | 동일 + requirements `Scope` |
-| steering 로딩 | inclusion 4종 | 없음 | Kiro inclusion 채택 |
-| 헤딩 현지화 | 없음 | 없음 | 라벨 표 `templates/labels.md` |
-| discovery 경로 | 사용자 선택 | A~E 정의 | **PATH_DETECTED만 요구, 경로 정의 없음** — `skills/kiro-discovery/SKILL.md` |
-| spec-batch | — | init→tasks + cross-spec review | **spec.json, requirements.md만, cross-spec review 없음** — `skills/kiro-spec-batch/SKILL.md` |
-| 태스크 실행 | wave 동시 | 순차, `(P)` 정보용 | 미확인(이번 분석 범위 밖) |
+네 방법론 비교와 agentic-psdd 공백: `sdd-comparison.md`.
 
 ## 7. 라벨 표 결정
 - `en` 열: bugfix는 Kiro 원명, 나머지는 기존 agentic-psdd 이름 유지(cc-sdd 개명 `This Spec Owns`, `Out of Boundary`는 규칙 참조 안정성 위해 미채택)
