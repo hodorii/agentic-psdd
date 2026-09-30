@@ -3,10 +3,11 @@
 One criterion per line under a numbered requirement group, inside the `Requirements` section:
 
 ```
-### N. [requirement area]
+### N. [subject + obligation]
 - N.M: [condition] result
 ```
 
+- Group name: subject + obligation — what the deliverable must provide (`공정변수 정의`, `PINN 예측 정확도 산출 방법`). A bare topic (`명령안`, `증빙`) or a vague link word (`연계`) is not a name.
 - `[condition]`: the triggering event, state, failure, or option; `[항상]` for invariants; combine with `+`.
 - `[result]`: what is observable — rendered output, exit code, file state, message. No implementation terms (framework, module, table).
 - No arrow: the closing `]` separates condition from result. One behavior per line. Measurable words (`2초 이내`), never "fast" / "robust".

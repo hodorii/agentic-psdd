@@ -48,7 +48,7 @@
 | file_structure_plan | 파일 구조 계획 | File Structure Plan |
 | optional_sections | 선택 절 (필요 시만) | Optional (when needed) |
 | title_tasks | 구현 계획 | Implementation Plan |
-| title_research | 조사·설계 결정 | Research & Design Decisions |
+| title_research | 조사와 설계 결정 | Research & Design Decisions |
 | summary | 요약 | Summary |
 | feature | 기능 | Feature |
 | discovery_scope | 조사 범위 | Discovery Scope |
@@ -133,7 +133,7 @@
 | authentication | 인증 | Authentication |
 | versioning | 버전 관리 | Versioning |
 | pagination_filtering | 페이지네이션/필터링 (해당 시) | Pagination/Filtering (if applicable) |
-| title_authentication_standards | 인증·인가 표준 | Authentication & Authorization Standards |
+| title_authentication_standards | 인증과 인가 표준 | Authentication & Authorization Standards |
 | auth_method | 방식 (선택 + 근거) | Method (choose + rationale) |
 | auth_flow | 흐름 (개요) | Flow (high-level) |
 | token_session_lifecycle | 토큰/세션 수명주기 | Token/Session Lifecycle |
@@ -142,44 +142,44 @@
 | permission_model | 권한 모델 | Permission Model |
 | authorization_checks | 점검 (적용 위치) | Checks (where to enforce) |
 | ownership | 소유권 | Ownership |
-| passwords_mfa | 비밀번호·MFA | Passwords & MFA |
+| passwords_mfa | 비밀번호와 MFA | Passwords & MFA |
 | api_to_api_auth | API 간 인증 | API-to-API Auth |
 | title_database_standards | 데이터베이스 표준 | Database Standards |
-| naming_types | 명명·타입 | Naming & Types |
+| naming_types | 명명과 타입 | Naming & Types |
 | relationships | 관계 | Relationships |
 | migrations | 마이그레이션 | Migrations |
 | query_patterns | 쿼리 패턴 | Query Patterns |
-| connection_transactions | 연결·트랜잭션 | Connection & Transactions |
+| connection_transactions | 연결과 트랜잭션 | Connection & Transactions |
 | data_integrity | 데이터 무결성 | Data Integrity |
-| backup_recovery | 백업·복구 | Backup & Recovery |
+| backup_recovery | 백업과 복구 | Backup & Recovery |
 | title_deployment_standards | 배포 표준 | Deployment Standards |
 | environments | 환경 | Environments |
 | ci_cd_flow | CI/CD 흐름 | CI/CD Flow |
 | deployment_strategies | 배포 전략 | Deployment Strategies |
-| zero_downtime_migrations | 무중단 배포·마이그레이션 | Zero-Downtime & Migrations |
+| zero_downtime_migrations | 무중단 배포와 마이그레이션 | Zero-Downtime & Migrations |
 | rollback | 롤백 | Rollback |
-| configuration_secrets | 설정·비밀정보 | Configuration & Secrets |
-| health_monitoring | 헬스체크·모니터링 | Health & Monitoring |
-| incident_response_dr | 장애 대응·재해 복구 | Incident Response & DR |
+| configuration_secrets | 설정과 비밀정보 | Configuration & Secrets |
+| health_monitoring | 헬스체크와 모니터링 | Health & Monitoring |
+| incident_response_dr | 장애 대응과 재해 복구 | Incident Response & DR |
 | title_error_handling_standards | 오류 처리 표준 | Error Handling Standards |
 | error_classification | 분류 (출처별 처리 결정) | Classification (decide handling by source) |
 | error_shape | 오류 형식 (단일 표준 형식) | Error Shape (single canonical format) |
 | error_propagation | 전파 (변환 위치) | Propagation (where to convert) |
 | error_logging | 로깅 (소음보다 맥락) | Logging (context over noise) |
 | error_retry | 재시도 (안전할 때만) | Retry (only when safe) |
-| monitoring_health | 모니터링·헬스체크 | Monitoring & Health |
+| monitoring_health | 모니터링과 헬스체크 | Monitoring & Health |
 | title_security_standards | 보안 표준 | Security Standards |
-| input_output | 입력·출력 | Input & Output |
-| authentication_authorization | 인증·인가 | Authentication & Authorization |
-| secrets_configuration | 비밀정보·설정 | Secrets & Configuration |
+| input_output | 입력과 출력 | Input & Output |
+| authentication_authorization | 인증과 인가 | Authentication & Authorization |
+| secrets_configuration | 비밀정보와 설정 | Secrets & Configuration |
 | sensitive_data | 민감 데이터 | Sensitive Data |
 | session_token_security | 세션/토큰 보안 | Session/Token Security |
 | security_logging | 로깅 (보안 고려) | Logging (security-aware) |
-| headers_transport | 헤더·전송 | Headers & Transport |
+| headers_transport | 헤더와 전송 | Headers & Transport |
 | vulnerability_posture | 취약점 대응 태세 | Vulnerability Posture |
 | title_testing_standards | 테스트 표준 | Testing Standards |
 | organization | 구성 | Organization |
 | test_types | 테스트 유형 | Test Types |
 | test_structure_aaa | 구조 (AAA) | Structure (AAA) |
-| mocking_data | 목·테스트 데이터 | Mocking & Data |
+| mocking_data | 목과 테스트 데이터 | Mocking & Data |
 | coverage | 커버리지 | Coverage |
