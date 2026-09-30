@@ -1,10 +1,10 @@
 # github/spec-kit 분석 — agentic-psdd 대조
 
-> 분석 기준: github/spec-kit v1.0.11 (커밋 `adbd62a`, 2026-09-24) 클론을 파일 단위로 읽음. 인용 경로는 spec-kit 저장소 기준. agentic-psdd 쪽은 `docs/design.md` 기준.
+> 분석 기준: github/spec-kit 커밋 `adbd62a`(2026-09-24, v1.0.11 태그 `8147943` 이후) 클론을 파일 단위로 읽음. v1.0.13(`f1a548a`, 2026-09-29) 차이는 §8. 인용 경로는 spec-kit 저장소 기준. agentic-psdd 쪽은 `docs/design.md` 기준.
 
 ## 결론
 spec-kit은 2025-08 출발한 4단계 선형 파이프라인에서 1년 만에 **다중 에이전트 대상 프로세스 배포 플랫폼**이 되었다. 방법론(헌법 1회, 기능마다 specify, clarify, plan, checklist, tasks, analyze, implement, converge)은 agentic-psdd와 같은 계열이나 투자 방향이 다르다.
-- spec-kit: 배포, 확장, 자동화 기반 — 통합 41개, 확장, 프리셋, 워크플로, 번들, 해시 추적 설치, 커뮤니티 카탈로그.
+- spec-kit: 배포, 확장, 자동화 기반 — 통합 42개(v1.0.13), 확장, 프리셋, 워크플로, 번들, 해시 추적 설치, 커뮤니티 카탈로그.
 - agentic-psdd: 산출물 간 추적성과 구현 검증 엄격성 — 가치사슬, L1~L6, V-모델, 적대적 리뷰어, RED 증거, 실물 실행 증거.
 
 ## 1. 현황
@@ -12,11 +12,11 @@ spec-kit은 2025-08 출발한 4단계 선형 파이프라인에서 1년 만에 *
 |---|---|---|
 | 파일 수 | 817 | 클론 `find` |
 | 구현 | Python CLI `specify` (`src/specify_cli/`) | `README.md` |
-| 릴리스 | 200회 이상, 최근 주 2~3회 (1.0.6 09-10 … 1.0.11 09-24) | `CHANGELOG.md` |
+| 릴리스 | 200회 이상, 최근 주 2~3회 (1.0.6 09-10 … 1.0.11 09-24, 1.0.12 09-25, 1.0.13 09-29) | `CHANGELOG.md`, GitHub releases |
 | 스타 | 약 132k (2026-09-01) | `newsletters/2026-August.md` |
-| 내장 통합 | 41 | `integrations/catalog.json` |
-| 1차 확장 / 프리셋 / 번들 / 워크플로 | 4 (agent-context, git, bug, assess) / 2 (lean, constitution-sync) / 2 (bugfix, assess) / 3 | `extensions/`, `presets/`, `bundles/`, `workflows/` |
-| 커뮤니티 카탈로그 | 확장 174, 프리셋 39, 번들 2, 워크플로 2 | `*/catalog.community.json` |
+| 내장 통합 | 42 (v1.0.13, mcode 추가) | `integrations/catalog.json` |
+| 1차 확장 / 프리셋 / 번들 / 워크플로 | 5 (agent-context, git, bug, assess, github) / 2 (lean, constitution-sync) / 2 (bugfix, assess) / 3 | `extensions/`, `presets/`, `bundles/`, `workflows/` |
+| 커뮤니티 카탈로그 (v1.0.13) | 확장 176, 프리셋 40, 번들 3, 워크플로 2 | `*/catalog.community.json` |
 | 진입점 | SDD(코어), 버그 수정(bug 확장), 아이디어 평가(assess 확장) — "독립 진입점, 필수 3단계 아님" | `README.md` |
 | 스튜어드 | Den Delimarsky → Manfred Riem (2026-01-22) | `docs/history.md` |
 
@@ -85,28 +85,12 @@ spec-kit은 2025-08 출발한 4단계 선형 파이프라인에서 1년 만에 *
 | 2026-07 0.12~0.15 | Python 스크립트 포트, assess 확장, 런타임 이벤트 훅 |
 | 2026-08-21 1.0.0 | "다섯 원시의 정합성" 선언, 안정성 약속 아님 |
 | 2026-09 1.0.5~1.0.11 | 워크플로 슬롯, 1차 번들, `specify artifact` 조회 |
+| 2026-09-25~29 1.0.12~1.0.13 | Bitbucket 인증, 프리셋 모듈 분리, `github` 확장(taskstoissues 이전 예고), mcode 통합, JSON 비ASCII 보존 |
 
 철학 이동: 선형 파이프라인 → 조합 가능한 원시; 3필수 단계 → 독립 진입점; 헌법을 템플릿에 전파하던 방식 → 런타임에 헌법을 읽는 방식(`docs/upgrade.md`); "8개 마크다운" 비판에 lean 프리셋으로 응답; "누가 스펙을 검증하나"에 상류(assess), 하류(converge)로 응답.
 
 ## 6. agentic-psdd 대조
-| 관점 | spec-kit | agentic-psdd |
-|---|---|---|
-| 배포 | Python CLI + 휠 에셋, 에이전트별 파일 생성, 해시 매니페스트 | `install.sh` symlink/copy, `AGENTS.md` 포인터 블록, 이름 매니페스트 |
-| 대상 에이전트 | 41개, 형식 변환기 내장 | `.agents/skills`, `.claude/skills` 규약 호스트, 변환 없음 |
-| 프로젝트 원칙 | constitution.md 1파일, SemVer, 게이트 2회 검사 | steering 3파일 + custom, `inclusion` 규약, 승격 |
-| 요구사항 | 사용자 스토리 P1~P3 + FR/SC + Given/When/Then | `N.M: [조건] → [결과]` 한 줄, 구현 용어 금지 |
-| 비즈니스 계층 | 없음(spec-of-specs 로드맵) | value-chain Unit, BP L1~L6, V-모델 좌, 우 |
-| 설계 | plan.md + research/data-model/contracts/quickstart 분산 | design.md 단일, Boundary Commitments 4절 필수, 자기검토 기계 검사 |
-| 태스크 | `T001 [P] [US1]`, 스토리 단위 Phase, 테스트 선택 | 2단계 번호, `_Difficulty`, `_Boundary`, `_Depends`, `_BizProcess`, DONE 불릿 필수 |
-| 모호함 | 3개 상한 + 추측, clarify 별도 단계 | 자기검토 2회 초과 시 이전 단계 복귀, 추측 금지 |
-| 구현 검증 | implement 자기완료 + converge(산출물 대 코드) | 구현자, 리뷰어, 디버거 분리, RED 증거, 실물 실행 캡처, 12항목 리뷰 |
-| 서브에이전트 | plan Phase 0 리서치 내장, 나머지 사용자 지시 | Difficulty 기반 모델 매칭, 워크트리 격리, 세션 로테이션 |
-| 버그 | assess, fix, test 확장, 슬러그 디렉터리 | bugfix.md(결함, 기대, 불변 1:1) 후 design, tasks 재사용 |
-| 확장 | 확장, 프리셋, 워크플로, 번들 + 카탈로그 | rules/, templates/ 파일 추가, 경로 이름 표 |
-| 자동화 | 워크플로 엔진, 라벨 기반 GitHub agentic 워크플로 | 스킬 체인 수동 호출, `-y`/`--auto` |
-
-- spec-kit 우위: 다중 에이전트 배포, 설치 파일 해시 추적, 프리셋 층위 해석과 조회, 워크플로 재개, converge의 산출물 단위 재평가, 아이디어 평가 진입점(kill이 정상 결과).
-- agentic-psdd 우위: 요구사항 ID가 코드까지 이어지는 추적성(spec-kit은 plan과 tasks 사이가 문서 읽기 연결), 설계의 경계 약정, 의존 방향을 리뷰어가 기계 검사, RED 증거로 테스트 강제, 구현자 보고를 신뢰하지 않는 독립 리뷰어, 사용자 관점 비즈니스 프로세스 계층.
+네 방법론 비교와 agentic-psdd 공백: `sdd-comparison.md`.
 
 ## 7. agentic-psdd 반영 (2026-09-25)
 1. **converge 상당 규정** → `kiro-validate-impl/SKILL.md`: 산출물이 유일한 의도 원천, 체크박스 무관 전 태스크 재평가, 발견 분류 `missing | partial | contradicts | unrequested`, 기존 태스크 재작성, 재번호 금지, 발견 0이면 GO.
@@ -115,6 +99,13 @@ spec-kit은 2025-08 출발한 4단계 선형 파이프라인에서 1년 만에 *
 4. **설치 파일 해시** → `install.sh`: copy 모드가 `.kiro/settings/.methodology-files-manifest`에 파일별 SHA-256 기록, 이후 실행은 수정된 파일을 발견하면 exit 3, `--force`로 덮어씀, link 전환 시 매니페스트 삭제. 임시 프로젝트에서 시나리오 실행 확인.
 5. **평가 판정** → `kiro-discovery/SKILL.md` + `templates/brief.md`: Core Indicator `DECISION` = `GO | NEEDS_CLARIFICATION | STOP`, 찬반 근거를 `cited | assumption` 태그로 기록, 문서화된 STOP은 정상 결과, 미해결은 brief.md 수정으로 해소.
 6. 따라가지 않은 것: 테스트 선택화, 모호함 추측 허용 — 증거 기반, 추측 금지 원칙과 충돌.
+
+## 8. v1.0.11 → v1.0.13 (2026-09-30 확인)
+- 핵심 SDD 절차 변경 없음: `templates/` 트리 SHA `af00feb`, `templates/commands` `3c3e7fa`, `spec-driven.md` `28259ae` 두 태그 동일.
+- 핵심 명령을 확장으로 분리: 1차 `github` 확장 `/speckit.github.taskstoissues`, 핵심 `taskstoissues`는 이전 예고(`docs/reference/agentic-sdd.md@v1.0.13`).
+- `docs/guides/agentic-sdlc.md`: Spec Kit 자체 개발을 SDLC 7단계로 기술, "a map, not a required sequence"; 진행과 병합 결정은 메인테이너.
+- 다중 에이전트 동시 실행: `SPECIFY_FEATURE_DIRECTORY`, `SPECIFY_FEATURE_NO_PERSIST` 권장(`docs/reference/core.md@v1.0.13`).
+- 출처: GitHub release notes v1.0.12, v1.0.13; `compare/v1.0.11...v1.0.13`(커밋 41, 파일 115). CHANGELOG 본문 미확인.
 
 ## 검증 범위
 - 세 조사 에이전트 보고를 종합. 다음은 원본 파일에서 직접 재확인: converge "APPEND-ONLY", "completion claims are not evidence"(`templates/commands/converge.md:73,148`), tasks 테스트 OPTIONAL(`templates/tasks-template.md:12`), 마커 3개 상한, informed guess(`templates/commands/specify.md:123,128,201`), 통합 41(`integrations/catalog.json`), 커맨드 10개 존재.
