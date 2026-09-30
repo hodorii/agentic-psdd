@@ -240,6 +240,7 @@ flowchart LR
 
 ### 핵심 결정
 - **`AGENTS.md`는 symlink가 아닌 포인터 블록**: `<!-- methodology:begin/end -->` 사이만 관리, 나머지 보존 - 이유: 루트 `AGENTS.md`를 in-place 덮어쓰는 호스트가 symlink를 통해 원본 `methodology/AGENTS.md`를 손상시킴.
+- **Human-Typeable**: 리치 에디터(이메일 수준 굵게, 기울임, 취소선, 목록, 표, 링크)나 Markdown으로 사람이 쓸 수 있는 표현만, 글자는 보이는 ASCII와 해당 언어 글자, 번호는 1. 1) (1) 순서, 원문자와 이모지 불가, 외부 문법 원문 인용 예외 - 이유: 사람이 직접 고치고, 기계가 쓴 글로 읽히지 않게.
 - **Lazy Loading(MoE 하위 원칙)**: 로딩 계층 0 항상(포인터, 스킬 설명), 1 맵에서 골라 읽음(steering, reference), 2 호출 시(계약 -> 단계별 규칙), 3 경로로만(선택 스킬, 보관 문서); 라벨 표는 필요한 행만, 라우터의 워크플로와 steering 규칙은 해당 스킬 규칙으로 이동, 설계 종합 규칙은 full 조사일 때만 - 이유: 항상 로딩 면적 최소화.
 - **copy 모드 라우터 복사**: copy 설치는 `methodology/`가 없으므로 라우터를 `.kiro/settings/methodology/AGENTS.md`로 복사하고 포인터가 그 경로를 가리킴, 해시 매니페스트 포함 - 이유: 경로 이름 표 없이는 스킬이 `{{SKILLS}}` 등을 해석 못 함.
 - **포인터는 조건부**: 스펙 작업(`$kiro-*`, `.kiro/specs`, `.kiro/steering`)일 때만 `methodology/AGENTS.md`를 읽음 - 이유: 운영 세션이 많은 프로젝트에서 라우터(약 7KB)가 매 세션 로딩되지 않게 함(MoE, 지연 로딩).
@@ -348,7 +349,7 @@ sequenceDiagram
 
 ### `AGENTS.md` - Router
 - 의도: 스킬이 쓰는 경로 이름을 해석하고 원칙, 워크플로, 게이트 규칙을 한 곳에 둔다.
-- 절: `## Paths`(이름->기본 경로->보유물 표), `## Principles`(SSoT, SRP(Small Units), Self-Documenting(Descriptable Name, Why-Only Comment), Goal Delivery, 지침/히스토리 분리, MoE(Lazy Loading), Lean), `## Artifacts`(`Definition` 개시, 라벨 행 단위 조회, 수용 기준 형식, 추적성 체인, ~200줄 상한), `## Workflow`(포인터: `kiro-spec-status/rules/workflow.md`), `## Skills`(`$kiro-<name>` 호출), `## Rules`(승인 게이트, 영어 추론, 평가 보고 원칙), `## Steering`(포인터: `kiro-steering/rules/steering-principles.md`).
+- 절: `## Paths`(이름->기본 경로->보유물 표), `## Principles`(SSoT, SRP(Small Units), Self-Documenting(Descriptable Name, Why-Only Comment), Goal Delivery, Human-Typeable, 지침/히스토리 분리, MoE(Lazy Loading), Lean), `## Artifacts`(`Definition` 개시, 라벨 행 단위 조회, 수용 기준 형식, 추적성 체인, ~200줄 상한), `## Workflow`(포인터: `kiro-spec-status/rules/workflow.md`), `## Skills`(`$kiro-<name>` 호출), `## Rules`(승인 게이트, 영어 추론, 평가 보고 원칙), `## Steering`(포인터: `kiro-steering/rules/steering-principles.md`).
 - 계약 특이사항: 소비 프로젝트에서는 원본이 아니라 포인터 블록으로 도달한다. 스킬 텍스트는 이 파일의 Paths 표 없이는 경로를 해석할 수 없다.
 
 ### `install.sh` - Installer
