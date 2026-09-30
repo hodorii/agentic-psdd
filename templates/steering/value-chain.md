@@ -4,7 +4,7 @@ status: draft
 owner: <product or business owner>
 updated_at: <YYYY-MM-DD>
 ---
-# {{label.title_value_chain}} — SSoT
+# {{label.title_value_chain}} - SSoT
 
 ## Mega ({{label.value_chain_definition}})
 | id | {{label.name}} | {{label.value}} | {{label.evidence}} |
@@ -21,4 +21,4 @@ updated_at: <YYYY-MM-DD>
 |---|---|---|---|---|---|---|
 | VC-<domain>-<unit> | <unit process name> | VC-<domain>-<main> | <value this unit delivers> | <condition the value is met> | <cited source, or assumption> | <optional BP-<name>> |
 
-<!-- One row per item. Long text belongs in the source cited, not in the cell. bizProcessRef is optional: the BizProcess → Unit link (valueChainRef) alone is valid. -->
+<!-- One row per item. Long text belongs in the source cited, not in the cell. bizProcessRef is optional: the BizProcess -> Unit link (valueChainRef) alone is valid. -->

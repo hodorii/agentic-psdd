@@ -21,4 +21,4 @@ Rules
 - Reproduce first; if the defect cannot be reproduced, stop and route to `$kiro-debug`
 - Read `{{TEMPLATES}}/specs/bugfix.md` for document structure; write `{{SPECS}}/{fix}/bugfix.md`
 - Write spec.json from `{{TEMPLATES}}/specs/init.json` with `approvals.bugfix` in place of `requirements`; `phase: bugfix-generated`
-- Next: `$kiro-spec-design {fix}` — reads bugfix.md; biz-process is skipped unless the fix changes a user flow
+- Next: `$kiro-spec-design {fix}` - reads bugfix.md; biz-process is skipped unless the fix changes a user flow

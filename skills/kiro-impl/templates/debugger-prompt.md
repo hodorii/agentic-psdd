@@ -15,11 +15,11 @@ You are a fresh debug investigator with NO prior context about implementation at
 
 ## Method
 
-1. **Read the error carefully** — extract the exact error message, stack trace, and failure location
-2. **Search the web** if available — search the exact error message, the technology + symptom combination, and official documentation
+1. **Read the error carefully** - extract the exact error message, stack trace, and failure location
+2. **Search the web** if available - search the exact error message, the technology + symptom combination, and official documentation
    - e.g., `site:electronjs.org "Cannot find module"`, `better-sqlite3 electron ABI mismatch`
    - Check GitHub Issues for the specific package/framework version
-3. **Inspect the runtime environment** — check package.json (dependencies, scripts, main/module fields), build config, tsconfig, and any runtime-specific configuration
+3. **Inspect the runtime environment** - check package.json (dependencies, scripts, main/module fields), build config, tsconfig, and any runtime-specific configuration
 4. **Classify the root cause**:
    - **Missing dependency**: A required package is not installed or not configured
    - **Runtime mismatch**: Code works in one runtime (e.g., Node.js) but not the target (e.g., Electron, browser, Lambda)
@@ -29,7 +29,7 @@ You are a fresh debug investigator with NO prior context about implementation at
    - **Logic error**: Actual bug in the implementation
    - **Spec conflict**: Requirements or design contradicts what's technically possible
    - **External dependency**: Requires human decision, external API access, or hardware
-5. **Determine if repo-fixable** — can this be resolved by editing files, adding dependencies, or changing configuration within this repository?
+5. **Determine if repo-fixable** - can this be resolved by editing files, adding dependencies, or changing configuration within this repository?
 
 ## Critical Rule
 

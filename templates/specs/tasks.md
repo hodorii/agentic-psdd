@@ -1,11 +1,11 @@
-# {{label.title_tasks}} — <feature>
+# {{label.title_tasks}} - <feature>
 
 ## {{label.definition}}
 {{label.definition_sentence}}
 
 - [ ] 1. [major task]
 - [ ] 1.1 [sub-task]
-  - _DoneWhen: [observable done state — rendered frame or output for tasks with screen or output]_
+  - _DoneWhen: [observable done state - rendered frame or output for tasks with screen or output]_
   - _Requirements: 1.1, 1.2_
   - _Difficulty: mid_
 

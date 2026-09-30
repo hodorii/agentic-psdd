@@ -41,16 +41,16 @@ Requirements should clarify the feature boundary in user- or operator-observable
 
 Before applying judgment, verify these mechanically:
 - **Numeric IDs present**: Every requirement heading has a numeric ID (1, 1.1, 2, etc.). Scan the draft for headings without IDs.
-- **Group names**: every group heading is subject + obligation per `acceptance-criteria-format.md`; flag bare topics, vague link words (integration, linkage), `·` in names, a role that is an organization, and a role or purpose prefix repeating the spec `Definition`.
-- **Acceptance criteria exist**: Every requirement group has at least one `N.M: [condition] result` line; flag any arrow (`→`, `->`, `$\rightarrow$`) between condition and result.
+- **Group names**: every group heading is subject + obligation per `acceptance-criteria-format.md`; flag bare topics, vague link words (integration, linkage), non-ASCII symbols in names (`Human-Typeable`), a role that is an organization, and a role or purpose prefix repeating the spec `Definition`.
+- **Acceptance criteria exist**: Every requirement group has at least one `N.M: [condition] result` line; flag any arrow (`->`, `->`, `$\rightarrow$`) between condition and result.
 - **Cross-requirement analysis**: flag logical inconsistencies (individually valid, jointly impossible), conflicting constraints, unstated assumptions (undefined terms or referenced behaviors), and missing failure/boundary cases.
 - **No implementation language**: Scan for technology-specific terms (database names, framework names, API patterns) that belong in design, not requirements. Flag any found.
-- **Tagged findings**: every issue the gate raises carries one tag — `[Gap]` (obligation absent), `[Ambiguity]` (two readings), `[Conflict]` (criteria jointly impossible), `[Assumption]` (undefined term or unstated dependency) — and names the criterion ID or section it applies to. A finding phrased as implementation verification ("verify that the service…") is a design or test concern, not a requirements finding.
+- **Tagged findings**: every issue the gate raises carries one tag - `[Gap]` (obligation absent), `[Ambiguity]` (two readings), `[Conflict]` (criteria jointly impossible), `[Assumption]` (undefined term or unstated dependency) - and names the criterion ID or section it applies to. A finding phrased as implementation verification ("verify that the service...") is a design or test concern, not a requirements finding.
 
 ## Review Loop
 
 - Run mechanical checks first, then judgment-based review.
 - If issues are local to the draft, repair the draft and re-run the review gate.
 - Keep the loop bounded: no more than 2 review-and-repair passes before escalating a real ambiguity back to the user.
-- Clarification dialogue: rank open questions by impact × uncertainty, ask at most 5, exactly one at a time; offer 2–5 options with a `Recommended:` mark when the answer space is known, otherwise ask for a short answer; integrate each answer into the affected criterion before asking the next; stop when the user says done.
+- Clarification dialogue: rank open questions by impact * uncertainty, ask at most 5, exactly one at a time; offer 2-5 options with a `Recommended:` mark when the answer space is known, otherwise ask for a short answer; integrate each answer into the affected criterion before asking the next; stop when the user says done.
 - Write `requirements.md` only after the review gate passes.

@@ -8,10 +8,10 @@
 - Handle known errors close to source; surface unknowns to a global handler
 
 ## {{label.error_classification}}
-- Client: Input/validation/user action issues → 4xx
-- Server: System failures/unexpected exceptions → 5xx
-- Business: Rule/state violations → 4xx (e.g., 409)
-- External: 3rd-party/network failures → map to 5xx or 4xx with context
+- Client: Input/validation/user action issues -> 4xx
+- Server: System failures/unexpected exceptions -> 5xx
+- Business: Rule/state violations -> 4xx (e.g., 409)
+- External: 3rd-party/network failures -> map to 5xx or 4xx with context
 
 ## {{label.error_shape}}
 ```json
@@ -27,10 +27,10 @@
 Principles: stable code enums, no secrets, include trace info.
 
 ## {{label.error_propagation}}
-- API layer: Convert domain errors → HTTP status + canonical body
+- API layer: Convert domain errors -> HTTP status + canonical body
 - Service layer: Throw typed business errors, avoid stringly-typed errors
 - Data/external layer: Wrap provider errors with safe, actionable codes
-- Unknown errors: Bubble to global handler → 500 + generic message
+- Unknown errors: Bubble to global handler -> 500 + generic message
 
 Example pattern:
 ```typescript

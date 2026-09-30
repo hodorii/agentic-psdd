@@ -55,8 +55,8 @@ Authorization: Bearer {token}
 
 ## {{label.versioning}}
 - Version via URL/header/media-type
-- Breaking change → new version
-- Non-breaking → same version
+- Breaking change -> new version
+- Non-breaking -> same version
 - Provide deprecation window and comms
 
 ## {{label.pagination_filtering}}

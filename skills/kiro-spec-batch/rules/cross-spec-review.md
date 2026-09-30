@@ -13,5 +13,5 @@ Runs after every spec of the batch has spec.json and requirements.md. Reads all 
 ## Loop
 - Each finding names the tag, both specs and the criterion IDs.
 - Repair inside the specs (move, reference, rename); keep IDs contiguous per the requirements rules; re-run the checks. At most 3 rounds.
-- A finding that needs a different decomposition (split, merge, reorder specs) → stop and route to `$kiro-discovery`; do not patch it in requirements.
+- A finding that needs a different decomposition (split, merge, reorder specs) -> stop and route to `$kiro-discovery`; do not patch it in requirements.
 - CROSS_SPEC_REVIEW = findings per round and their resolution, or `CLEAN`.
