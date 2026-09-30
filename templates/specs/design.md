@@ -24,7 +24,7 @@
 [Mermaid — modules or components and dependency direction; required for complex features]
 
 ### {{label.technology_stack}}
-| Layer | Choice | Role |
+| {{label.layer}} | {{label.tech_choice}} | {{label.role}} |
 |-------|--------|------|
 | | | |
 

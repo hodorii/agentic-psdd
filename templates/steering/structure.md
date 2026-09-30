@@ -7,14 +7,14 @@
 ## {{label.directory_patterns}}
 
 ### [Pattern Name]
-**Location**: `/path/`  
-**Purpose**: [What belongs here]  
-**Example**: [Brief example]
+**{{label.location}}**: `/path/`  
+**{{label.purpose}}**: [What belongs here]  
+**{{label.example}}**: [Brief example]
 
 ### [Pattern Name]
-**Location**: `/path/`  
-**Purpose**: [What belongs here]  
-**Example**: [Brief example]
+**{{label.location}}**: `/path/`  
+**{{label.purpose}}**: [What belongs here]  
+**{{label.example}}**: [Brief example]
 
 ## {{label.naming_conventions}}
 
@@ -30,12 +30,11 @@ import { Something } from '@/path'  // Absolute
 import { Local } from './local'     // Relative
 ```
 
-**Path Aliases**:
+**{{label.path_aliases}}**:
 - `@/`: [Maps to]
 
 ## {{label.code_organization_principles}}
 
 [Key architectural patterns and dependency rules]
 
----
-_Document patterns, not file trees. New files following patterns shouldn't require updates_
+<!-- Document patterns, not file trees. New files following patterns shouldn't require updates -->

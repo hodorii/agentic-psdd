@@ -9,7 +9,7 @@
   - Finding 3
 
 ## {{label.research_log}}
-Document notable investigation steps and their outcomes. Group entries by topic for readability.
+<!-- Document notable investigation steps and their outcomes. Group entries by topic for readability. -->
 
 ### [Topic or Question]
 - **{{label.context}}**: What triggered this investigation?
@@ -17,17 +17,17 @@ Document notable investigation steps and their outcomes. Group entries by topic 
 - **{{label.findings}}**: Concise bullet points summarizing the insights
 - **{{label.implications}}**: How this affects architecture, contracts, or implementation
 
-_Repeat the subsection for each major topic._
+<!-- Repeat the subsection for each major topic. -->
 
 ## {{label.architecture_pattern_evaluation}}
-List candidate patterns or approaches that were considered. Use the table format where helpful.
+<!-- List candidate patterns or approaches that were considered. Use the table format where helpful. -->
 
-| Option | Description | Strengths | Risks / Limitations | Notes |
+| {{label.option}} | {{label.description}} | {{label.strengths}} | {{label.risks_limitations}} | {{label.notes}} |
 |--------|-------------|-----------|---------------------|-------|
-| Hexagonal | Ports & adapters abstraction around core domain | Clear boundaries, testable core | Requires adapter layer build-out | Aligns with existing steering principle X |
+| [option] | [description] | [strengths] | [risks or limitations] | [notes] |
 
 ## {{label.design_decisions}}
-Record major decisions that influence `design.md`. Focus on choices with significant trade-offs.
+<!-- Record major decisions that influence `design.md`. Focus on choices with significant trade-offs. -->
 
 ### {{label.decision}}: `<Title>`
 - **{{label.context}}**: Problem or requirement driving the decision
@@ -39,7 +39,7 @@ Record major decisions that influence `design.md`. Focus on choices with signifi
 - **{{label.trade_offs}}**: Benefits vs. compromises
 - **{{label.follow_up}}**: Items to verify during implementation or testing
 
-_Repeat the subsection for each decision._
+<!-- Repeat the subsection for each decision. -->
 
 ## {{label.risks_and_mitigations}}
 - Risk 1 — Proposed mitigation
@@ -47,6 +47,6 @@ _Repeat the subsection for each decision._
 - Risk 3 — Proposed mitigation
 
 ## {{label.references}}
-Provide canonical links and citations (official docs, standards, ADRs, internal guidelines).
+<!-- Provide canonical links and citations (official docs, standards, ADRs, internal guidelines). -->
 - [Title](https://example.com) — brief note on relevance
 - ...

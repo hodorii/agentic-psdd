@@ -43,5 +43,4 @@ it('does X when Y', () => {
 - Target: [% overall]; higher for critical domains
 - Enforce thresholds in CI; exceptions require review rationale
 
----
-_Focus on patterns and decisions. Tool-specific config lives elsewhere._
+<!-- Focus on patterns and decisions. Tool-specific config lives elsewhere. -->

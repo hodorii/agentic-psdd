@@ -194,3 +194,15 @@
 | value_chain_definition | 가치사슬 정의서 | Value Chain Definition |
 | main_value_flow | 주요 가치 흐름 | Main Value Flow |
 | unit_process | 단위 프로세스 | Unit Process |
+| location | 위치 | Location |
+| purpose | 목적 | Purpose |
+| example | 예시 | Example |
+| path_aliases | 경로 별칭 | Path Aliases |
+| option | 선택지 | Option |
+| description | 설명 | Description |
+| strengths | 장점 | Strengths |
+| risks_limitations | 위험과 한계 | Risks / Limitations |
+| notes | 비고 | Notes |
+| layer | 계층 | Layer |
+| tech_choice | 선택 기술 | Choice |
+| role | 역할 | Role |
