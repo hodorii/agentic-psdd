@@ -91,7 +91,7 @@ Evaluate each item. If ANY item fails, the verdict is REJECTED.
 
 **12. Rendered Output (user-visible tasks)**
 - For TUI/GUI/CLI output, verify the rendered frame or output — buffer assertions or a real run capture — not only tests over internal structures.
-- Confirm the DONE bullet's named visual properties (styles, borders, cursor, connectors, exit code) actually appear.
+- Confirm the `_DoneWhen:_` line's named visual properties (styles, borders, cursor, connectors, exit code) actually appear.
 - Real runs start from the default launch (no flags, every panel visible) and add one narrow width; a single-panel or file-view capture alone is REJECTED for layout-sensitive tasks.
 
 **13. Size & Comments** (code)
