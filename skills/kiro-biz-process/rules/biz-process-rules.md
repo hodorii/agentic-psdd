@@ -23,12 +23,12 @@
 
 ## 4. V-model left side (progressive unfold)
 - BizProcess drill-down = V-model **left side**. Verification (right side) is not recorded in biz-process.md.
-- Verification level mapping: `kiro-spec-design/rules/verification-mapping.md` (L1~L6 ↔ test level ↔ Depth). `design.md` Testing Strategy applies it; consuming skills (verify-completion, validate-impl, impl) follow that Testing Strategy.
-- Levels: Process → Activity → FunctionGroup/UI → Step → DetailStep → Logic(AST)
+- Verification level mapping: `kiro-spec-design/rules/verification-mapping.md` (L1~L6 <-> test level <-> Depth). `design.md` Testing Strategy applies it; consuming skills (verify-completion, validate-impl, impl) follow that Testing Strategy.
+- Levels: Process -> Activity -> FunctionGroup/UI -> Step -> DetailStep -> Logic(AST)
 
 ## 5. Drill-down notation
 - Levels as heading depth per `{{TEMPLATES}}/specs/biz-process.md` (L1 `##` to L5 `######`); L6 Logic as indented pseudo-code under its DetailStep.
-- Each **L1 Process** closes with an approval gate (`### ✅ Review Request`). Non-interactive (`-y`): full drill-down, then one gate for all.
+- Each **L1 Process** closes with an approval gate (`### Review Request (L1: <name>)`). Non-interactive (`-y`): full drill-down, then one gate for all.
 - L2/L3 blocks carry related requirement IDs for traceability to `requirements.md` (also in the mapping table).
 
 ## 6. Approval gate (informed consent)
@@ -38,4 +38,4 @@
 ## 7. Value chain status
 - Missing: `$kiro-steering` Bootstrap drafts it from `{{TEMPLATES}}/steering/value-chain.md`.
 - `status: draft`: present it to the owner for approval; never approve it or proceed on it.
-- `status: approved`, or no `status` at all (a file from before drafts existed): read-only SSoT; suggest the owner add `status: approved`. `bizProcessRef` is optional; the BizProcess → Unit link (`valueChainRef`) alone is valid.
+- `status: approved`, or no `status` at all (a file from before drafts existed): read-only SSoT; suggest the owner add `status: approved`. `bizProcessRef` is optional; the BizProcess -> Unit link (`valueChainRef`) alone is valid.

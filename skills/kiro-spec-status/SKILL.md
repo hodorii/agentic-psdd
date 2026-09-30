@@ -17,7 +17,7 @@ Boundaries
 
 Rules
 - Read spec.json produced by kiro-spec-init
-- `phase` values (SSoT, in order): `initialized` → `requirements-generated` (or `bugfix-generated`) → `biz-process-generated` → `design-generated` → `tasks-generated` → `implementation` → `completed`; `approvals.<doc>.{generated,approved}` per document
+- `phase` values (SSoT, in order): `initialized` -> `requirements-generated` (or `bugfix-generated`) -> `biz-process-generated` -> `design-generated` -> `tasks-generated` -> `implementation` -> `completed`; `approvals.<doc>.{generated,approved}` per document
 - Read milestones.md if present
 - Output concise status and blockers
 - Read `rules/workflow.md` from this skill's directory for command order when reporting NEXT_GATES

@@ -1,4 +1,4 @@
-# SDD 방법론 비교 — Kiro, cc-sdd, spec-kit, agentic-psdd
+# SDD 방법론 비교 - Kiro, cc-sdd, spec-kit, agentic-psdd
 
 > 기준(2026-09-30): Kiro 공식 문서, cc-sdd 커밋 `e2a0c67`, spec-kit v1.0.13(`f1a548a`), agentic-psdd `main`. 원형별 근거와 출처는 `kiro-cc-sdd-analysis.md`, `spec-kit-analysis.md`. 이 문서가 비교의 SSoT.
 
@@ -21,8 +21,8 @@
 |---|---|---|---|---|
 | 진입 | Feature, Bugfix, Quick 선택 | discovery 경로 A~E 자동 분류 | specify, bug, assess 독립 진입점 | discovery 경로 A~E(결정 근거 기록) + `GO / NEEDS_CLARIFICATION / STOP` |
 | 프로젝트 원칙 | steering, inclusion 4종 | steering Bootstrap, Sync(drift 감지) | constitution.md, SemVer, 게이트 2회 | steering 3 + custom, inclusion, value-chain(초안과 승인 분리), 완료 시 Sync |
-| 비즈니스 계층 | 없음 | 없음 | 없음(spec-of-specs roadmap) | value-chain Unit ↔ biz-process L1~L6(V-모델 좌측) |
-| 요구사항 | EARS 대문자 `WHEN … SHALL` | EARS 문장형, 키워드 영어 고정 | 사용자 스토리 P1~P3 + FR, SC + Given/When/Then | `N.M: [조건] 결과`, 그룹명 대상과 의무 |
+| 비즈니스 계층 | 없음 | 없음 | 없음(spec-of-specs roadmap) | value-chain Unit <-> biz-process L1~L6(V-모델 좌측) |
+| 요구사항 | EARS 대문자 `WHEN ... SHALL` | EARS 문장형, 키워드 영어 고정 | 사용자 스토리 P1~P3 + FR, SC + Given/When/Then | `N.M: [조건] 결과`, 그룹명 대상과 의무 |
 | 모호함 처리 | Analyze Requirements | validate-gap, 요구사항 review gate | 마커 3개 + informed guess, clarify | self-check 2회 초과 시 이전 단계, 질문 5개 이하 한 번에 하나, 추측 금지 |
 | 설계 | Requirements-First 또는 Design-First | research.md, Boundary Commitments, File Structure Plan | plan.md + research, data-model, contracts, quickstart | cc-sdd 계승 + `Definition`, 검증 레벨 매핑 |
 | 태스크 | 의존 그래프 | `(P)`, `_Boundary:`, `_Depends:` | `T001 [P] [US1]`, 테스트 선택 | + `_Difficulty:`, `_BizProcess:`, `_DoneWhen:` 필수 |
@@ -34,7 +34,7 @@
 | 실행 | wave 내 동시, Autopilot/Supervised | 하위 태스크 1개씩 순차 | `[P]` 동시, 같은 파일 순차 | 의존 wave, wave 안 `(P)`만 동시(워크트리), 그 외 순차 |
 | 구현 단위 | 코드 | 코드 | 코드 | 산출물 유형별(코드, 문서, 데이터, 설정, 분석) |
 | 품질 게이트 | 사람 diff 리뷰, PBT | implementer, reviewer, debug, RED 필수 | implement 자기완료, TDD 권고 | 독립 리뷰어 13항목, RED 또는 미충족 목록, 크기와 주석 기준 |
-| 재시도 | UNVERIFIED | 리뷰 2회 거부 → debug, 태스크당 2라운드 | 비병렬 실패 시 중단 | 2연속 실패 → 상위 모델 또는 debugger |
+| 재시도 | UNVERIFIED | 리뷰 2회 거부 -> debug, 태스크당 2라운드 | 비병렬 실패 시 중단 | 2연속 실패 -> 상위 모델 또는 debugger |
 | 완료 검증 | PBT shrinking, PR | validate-impl GO/NO-GO, verify-completion | converge(append-only, 산출물 대 코드) | validate-impl(converge 규정 흡수), verify-completion + steering Sync |
 | 버그 | bugfix.md + PBT | 스펙 없음(경로 B) | bug 확장 assess, fix, test | bugfix.md 3블록(Kiro 계승), 불변 동작은 속성으로 |
 | 속성 기반 테스트 | 설계에서 도출(IDE) | 없음 | 없음 | 코드 산출물: `[always]`, 입력 범위, 불변 동작에서 도출, 필수 태스크 |
@@ -69,5 +69,5 @@
 | discovery 경로 정의 없음 | cc-sdd A~E | 해소: `kiro-discovery/rules/discovery-paths.md` |
 | spec-batch 교차 검토 없음 | cc-sdd spec-batch | 해소: `kiro-spec-batch/rules/cross-spec-review.md` (requirements 단계, 승인 게이트 유지) |
 | 태스크 실행 방식 미정 | Kiro wave, cc-sdd 순차 | 해소: `kiro-impl` 의존 wave 규칙 |
-| 속성 기반 테스트 없음 | Kiro PBT | 해소: `verification-mapping.md` §4, 태스크, 리뷰어 |
+| 속성 기반 테스트 없음 | Kiro PBT | 해소: `verification-mapping.md` 4절, 태스크, 리뷰어 |
 | 이벤트 자동화 없음 | Kiro Hooks, spec-kit 워크플로 | 미해소: 호스트 hook 설정으로 대체 가능 |

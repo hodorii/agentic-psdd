@@ -39,7 +39,7 @@ Before applying judgment, verify these mechanically:
 - **Requirements traceability**: Extract all numeric requirement IDs from `requirements.md`. Scan the design draft for each ID. Report any IDs not found in the design.
 - **Boundary section populated**: under `Boundary Commitments`, the `In-Scope (This Spec Owns)`, `Out-of-Scope`, `Allowed Dependencies`, and `Revalidation Triggers` subsections must not be empty or placeholder-only.
 - **File Structure Plan populated**: The File Structure Plan section must contain concrete file paths (not just "TBD" or empty). Scan for placeholder text in that section.
-- **Boundary ↔ file structure alignment**: The File Structure Plan must reflect the stated responsibility boundary. If files imply broader ownership than the boundary section claims, report a mismatch.
+- **Boundary <-> file structure alignment**: The File Structure Plan must reflect the stated responsibility boundary. If files imply broader ownership than the boundary section claims, report a mismatch.
 - **No orphan components**: Every component mentioned in the design must appear in the File Structure Plan with a file path. Scan for component names that have no corresponding file entry.
 
 ## Review Loop

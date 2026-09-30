@@ -1,4 +1,4 @@
-# {{label.title_biz_process}} — <feature>
+# {{label.title_biz_process}} - <feature>
 
 ## {{label.definition}}
 {{label.definition_sentence}}
@@ -19,10 +19,10 @@
 ###### L5 DetailStep: ...
 ##### L4 Step: ...
 ### L2 Activity: ...
-### ✅ {{label.review_request}} (L1: <name>)
+### {{label.review_request}} (L1: <name>)
 {{label.review_prompt}}
 
 ## L1 Process: <name2>  (valueChainRef: VC-...-<unit2>)
 ... (repeat the same structure)
-### ✅ {{label.review_request}} (L1: <name2>)
+### {{label.review_request}} (L1: <name2>)
 

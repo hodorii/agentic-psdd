@@ -9,14 +9,14 @@ Steering files are **project memory**, not exhaustive specifications.
 ### Golden Rule
 > "If new code follows existing patterns, steering shouldn't need updating."
 
-### ✅ Document
+### Document
 - Organizational patterns (feature-first, layered)
 - Naming conventions (PascalCase rules)
 - Import strategies (absolute vs relative)
 - Architectural decisions (state management)
 - Technology standards (key frameworks)
 
-### ❌ Avoid
+### Avoid
 - Complete file listings
 - Every component description
 - All dependencies
@@ -78,7 +78,7 @@ Never include:
 - Follow same granularity principles as core steering
 - Steering Sync: on deliverable change (code or non-code), additive, per repository; runs when `kiro-verify-completion` passes a feature, and on request.
 - Elevation: a standard-worthy artifact moves to `{{STEERING}}` or `{{REFERENCE}}`.
-- Every steering file declares `inclusion` in front matter: `always` only for baseline rules every session needs (`product.md`, `tech.md`, `structure.md`); `manual` for files one skill consumes by path (value-chain, roadmap, ticket-workflow); `fileMatch` for path-scoped conventions. Absent front matter = `always` — never leave it absent on large or single-consumer files.
+- Every steering file declares `inclusion` in front matter: `always` only for baseline rules every session needs (`product.md`, `tech.md`, `structure.md`); `manual` for files one skill consumes by path (value-chain, roadmap, ticket-workflow); `fileMatch` for path-scoped conventions. Absent front matter = `always` - never leave it absent on large or single-consumer files.
 - Light references to `{{SPECS}}/` and `{{STEERING}}/` are acceptable; avoid other `.kiro/` directories
 - Custom files equally important as core files
 

@@ -32,8 +32,8 @@
 ### {{label.decision}}: `<Title>`
 - **{{label.context}}**: Problem or requirement driving the decision
 - **{{label.alternatives_considered}}**:
-  1. Option A — short description
-  2. Option B — short description
+  1. Option A - short description
+  2. Option B - short description
 - **{{label.selected_approach}}**: What was chosen and how it works
 - **{{label.rationale}}**: Why this approach fits the current project context
 - **{{label.trade_offs}}**: Benefits vs. compromises
@@ -42,11 +42,11 @@
 <!-- Repeat the subsection for each decision. -->
 
 ## {{label.risks_and_mitigations}}
-- Risk 1 — Proposed mitigation
-- Risk 2 — Proposed mitigation
-- Risk 3 — Proposed mitigation
+- Risk 1 - Proposed mitigation
+- Risk 2 - Proposed mitigation
+- Risk 3 - Proposed mitigation
 
 ## {{label.references}}
 <!-- Provide canonical links and citations (official docs, standards, ADRs, internal guidelines). -->
-- [Title](https://example.com) — brief note on relevance
+- [Title](https://example.com) - brief note on relevance
 - ...

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-# Usage: install.sh link [project-root] [--force]  — symlink the conventional locations to methodology/ (relative links)
-#        install.sh copy [project-root] [--force]  — copy files instead (no dependency on methodology/)
+# Usage: install.sh link [project-root] [--force] - symlink the conventional locations to methodology/ (relative links)
+#        install.sh copy [project-root] [--force] - copy files instead (no dependency on methodology/)
 # --force: overwrite files a previous copy install placed and the project has since edited by hand
 set -eu
 MODE=${1:-}; FORCE=0; ROOT=
@@ -18,7 +18,7 @@ SRC=$(cd "$(dirname "$0")" && pwd -P)
 # link mode hardcodes symlink targets as '../../methodology/...', so it only
 # works when '$ROOT/methodology' physically resolves to this same repo (a
 # submodule/subtree/symlink named 'methodology' at the project root). Catch a
-# mismatch here — before touching anything in the project — instead of
+# mismatch here - before touching anything in the project - instead of
 # silently laying down dangling symlinks.
 if [ "$MODE" = link ]; then
   target=$(cd "$ROOT/methodology" 2>/dev/null && pwd -P) || target=
@@ -38,7 +38,7 @@ mkdir -p .agents .claude .kiro/settings
 
 # --- hand-edit protection: a copy install records the SHA-256 of every file it
 # placed. Before a later run (link or copy) replaces those files, any file whose
-# current hash differs from the recorded one is a project edit — the run stops
+# current hash differs from the recorded one is a project edit - the run stops
 # and lists them instead of silently discarding the work. --force overrides.
 FILES_MANIFEST=.kiro/settings/.methodology-files-manifest
 hash_file() {
@@ -117,7 +117,7 @@ write_agents_md
 # skills sitting alongside kiro-* ones (or a different set entirely) are
 # left untouched instead of being hidden behind one whole-directory symlink.
 # A manifest of the names we placed lets a later run prune skills that were
-# since removed (or renamed) upstream — otherwise link mode leaves dangling
+# since removed (or renamed) upstream - otherwise link mode leaves dangling
 # symlinks and copy mode leaves stale copies behind forever.
 SKILLS_MANIFEST=.kiro/settings/.methodology-skills-manifest
 skill_exists_in_src() { [ -d "$SRC/skills/$1" ]; }
@@ -131,7 +131,7 @@ prune_removed_skills() { # $1 = target skills dir
 }
 place_skills() { # $1 = target skills dir (.agents/skills or .claude/skills)
   dest=$1
-  # migrate off a prior whole-directory symlink (or any non-directory) first —
+  # migrate off a prior whole-directory symlink (or any non-directory) first - 
   # otherwise mkdir -p is a no-op and placing individual skills through it
   # would reach into methodology/skills/ itself via the old symlink.
   [ -d "$dest" ] && [ ! -L "$dest" ] || rm -f "$dest"

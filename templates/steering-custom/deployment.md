@@ -14,7 +14,7 @@
 
 ## {{label.ci_cd_flow}}
 ```
-Code → Test → Build → Scan → Deploy (staged) → Verify
+Code -> Test -> Build -> Scan -> Deploy (staged) -> Verify
 ```
 Principles:
 - Fail fast on tests/scans; block deploy
@@ -47,7 +47,7 @@ Choose per risk profile; document default.
 - Alerts on SLO breaches/spikes; tune to avoid fatigue
 
 ## {{label.incident_response_dr}}
-- Standard playbook: detect → assess → mitigate → communicate → resolve → post-mortem
+- Standard playbook: detect -> assess -> mitigate -> communicate -> resolve -> post-mortem
 - Backups with retention; test restore; defined RPO/RTO
 
 <!-- Focus on rollout patterns and safeguards. No provider-specific steps. -->

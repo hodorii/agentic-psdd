@@ -2,7 +2,7 @@
 
 V-model right side: test level and pass criteria per biz-process level (L1~L6). `kiro-spec-design` applies it when writing Testing Strategy.
 
-## 1. Level ↔ test level ↔ pass criteria
+## 1. Level <-> test level <-> pass criteria
 
 | L-level | biz-process level | Test level | Pass criteria |
 |---|---|---|---|
@@ -26,11 +26,11 @@ Tools and frameworks: steering `tech.md`. Volume: Unit most, Acceptance least.
 Judge Depth from requirements.md; state it on the first line of Testing Strategy.
 
 ## 3. Regression
-- A lower-level change rechecks its level and the levels above (e.g., L6 Logic change → Unit, plus the L5/L4 Integration that calls it).
+- A lower-level change rechecks its level and the levels above (e.g., L6 Logic change -> Unit, plus the L5/L4 Integration that calls it).
 
 ## 4. Properties (code deliverables)
 - Derive a property from each `[{{label.always}}]` criterion, each criterion over an input range or class, and each bugfix `3.x` unchanged behavior with a broad input space.
-- Record in Testing Strategy: `P<n>: <statement> — <requirement IDs> — <input domain>`.
+- Record in Testing Strategy: `P<n>: <statement> - <requirement IDs> - <input domain>`.
 - Each property gets a property-based test (generator over the domain, shrinking on failure); library from steering `tech.md`.
 - A failing property reports its shrunk counterexample; decide with the user whether the implementation, the test or the requirement is wrong. Never weaken a property silently.
 - Non-code deliverables: N/A.

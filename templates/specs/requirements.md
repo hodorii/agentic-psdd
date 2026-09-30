@@ -1,4 +1,4 @@
-# {{label.title_requirements}} — <feature>
+# {{label.title_requirements}} - <feature>
 
 ## {{label.definition}}
 {{label.definition_sentence}}

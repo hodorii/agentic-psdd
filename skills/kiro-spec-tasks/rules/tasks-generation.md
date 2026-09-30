@@ -41,7 +41,7 @@ Focus on capabilities and outcomes, not code structure.
 - Progress incrementally (no big jumps in complexity)
 - Respect architecture boundaries defined in design.md (Architecture Pattern & Boundary Map)
 - Honor interface contracts documented in design.md
-- Use major task summaries sparingly—omit detail bullets if the work is fully captured by child tasks.
+- Use major task summaries sparingly - omit detail bullets if the work is fully captured by child tasks.
 
 **End with integration tasks** to wire everything together.
 
@@ -54,7 +54,7 @@ Focus on capabilities and outcomes, not code structure.
 - The dependency is non-obvious from ordering alone
 - A task can skip ahead of its position (declared via `(P)`) but still needs specific prior work
 
-**Format**: `_Depends: 1.2, 2.3_` — placed alongside `_Requirements:_` in task detail sections.
+**Format**: `_Depends: 1.2, 2.3_` - placed alongside `_Requirements:_` in task detail sections.
 
 **Do not over-annotate**: If a task simply depends on the task directly before it, ordering alone is sufficient.
 
@@ -90,18 +90,18 @@ Focus on capabilities and outcomes, not code structure.
 
 ### 7.5 Observable Completion
 
-**Each executable task carries `_DoneWhen:_`, the observable completed state that justifies `[x]`** — the completion criterion set at planning time; `[ ]`/`[x]` is status only:
+**Each executable task carries `_DoneWhen:_`, the observable completed state that justifies `[x]`** - the completion criterion set at planning time; `[ ]`/`[x]` is status only:
 - Phrase it as a deliverable, runtime behavior, persisted state, UI state, endpoint behavior, test result, or integration outcome
 - Avoid vague bullets like "implement support", "wire things up", or "handle logic" unless paired with a concrete observable result
 - Prefer making one detail bullet clearly answer: "What will be true when this task is done?"
 - One `_DoneWhen:_` per task; add no other bookkeeping fields
 - `_DoneWhen:_` states only this task's slice of the criteria its `_Requirements:` point to; never restate a requirement. A task without requirements (Foundation, test infrastructure) states the deliverable state instead
-- **User-visible output (TUI/GUI/CLI)**: `_DoneWhen:_` names what the rendered frame or output shows — cells, styles, borders, connectors, exit code. Its test asserts the rendered buffer/output, not internal data structures; a passing structure-level test does not satisfy `_DoneWhen:_`.
+- **User-visible output (TUI/GUI/CLI)**: `_DoneWhen:_` names what the rendered frame or output shows - cells, styles, borders, connectors, exit code. Its test asserts the rendered buffer/output, not internal data structures; a passing structure-level test does not satisfy `_DoneWhen:_`.
 
 ### 7.6 Difficulty (implementer matching)
 - Every executable sub-task carries `_Difficulty: low | mid | high_`.
   - `low`: one file, signatures and test cases given verbatim in the brief, no cross-module reading.
-  - `mid`: composes 2–3 existing module APIs; needs reading, not design.
+  - `mid`: composes 2-3 existing module APIs; needs reading, not design.
   - `high`: algorithmic (layout, parsing, state machines), cross-cutting integration, or UI wiring across panels.
 - `kiro-impl` uses this field to pick the implementer; a `low` brief must be self-contained (files, signatures, tests, verify command).
 
@@ -109,11 +109,11 @@ Focus on capabilities and outcomes, not code structure.
 - If a task realizes a biz-process node, add `_BizProcess: <BP-ID>.<L-level>` (e.g., `_BizProcess: BP-SIGNUP.L4`) to its detail section.
 - Add `_Verify:` only when the task's verification method is directly derived from that node's Logic(AST)/step flow (e.g., `_Verify: BP-SIGNUP.L2.logic`).
 - E2E/Validation tasks (phase 4) must derive their scenarios from `biz-process.md` L1~L4 user flows, cross-checked against requirements, and reference the source node via `_BizProcess:`.
-- The Coverage Review (§ Coverage Review) should report biz-process node coverage when `biz-process.md` is present — every L1~L3 node traced to at least one task.
+- The Coverage Review (section Coverage Review) should report biz-process node coverage when `biz-process.md` is present - every L1~L3 node traced to at least one task.
 
 ### 8. Deliverable Focus
 
-The spec's deliverable is whatever achieves its `Definition` — code, document, data, config or analysis; design.md File Structure Plan names it.
+The spec's deliverable is whatever achieves its `Definition` - code, document, data, config or analysis; design.md File Structure Plan names it.
 
 **Include ONLY**:
 - Tasks that produce the deliverable (code, or the document/data/config/analysis the spec owns)
@@ -141,7 +141,7 @@ Before writing `tasks.md`, review the draft task plan and repair local issues un
 
 - Every sub-task must be executable as written, usually within 1-3 hours.
 - Every sub-task must produce a verifiable deliverable (behavior, artifact, endpoint, UI state, config, migration, test, or integration result).
-- Every executable sub-task must include at least one detail bullet that states the observable completion condition; for user-visible output it references the rendered frame/output (§7.5).
+- Every executable sub-task must include at least one detail bullet that states the observable completion condition; for user-visible output it references the rendered frame/output (section 7.5).
 - Split tasks that combine multiple independently verifiable outcomes.
 - Split tasks that combine multiple responsibility boundaries unless they are explicit integration tasks.
 - If many tasks require broad `_Boundary:_` scopes or repeated cross-boundary coordination, stop and return to design or roadmap decomposition instead of forcing the spec through task generation.
@@ -161,7 +161,7 @@ Before writing `tasks.md`, review the draft task plan and repair local issues un
 - When the design already guarantees functional coverage and rapid MVP delivery is prioritized, mark purely test-oriented follow-up work (e.g., baseline rendering/unit tests) as **optional** using the `- [ ]*` checkbox form.
 - Only apply the optional marker when the sub-task directly references acceptance criteria from requirements.md in its detail bullets.
 - Each property in design Testing Strategy gets a property-based test task, never optional.
-- Never mark implementation work or integration-critical verification as optional—reserve `*` for auxiliary/deferrable test coverage that can be revisited post-MVP.
+- Never mark implementation work or integration-critical verification as optional - reserve `*` for auxiliary/deferrable test coverage that can be revisited post-MVP.
 
 ## Task Hierarchy Rules
 
@@ -170,7 +170,7 @@ Before writing `tasks.md`, review the draft task plan and repair local issues un
 - **Level 2**: Sub-tasks (1.1, 1.2, 2.1, 2.2...)
 - **No deeper nesting** (no 1.1.1)
 - If a major task would contain only a single actionable item, collapse the structure and promote the sub-task to the major level (e.g., replace `1.1` with `1.`).
-- When a major task exists purely as a container, keep the checkbox description concise and avoid duplicating detailed bullets—reserve specifics for its sub-tasks.
+- When a major task exists purely as a container, keep the checkbox description concise and avoid duplicating detailed bullets - reserve specifics for its sub-tasks.
 
 ### Sequential Numbering
 - Major tasks MUST increment: 1, 2, 3, 4, 5...
@@ -182,5 +182,5 @@ Before writing `tasks.md`, review the draft task plan and repair local issues un
 - `(P)` marking: `tasks-parallel-analysis.md`.
 
 ### Bugfix Specs (when `bugfix.md` exists)
-- Fixed order: reproduction test (must fail before the fix) → unchanged-behavior tests (must pass before the fix) → the fix → both suites pass.
+- Fixed order: reproduction test (must fail before the fix) -> unchanged-behavior tests (must pass before the fix) -> the fix -> both suites pass.
 - `_Requirements:` references bugfix.md IDs (`1.x` defect, `2.x` expected, `3.x` unchanged); every `2.x` and `3.x` maps to a test task.

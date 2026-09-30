@@ -1,4 +1,4 @@
-# {{label.title_bugfix}} — <fix>
+# {{label.title_bugfix}} - <fix>
 
 ## {{label.definition}}
 {{label.definition_sentence}}

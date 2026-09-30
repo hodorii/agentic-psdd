@@ -189,7 +189,7 @@
 | verification_properties | 검증 속성 | Verification Properties |
 | impact_scope | 영향 범위 | Impact Scope |
 | value_chain_mapping_needed | 가치사슬 매핑 필요 | Value chain mapping needed |
-| review_prompt | 승인(✓) 또는 수정 사항을 입력하세요. | Approve (✓) or enter changes. |
+| review_prompt | 승인 또는 수정 사항을 입력하세요. | Approve or enter changes. |
 | title_value_chain | 가치사슬 (Value Chain) | Value Chain |
 | value_chain_definition | 가치사슬 정의서 | Value Chain Definition |
 | main_value_flow | 주요 가치 흐름 | Main Value Flow |

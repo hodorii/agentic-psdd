@@ -13,7 +13,7 @@ Command order across phases. Read when choosing or reporting the next command.
   - `$kiro-validate-design {feature}` (optional)
   - `$kiro-spec-tasks {feature} [-y]`
   - Multi-spec: `$kiro-spec-batch`
-  - Bugfix: `$kiro-bugfix {fix}` → `$kiro-spec-design` → `$kiro-spec-tasks`
-- Phase 2 (Implementation): `$kiro-impl {feature} [tasks]` → `$kiro-validate-impl {feature}` → `$kiro-verify-completion`
+  - Bugfix: `$kiro-bugfix {fix}` -> `$kiro-spec-design` -> `$kiro-spec-tasks`
+- Phase 2 (Implementation): `$kiro-impl {feature} [tasks]` -> `$kiro-validate-impl {feature}` -> `$kiro-verify-completion`
 - Ticket-driven: `$kiro-orchestrate`
 - Progress: `$kiro-spec-status {feature}`

@@ -34,8 +34,8 @@
 [technical, compatibility, other constraints]
 
 ## {{label.evidence}}
-- **{{label.evidence_for}}**: [evidence — cited | assumption]
-- **{{label.evidence_against}}**: [evidence — cited | assumption]
+- **{{label.evidence_for}}**: [evidence - cited | assumption]
+- **{{label.evidence_against}}**: [evidence - cited | assumption]
 
 ## {{label.decision}}
-[GO | NEEDS_CLARIFICATION | STOP] — [one-line reason; NEEDS_CLARIFICATION names open items and who resolves them, STOP names the decisive reason]
+[GO | NEEDS_CLARIFICATION | STOP] - [one-line reason; NEEDS_CLARIFICATION names open items and who resolves them, STOP names the decisive reason]
