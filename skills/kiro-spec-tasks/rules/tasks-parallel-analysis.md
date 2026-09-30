@@ -5,7 +5,7 @@ Provide a consistent way to identify implementation tasks that can be safely exe
 
 ## Relationship to Task Ordering
 
-`(P)` means: this task has no dependency on its immediately preceding peers and can run concurrently with them. The Task Ordering Principle (see tasks-generation.md) ensures Foundation-phase tasks run first, making Core-phase tasks the primary `(P)` candidates.
+`(P)` means: this task has no dependency on its immediately preceding peers and can run concurrently with them. How `(P)` executes (waves, worktrees, merge order) is defined by `kiro-impl`. The Task Ordering Principle (see tasks-generation.md) ensures Foundation-phase tasks run first, making Core-phase tasks the primary `(P)` candidates.
 
 ## When to Consider Tasks Parallel
 Only mark a task as parallel-capable when **all** of the following are true:

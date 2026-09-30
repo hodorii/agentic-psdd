@@ -25,7 +25,7 @@
 - Comments: WHY only (see methodology `Why-Only Comment`)
 
 ### {{label.testing}}
-[e.g., Jest, coverage requirements]
+[e.g., Jest, coverage requirements; property-based library, e.g., Hypothesis, fast-check]
 
 ## {{label.development_environment}}
 

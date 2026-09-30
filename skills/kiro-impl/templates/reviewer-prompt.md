@@ -83,6 +83,7 @@ Evaluate each item. If ANY item fails, the verdict is REJECTED.
 - Tests prove the required behavior, not just scaffolding or happy-path shells.
 - Test assertions are meaningful (not `expect(true).toBe(true)` or similar).
 - Tests would fail if the implementation were removed or broken.
+- Properties listed in design Testing Strategy for this task have property-based tests over the stated input domain; a property weakened or narrowed without user decision → REJECTED.
 
 **11. Error Handling** (code)
 - Error paths are handled, not just the happy path.

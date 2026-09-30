@@ -252,6 +252,10 @@ flowchart LR
 - **가치사슬 = 초안 작성과 승인 분리**: `kiro-steering`이 `status: draft`로 초안, 책임자만 `approved`, 승인 후 읽기 전용 — 이유: 소유권은 승인 권한, 부트스트랩 마찰 제거.
 - **완료 시 Steering Sync**: `kiro-verify-completion` 통과 시 `kiro-steering` Sync가 산출물과 핵심 결정을 steering에 추가 반영, roadmap 체크, 가치사슬 변경은 제안만 — 이유: 규칙만 있고 실행 단계가 없던 공백 해소, 비코드 산출물도 대상.
 - **Self-Documenting, Small Units**: 주석은 WHY만, 크기 기준(함수 40, 클래스 200, 파일 300줄, 중첩 3, 매개변수 4)은 steering `tech.md` 한 곳, 리뷰어 13번 항목과 validate-impl이 확인 — 이유: 이름과 구조로 설명, 기준값 SSoT.
+- **discovery 경로 A~E**: 기존 스펙, 스펙 불필요, 단일, 다중, 혼합으로 분류하고 결정 근거를 함께 기록, 경로별 파일 위치 고정 — 이유: 다음 명령과 산출물 위치를 경로가 결정(cc-sdd 계승).
+- **batch 후 스펙 간 교차 검토**: 중복, 범위 겹침, 인접 기대 미충족, 순서, 용어, 정의 중복을 3라운드까지 수리, 분해 결함은 discovery로 복귀 — 이유: 스펙별 자가점검으로는 스펙 사이 모순을 못 잡음. requirements 단계에서 수행해 승인 게이트 유지.
+- **태스크 실행 = 의존 wave**: wave 안의 `(P)`만 호스트 지원 시 동시(워크트리), 나머지와 미지원 호스트는 순차, 태스크 번호순 병합, wave 단위 종료 — 이유: `(P)`의 실행 의미를 한 곳(`kiro-impl`)에 정의.
+- **속성 기반 테스트(코드)**: `[always]`, 입력 범위 기준, bugfix 불변 동작에서 속성 도출, 속성마다 필수 테스트 태스크, 반례 시 사용자와 결정 — 이유: 예시 테스트가 놓치는 입력 공간 검증(Kiro PBT 계승).
 - **이름 규칙**: 요구사항 그룹명은 대상과 의무, 주제만 있는 이름과 모호한 연결어 금지; 가운뎃점은 어디에도 쓰지 않음 — 이유: Descriptable Name, 자가점검 기계 검사 가능.
 - **V-모델 좌, 우 분리**: biz-process 스킬은 좌측 전개(L1~L6)만, 검증 레벨 매핑은 `kiro-spec-design/rules/verification-mapping.md`가 소유하고 Testing Strategy가 기록 — 이유: 검증 기준의 SSoT를 설계에 둠.
 - **승인 게이트 + `-y`/`--auto` 우회**: 각 단계 사람 검토, 의도적 fast-track만 우회 — 이유: 이해 기반 동의(Informed Consent).
@@ -373,7 +377,7 @@ Rules         # 읽을 rules/template 경로, 정지 조건, 쓰는 파일, Next
 |---|---|---|---|---|
 | Phase 0 | `kiro-steering` | brief.md, value-chain.md(선택), Sync 시 완료 스펙 산출물 | STEERING_STATE, STEERING_SYNC, VALUE_CHAIN_LINKS, BOUNDARY_COMMITMENTS | `rules/steering-principles.md` |
 | Phase 0 | `kiro-steering-custom` | brief.md, steering_notes.md | CUSTOM_GUIDANCE, BOUNDARY_TWEAKS | (kiro-steering 규칙 공유) |
-| Discovery | `kiro-discovery` | brief_seed.md, project_state.json(선택) | PATH_DETECTED, BOUNDARIES_DEFINED, SPEC_ROUTES, DECISION(GO / NEEDS_CLARIFICATION / STOP) | `templates/brief.md`, `templates/roadmap.md` |
+| Discovery | `kiro-discovery` | brief_seed.md, project_state.json(선택) | PATH_DETECTED(A~E), BOUNDARIES_DEFINED, SPEC_ROUTES, DECISION(GO / NEEDS_CLARIFICATION / STOP) | `rules/discovery-paths.md`, `templates/brief.md`, `templates/roadmap.md` |
 | Spec | `kiro-spec-init` | brief.md, roadmap.md(선택) | SPEC_JSON | — |
 | Spec | `kiro-spec-requirements` | brief.md | REQUIREMENTS_MD, ACCEPTANCE_CRITERIA, BOUNDARY_FLAGS | `rules/acceptance-criteria-format.md`, `rules/requirements-self-check.md` |
 | Spec | `kiro-bugfix` | 버그 리포트, 기존 스펙 | BUGFIX_MD, UNCHANGED_BEHAVIORS | `rules/bugfix-analysis.md` |
@@ -381,7 +385,7 @@ Rules         # 읽을 rules/template 경로, 정지 조건, 쓰는 파일, Next
 | Spec | `kiro-spec-design` | requirements.md 또는 bugfix.md, brief | DESIGN_MD, DESIGN_BOUNDARIES, INTERFACES | `rules/design-discovery-{light,full}.md`, `design-synthesis.md`, `design-principles.md`, `verification-mapping.md`, `design-self-check.md`, `design-bugfix.md` |
 | Spec | `kiro-spec-tasks` | requirements.md, design.md | TASKS_MD, TASK_LIST | `rules/tasks-generation.md`, `rules/tasks-parallel-analysis.md` |
 | Spec | `kiro-spec-quick` | 기능 설명 [--auto], brief.md(선택) | SPEC_JSON, REQUIREMENTS_MD, DESIGN_MD, TASKS_MD, SANITY_REVIEW | (하위 스킬 위임) |
-| Spec | `kiro-spec-batch` | roadmap.md, brief.md(선택) | SPEC_LIST, BRIEFS, DEPENDENCY_ORDER | — |
+| Spec | `kiro-spec-batch` | roadmap.md, discovery brief.md | SPEC_LIST, BRIEFS, DEPENDENCY_ORDER, CROSS_SPEC_REVIEW | `rules/cross-spec-review.md` |
 | Spec | `kiro-spec-status` | spec.json, milestones.md(선택) | STATUS_REPORT, PROGRESS, NEXT_GATES | — (phase 값 집합의 SSoT) |
 | Validate | `kiro-validate-gap` | requirements.md, design.md | GAP_ANALYSIS, RECOMMENDATIONS | `rules/gap-analysis.md` |
 | Validate | `kiro-validate-design` | design.md, requirements.md | DESIGN_VALID, BOUNDARY_COMPLIANCE, ISSUES | `rules/design-go-nogo.md` |
@@ -443,7 +447,7 @@ session.py timeline [--project P] [--source S|all] [--limit N]
 - value-chain: 앞부분 정보 `status: draft | approved`, `owner`; Mega(`VC-<domain>`) → Main(`VC-<domain>-<main>`) → Unit(`VC-<domain>-<unit>`, `value`, `validation`, `evidence: cited | assumption`, 선택 `bizProcessRef`). 골격은 `templates/steering/value-chain.md`.
 - tasks: 최대 2단계(`1`, `1.1`), 순차 번호, `- [ ]` / `- [ ]*`(선택 테스트), `(P)` 병렬 표식은 체크박스 밖; 상세 필드 `DONE:`, `_Requirements: 1.1, 1.2_`, `_Difficulty: low|mid|high_`, `_Boundary: <design component>_`, `_Depends: 1.2_`, `_BizProcess: BP-X.L4_`, `_Verify: BP-X.L2.logic_`, `_Contracts:_`. 단계 순서 Foundation → Core → Integration → Validation.
 - 추적성 체인: value-chain Unit ↔ biz-process L1(`valueChainRef`/`bizProcessRef`) → 요구사항 ID(L2/L3) → design Boundary Commitments, Components `Requirements:` → tasks `_Requirements:`/`_Boundary:`/`_BizProcess:` → validate-impl 커버리지.
-- 검증 매핑(V-모델 우측): L1 Acceptance / L2 E2E / L3 Integration(UI-API) / L4 Integration(API) / L5 Integration(Service) / L6 Unit; Depth Trivial(Unit+Acceptance 스모크) / Standard(Unit~E2E) / Complex(전 레벨).
+- 검증 매핑(V-모델 우측): L1 Acceptance / L2 E2E / L3 Integration(UI-API) / L4 Integration(API) / L5 Integration(Service) / L6 Unit; Depth Trivial(Unit+Acceptance 스모크) / Standard(Unit~E2E) / Complex(전 레벨); 코드 산출물 속성 `P<n>: 명제 — 요구사항 ID — 입력 영역`.
 
 ### 설치 상태
 - 포인터 블록: `<!-- methodology:begin -->` … `<!-- methodology:end -->` 정확 일치 줄, 파일 최상단.
@@ -481,7 +485,7 @@ agentic-psdd/
 ├── skills/
 │   ├── kiro-<name>/SKILL.md          계약 4절 (21개)
 │   ├── kiro-<name>/agents/openai.yaml 호스트 표시 메타
-│   ├── kiro-<name>/rules/*.md        스킬 전용 방법 (spec-design 7, spec-tasks 2, spec-requirements 2, 그 외 1)
+│   ├── kiro-<name>/rules/*.md        스킬 전용 방법 (spec-design 7, spec-tasks 2, spec-requirements 2, 그 외 1; discovery, spec-batch 포함)
 │   ├── kiro-discovery/templates/     brief.md, roadmap.md
 │   ├── kiro-impl/templates/          implementer/reviewer/debugger-prompt.md
 │   └── multi-agent-sessions/scripts/session.py
