@@ -21,3 +21,4 @@ Rules
 - Read `{{STEERING}}/ticket-workflow.md` (inclusion: manual) for ticket ingestion policy and phase gates
 - Define NEXT_COMMAND after each stage
 - Do not auto-run downstream steps
+- Read `{{SKILLS}}/kiro-spec-status/rules/workflow.md` for command order when choosing NEXT_COMMAND

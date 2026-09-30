@@ -76,6 +76,8 @@ Never include:
 
 - Templates are starting points, customize as needed
 - Follow same granularity principles as core steering
+- Steering Sync: on deliverable change (code or non-code), additive, per repository; runs when `kiro-verify-completion` passes a feature, and on request.
+- Elevation: a standard-worthy artifact moves to `{{STEERING}}` or `{{REFERENCE}}`.
 - Every steering file declares `inclusion` in front matter: `always` only for baseline rules every session needs (`product.md`, `tech.md`, `structure.md`); `manual` for files one skill consumes by path (value-chain, roadmap, ticket-workflow); `fileMatch` for path-scoped conventions. Absent front matter = `always` — never leave it absent on large or single-consumer files.
 - Light references to `{{SPECS}}/` and `{{STEERING}}/` are acceptable; avoid other `.kiro/` directories
 - Custom files equally important as core files
