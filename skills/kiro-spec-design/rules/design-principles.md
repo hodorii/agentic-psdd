@@ -9,7 +9,7 @@
 
 ## Section Rules (order = `{{TEMPLATES}}/specs/design.md`)
 - **Boundary Commitments**: In-Scope / Out-of-Scope / Allowed Dependencies (external libs + version, internal direction) / Revalidation Triggers — all four non-empty.
-- **Architecture**: Boundary Map (Mermaid) when 3+ components interact. Technology Stack only for layers this feature touches (tool + version + role). Key Decisions as `결정 — 이유` one-liners; alternatives in research.md.
+- **Architecture**: Boundary Map (Mermaid) when 3+ components interact. Technology Stack only for layers this feature touches (tool + version + role). Key Decisions as `decision — reason` one-liners; alternatives in research.md.
 - **System Flows**: Mermaid sequence/state for non-obvious flows only; omit the section otherwise. Tag decisions with requirement IDs.
 - **Components & Interfaces**: one block per component — Intent, Requirements (IDs), public signatures in the implementation language including error types. Dependencies table (Inbound/Outbound/External, P0/P1/P2) only for external integrations or cross-boundary contracts. Presentational/UI components: summary bullets only.
 - **Data Models**: domain types, persistence, invariants; if the interface blocks already cover it, say so.

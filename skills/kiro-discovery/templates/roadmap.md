@@ -1,32 +1,32 @@
 # {{label.title_roadmap}}
 
 ## {{label.overview}}
-[목표 + 선택 접근, 1-2문단]
+[goal + chosen approach, 1-2 paragraphs]
 
 ## {{label.approach_decision}}
-- **{{label.chosen}}**: [접근명 + 요약]
-- **{{label.why}}**: [핵심 근거]
-- **{{label.rejected_alternatives}}**: [검토·기각 사유]
+- **{{label.chosen}}**: [approach name + summary]
+- **{{label.why}}**: [key reason]
+- **{{label.rejected_alternatives}}**: [reviewed and rejected, with reason]
 
 ## {{label.scope}}
-- **{{label.in_scope}}**: [포함]
-- **{{label.out_of_scope}}**: [제외]
+- **{{label.in_scope}}**: [included]
+- **{{label.out_of_scope}}**: [excluded]
 
 ## {{label.constraints}}
-[기술·호환·일정 제약]
+[technical, compatibility, schedule constraints]
 
 ## {{label.boundary_strategy}}
-- **{{label.why_this_split}}**: [분할 이유]
-- **{{label.shared_seams_to_watch}}**: [감시할 경계]
+- **{{label.why_this_split}}**: [reason for the split]
+- **{{label.shared_seams_to_watch}}**: [boundary to watch]
 
 ## {{label.specs_dependency_order}}
-- [ ] feature-a -- [한줄 설명]. Dependencies: none
-- [ ] feature-b -- [한줄 설명]. Dependencies: feature-a
+- [ ] feature-a -- [one-line description]. Dependencies: none
+- [ ] feature-b -- [one-line description]. Dependencies: feature-a
 
-<!-- Path E 추가 섹션 (혼합 분해 시):
+<!-- Path E extra sections (mixed decomposition):
 ## {{label.existing_spec_updates}}
-- [ ] existing-feature-a -- [연장 설명]. Dependencies: none
+- [ ] existing-feature-a -- [extension description]. Dependencies: none
 
 ## {{label.direct_implementation_candidates}}
-- [ ] small-item-a -- [직구현 사유]
+- [ ] small-item-a -- [reason for direct implementation]
 -->
