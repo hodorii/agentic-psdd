@@ -35,29 +35,7 @@
 - Ask for user review right after each L1 Process: understanding-based consent, not a rubber stamp.
 - `-y`: auto-approve every level (requirements and value chain approved beforehand).
 
-## 7. Bootstrap (value-chain.md)
-Without `value-chain.md`, propose this minimum skeleton to the product or business owner and ask them to create it; this skill never creates it.
-
-```markdown
-# {{label.title_value_chain}} — SSoT
-
-## Mega ({{label.value_chain_definition}})
-- id: VC-<domain>
-- name: <domain value chain>
-- value: <top-level customer value>
-
-## Main ({{label.main_value_flow}})
-- id: VC-<domain>-<main>
-- name: <main flow>
-- parent: VC-<domain>
-
-## Unit ({{label.unit_process}})
-- id: VC-<domain>-<unit>
-- name: <unit process name>
-- parent: VC-<domain>-<main>
-- value: <value this unit delivers>
-- validation: <condition the value is met>
-- bizProcessRef: BP-<meaningful-name>   # optional: two-way link to the BizProcess
-```
-
-`bizProcessRef` is optional; the BizProcess → Unit link (`valueChainRef`) alone is valid.
+## 7. Value chain status
+- Missing: `$kiro-steering` Bootstrap drafts it from `{{TEMPLATES}}/steering/value-chain.md`.
+- `status: draft`: present it to the owner for approval; never approve it or proceed on it.
+- `status: approved`: read-only SSoT. `bizProcessRef` is optional; the BizProcess → Unit link (`valueChainRef`) alone is valid.

@@ -11,13 +11,13 @@
 - **라우터**: `AGENTS.md` — 경로 이름 표(`{{SPECS}}` 등), 원칙, 산출물 규약, 워크플로, 승인 게이트 규칙, steering `inclusion` 규칙
 - **스킬 계약**: `skills/<name>/SKILL.md` 21개 — Inputs / Outputs(Core Indicators) / Boundaries / Rules 4절 고정
 - **스킬 방법, 프롬프트**: 각 스킬의 `rules/`(방법), `templates/`(서브에이전트 브리프), `agents/openai.yaml`(호스트 표시 메타)
-- **산출물 구조**: `templates/specs/`(7), `templates/labels.md`(라벨 표), `templates/steering/`(3), `templates/steering-custom/`(7)
+- **산출물 구조**: `templates/specs/`(7), `templates/labels.md`(라벨 표), `templates/steering/`(4, value-chain 초안 포함), `templates/steering-custom/`(7)
 - **설치**: `install.sh link|copy` — 소비 프로젝트 배치, 재실행 갱신, 제거된 스킬 정리
 - **세션 조회 도구**: `skills/multi-agent-sessions/scripts/session.py`
 
 ### Out-of-Scope
 - **프로젝트 지식**: `.kiro/steering`, `.kiro/specs`, `.kiro/reference` — 소비 프로젝트 소유
-- **`value-chain.md`**: product owner 소유, 모든 스킬 읽기 전용(`kiro-biz-process`, `kiro-steering`이 부트스트랩 골격만 제시)
+- **`value-chain.md`**: product owner 소유(승인 권한), `kiro-steering`이 초안(`status: draft`) 작성, 승인 후 모든 스킬 읽기 전용
 - **에이전트 런타임**: 서브에이전트 디스패치, 병렬 실행, 컨텍스트 압축, 워크트리 생성의 실제 수행 — 호스트 CLI(Claude Code, Kiro, opencode, agy 등) 소유. 이 패키지는 프롬프트와 프로토콜만 정의
 - **구현 코드, 테스트 실행**: `kiro-impl` 서브에이전트가 소비 프로젝트 안에서 수행
 
@@ -30,7 +30,7 @@
   - `kiro-debug` → `kiro-impl/templates/debugger-prompt.md`
   - `kiro-biz-process/rules` → `kiro-spec-design/rules/verification-mapping.md`
   - `kiro-impl/templates/{reviewer,debugger}-prompt.md` → `kiro-review`, `kiro-debug` 프로토콜(호스트가 서브에이전트 내 스킬 호출을 지원할 때만)
-  - `kiro-steering` → `kiro-biz-process/rules/biz-process-rules.md`(value-chain 부트스트랩 골격)
+  - `kiro-steering` → `templates/steering/value-chain.md`(value-chain 초안 골격)
 
 ### Revalidation Triggers
 - 호스트 CLI가 스킬을 발견하는 경로, front matter 규약 변경
@@ -191,7 +191,7 @@ flowchart LR
     VC_FILE[value_chain_md owner read only]
     LESSON[lesson harness memory]
     ELEVATE[elevation to steering or reference]
-    SYNC[Steering Sync additive on diff]
+    SYNC[Steering Sync additive on deliverable change]
     VC_FILE --> VC_UNIT
     LESSON --> ELEVATE
     ELEVATE --> STEER
@@ -356,7 +356,7 @@ Rules         # 읽을 rules/template 경로, 정지 조건, 쓰는 파일, Next
 ### 스킬 카탈로그 (Inputs → Core Indicators → 소유 rules/templates)
 | 단계 | Skill | Inputs | Core Indicators | rules / templates |
 |---|---|---|---|---|
-| Phase 0 | `kiro-steering` | brief.md, value-chain.md(선택) | STEERING_STATE, VALUE_CHAIN_LINKS, BOUNDARY_COMMITMENTS | `rules/steering-principles.md` |
+| Phase 0 | `kiro-steering` | brief.md, value-chain.md(선택) | STEERING_STATE, STEERING_SYNC, VALUE_CHAIN_LINKS, BOUNDARY_COMMITMENTS | `rules/steering-principles.md` |
 | Phase 0 | `kiro-steering-custom` | brief.md, steering_notes.md | CUSTOM_GUIDANCE, BOUNDARY_TWEAKS | (kiro-steering 규칙 공유) |
 | Discovery | `kiro-discovery` | brief_seed.md, project_state.json(선택) | PATH_DETECTED, BOUNDARIES_DEFINED, SPEC_ROUTES, DECISION(GO / NEEDS_CLARIFICATION / STOP) | `templates/brief.md`, `templates/roadmap.md` |
 | Spec | `kiro-spec-init` | brief.md, roadmap.md(선택) | SPEC_JSON | — |
@@ -438,7 +438,7 @@ session.py timeline [--project P] [--source S|all] [--limit N]
 
 ## Error Handling
 - **사용자 입력 오류**: `install.sh` MODE 오류, link 경로 불일치 → stderr 안내 + exit 2, 프로젝트 무변경; 이전 copy 설치본의 수정 파일 발견 → 목록 출력 + exit 3, 프로젝트 무변경(`--force` 시 진행). `session.py` 세션 미발견, 무일치 → stderr + exit 1.
-- **선행 산출물 오류**: requirements 미승인 또는 value-chain 부재 → `kiro-biz-process` 정지(부트스트랩 골격 제시, 생성 금지); 재현 불가 결함 → `kiro-bugfix`가 `kiro-debug`로 라우팅; 요구사항 ID 누락 → `kiro-spec-tasks` 정지 후 requirements 수정 요구.
+- **선행 산출물 오류**: requirements 미승인 또는 value-chain 부재나 미승인 → `kiro-biz-process` 정지(부재 시 `$kiro-steering` 초안 안내, 초안은 승인 요청, 승인 대행 금지); 재현 불가 결함 → `kiro-bugfix`가 `kiro-debug`로 라우팅; 요구사항 ID 누락 → `kiro-spec-tasks` 정지 후 requirements 수정 요구.
 - **자기검토 루프**: requirements, design, tasks 각 self-check는 기계 검사 → 판단 검사 순, 수리 2회 초과 시 진짜 갭으로 판단해 이전 단계로 복귀. `kiro-spec-quick`은 어떤 실패든 완료 단계를 표시하고 `$kiro-spec-<next> {feature}` 제안 후 정지.
 - **구현 실패**: 같은 태스크 2연속 실패 → 상위 모델 재배정 또는 디버거; `STOP_FOR_HUMAN`은 저장소 밖 해결이 필요할 때만; REJECTED 판정은 REMEDIATION 없이는 무효.
 - **검증 NO-GO**: `kiro-validate-impl`이 체크박스 상태와 무관하게 전 태스크를 재평가(산출물이 유일한 의도 원천, 완료 표시는 증거 아님)하고, 발견을 `missing | partial | contradicts | unrequested`로 분류해 재작업 태스크를 bugfix 순서(실패 재현 테스트 → 수정 → 통과)로 `tasks.md`에 추가(기존 태스크 재작성, 재번호 금지)하고 종료 후 재검증.

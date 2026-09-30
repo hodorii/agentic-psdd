@@ -18,7 +18,7 @@ Skills refer to these names; relocate by editing this table.
 
 ## Principles
 Understanding over documents. An artifact is the minimum evidence that understanding exists.
-- **SSoT**: rules, values, templates and paths live in one place; everything else references them. `value-chain.md` is owned by the product owner; skills only read it.
+- **SSoT**: rules, values, templates and paths live in one place; everything else references them. `value-chain.md` is owned by the product owner: skills may draft it (`status: draft`), only the owner approves (`status: approved`); once approved, skills read it and propose changes as drafts.
 - **SRP**: one file, one responsibility.
   - **Small Units**: function, class and file sizes stay within the steering `tech.md` code-quality limits. Over the limit = split signal; keeping it needs a stated reason.
 - **Self-Documenting**: artifacts understandable without comments.
@@ -67,5 +67,5 @@ Understanding over documents. An artifact is the minimum evidence that understan
 ## Steering
 - `inclusion` front matter (Kiro): `always` (default when absent) every session; `manual` only when a skill reads it by path; `fileMatch` / `auto` per Kiro docs.
 - `always` baseline: `product.md`, `tech.md`, `structure.md`. Custom files via `$kiro-steering-custom`; every new file states its `inclusion`.
-- Steering Sync: on code diff, additive, per repository, at ticket or feature completion.
+- Steering Sync: on deliverable change (code or non-code), additive, per repository; `kiro-steering` Sync runs when `kiro-verify-completion` passes a feature, and on request.
 - Elevation: a standard-worthy artifact moves to `{{STEERING}}` or `{{REFERENCE}}`.
