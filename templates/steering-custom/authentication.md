@@ -63,5 +63,4 @@ if (!user.can('resource:action')) throw ForbiddenError(); // domain
 - Scope keys minimally; rotate and audit usage
 - Rate limit by identity (user/key)
 
----
-_Focus on patterns and decisions. No library-specific code._
+<!-- Focus on patterns and decisions. No library-specific code. -->

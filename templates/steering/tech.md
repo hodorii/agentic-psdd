@@ -43,5 +43,4 @@
 
 [Important architectural choices and rationale]
 
----
-_Document standards and patterns, not every dependency_
+<!-- Document standards and patterns, not every dependency -->

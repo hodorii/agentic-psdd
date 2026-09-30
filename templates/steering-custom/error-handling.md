@@ -55,5 +55,4 @@ Strategy: exponential backoff + jitter, capped attempts; require idempotency key
 Track: error rates by code/category, latency, saturation; alert on spikes/SLI breaches.
 Expose health: `/health` (live), `/health/ready` (ready). Link errors to traces.
 
----
-_Focus on patterns and decisions. No implementation details or exhaustive lists._
+<!-- Focus on patterns and decisions. No implementation details or exhaustive lists. -->
