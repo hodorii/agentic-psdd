@@ -40,6 +40,16 @@
 | 속성 기반 테스트 | 설계에서 도출(IDE) | 없음 | 없음 | 코드 산출물: `[always]`, 입력 범위, 불변 동작에서 도출, 필수 태스크 |
 | 다중 스펙 | 없음 | roadmap + batch wave + cross-spec review | roadmap `R1..` + 슬라이스별 체인 | roadmap + batch wave(requirements까지) + 스펙 간 교차 검토 |
 
+### 완료 기준과 상태
+| | 상태 표시 | 완료 기준 단위 | 형식 | `[x]` 판정 |
+|---|---|---|---|---|
+| Kiro | 체크박스 + 실행 화면(진행 중, 완료) | 요구사항 | 수용 기준, 별도 필드 없음 | 에이전트 실행, 사람 diff 검토 |
+| cc-sdd | 체크박스 | 태스크 | 태그 없는 상세 불릿(필수) | 리뷰어 승인 + verify-completion |
+| spec-kit | 체크박스 `[X]` | 사용자 스토리 | `Goal`, `Independent Test`, `Checkpoint` | 구현자 자기표시, converge 사후 재평가 |
+| agentic-psdd | 체크박스 | 태스크 | `_DoneWhen:_` 태그(필수) | 리뷰어 승인 + verify-completion |
+
+> 출처: cc-sdd `templates/specs/tasks.md`, `rules/tasks-generation.md` 7.5(`e2a0c67`); spec-kit `templates/tasks-template.md`, `commands/implement.md` 169행, `commands/converge.md` 147행(v1.0.13); Kiro `docs/specs`, `docs/specs/best-practices`. Kiro 태스크 템플릿 원문은 UNVERIFIED.
+
 ## 4. 언어와 원칙
 | 항목 | Kiro | cc-sdd | spec-kit | agentic-psdd |
 |---|---|---|---|---|
