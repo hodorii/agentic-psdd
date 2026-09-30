@@ -34,7 +34,7 @@ Spec-driven work (`$kiro-*` skills, `.kiro/specs`, `.kiro/steering`): read `meth
 Spec artifacts are written in whatever `spec.json.language` says for that spec (`templates/specs/init.json` ships `"ko"` as the default value new specs are created with). This is a per-project, per-spec setting, not something the methodology hardcodes — change the template's default or edit an individual spec's `spec.json` to switch. Internal reasoning and every agent-facing file (router, skill contracts, rules, template placeholders) stay in English regardless (`AGENTS.md`'s `Reason in English` rule) so mixed-language teams get consistent tool behavior; only the artifacts written for humans follow `spec.json.language` — body text, plus headings and fixed labels rendered from `templates/labels.md` (steering and discovery follow the project default in `templates/specs/init.json`).
 
 ## Skills
-`skills/kiro-*` — one directory per skill, each a `SKILL.md` contract (Inputs / Outputs / Boundaries / Rules) plus its own `rules/` and `templates/`. See `AGENTS.md`'s `## Workflow` for how they chain together (discovery → requirements → biz-process → design → tasks → implementation → validation) and `## Skills` for invocation (`$kiro-<name>`).
+`skills/kiro-*` — one directory per skill, each a `SKILL.md` contract (Inputs / Outputs / Boundaries / Rules) plus its own `rules/` and `templates/`. See `skills/kiro-spec-status/rules/workflow.md` for how they chain together (discovery → requirements → biz-process → design → tasks → implementation → validation) and `## Skills` for invocation (`$kiro-<name>`).
 
 ## License
 MIT — see `LICENSE`.

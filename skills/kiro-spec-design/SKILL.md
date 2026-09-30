@@ -19,7 +19,7 @@ Rules
 - Read requirements.md produced by kiro-spec-requirements
 - Read brief and `{{TEMPLATES}}/specs/design.md` for document structure; produce design.md with boundary commitments
 - Read `rules/design-discovery-light.md` (extension of existing system) or `rules/design-discovery-full.md` (new feature) from this skill's directory before drafting
-- Read `rules/design-synthesis.md` from this skill's directory for generalization / build-vs-adopt / simplification before writing
+- With full discovery only, read `rules/design-synthesis.md` from this skill's directory for generalization / build-vs-adopt / simplification before writing
 - Write research.md from `{{TEMPLATES}}/specs/research.md` when discovery yields alternatives or decisions that belong outside design.md
 - Read `rules/design-principles.md` from this skill's directory for structure, Components & Interfaces, error handling, and testing strategy requirements
 - Read `rules/verification-mapping.md` from this skill's directory for the L1~L6 test-level mapping and verification Depth before writing Testing Strategy
