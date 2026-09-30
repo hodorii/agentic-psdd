@@ -3,20 +3,20 @@
 ## {{label.definition}}
 {{label.definition_sentence}}
 
-- [ ] 1. [대과제]
-- [ ] 1.1 [하위 태스크]
-  - DONE: [관찰 가능 완료 상태 — 화면·출력이 있는 태스크는 렌더된 프레임/출력 기준]
+- [ ] 1. [major task]
+- [ ] 1.1 [sub-task]
+  - DONE: [observable done state — rendered frame or output for tasks with screen or output]
   - _Requirements: 1.1, 1.2_
   - _Difficulty: mid_
 
-- [ ] 2. [대과제]
-- [ ] 2.1 (P) [하위 태스크]
-  - DONE: [관찰 가능 완료 상태]
+- [ ] 2. [major task]
+- [ ] 2.1 (P) [sub-task]
+  - DONE: [observable done state]
   - _Requirements: 2.1_
   - _Difficulty: low_
   - _Boundary: [Component]_
   - _Depends: 1.1_
   - _BizProcess: BP-<ID>.L4_
-- [ ]* 2.2 [선택 테스트 태스크]
-  - DONE: [관찰 가능 완료 상태]
+- [ ]* 2.2 [optional test task]
+  - DONE: [observable done state]
   - _Requirements: 2.1_

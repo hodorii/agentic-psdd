@@ -1,29 +1,29 @@
 # verification-mapping
 
-V-모델 우측: biz-process 계층(L1~L6)별 테스트 레벨과 통과 기준. `kiro-spec-design`이 Testing Strategy 작성 시 적용한다.
+V-model right side: test level and pass criteria per biz-process level (L1~L6). `kiro-spec-design` applies it when writing Testing Strategy.
 
-## 1. 계층 ↔ 테스트 레벨 ↔ 통과 기준
+## 1. Level ↔ test level ↔ pass criteria
 
-| L-level | biz-process 계층 | 테스트 레벨 | 통과 기준 |
+| L-level | biz-process level | Test level | Pass criteria |
 |---|---|---|---|
-| L1 | Process | Acceptance | requirements.md 수용 기준 전량 충족 + 실행 산출물 실물 실행 확인 |
-| L2 | Activity | E2E | 사용자 시나리오 단위 흐름 성공 |
-| L3 | FunctionGroup/UI | Integration (UI-API) | 화면-API 연동 성공, 실패 경로 포함 |
-| L4 | Step | Integration (API) | 단일 API/서비스 경계 계약 충족 |
-| L5 | DetailStep | Integration (Service) | 내부 서비스 협력 동작 충족 |
-| L6 | Logic (AST) | Unit | 함수/메서드 단위 로직 정확성 |
+| L1 | Process | Acceptance | every requirements.md criterion met + runnable artifacts run for real |
+| L2 | Activity | E2E | user scenario flow succeeds |
+| L3 | FunctionGroup/UI | Integration (UI-API) | screen-to-API wiring succeeds, failure paths included |
+| L4 | Step | Integration (API) | single API or service boundary contract met |
+| L5 | DetailStep | Integration (Service) | internal service collaboration behaves |
+| L6 | Logic (AST) | Unit | function or method logic correct |
 
-도구·프레임워크는 steering `tech.md`. 비중은 Unit 최다 → Acceptance 최소.
+Tools and frameworks: steering `tech.md`. Volume: Unit most, Acceptance least.
 
-## 2. 검증 깊이(Depth) — 전 계층 강제 금지
+## 2. Depth: never force every level
 
-| Depth | 판정 | 필수 레벨 |
+| Depth | When | Required levels |
 |---|---|---|
-| Trivial | 단순 CRUD·설정 | Unit + Acceptance 스모크 |
-| Standard | 신규 로직·다화면 | Unit ~ E2E |
-| Complex | 도메인 규칙·통합·상태기계 | 전 레벨(Unit ~ Acceptance) |
+| Trivial | simple CRUD, configuration | Unit + Acceptance smoke |
+| Standard | new logic, multiple screens | Unit ~ E2E |
+| Complex | domain rules, integration, state machines | all levels (Unit ~ Acceptance) |
 
-Depth는 requirements.md 근거로 판정해 Testing Strategy 첫 줄에 명시한다.
+Judge Depth from requirements.md; state it on the first line of Testing Strategy.
 
-## 3. 회귀 판단
-- 하위 계층 변경 시 해당 레벨 + 상위 계층 레벨을 함께 재확인한다(예: L6 Logic 변경 → Unit 재확인 + 이를 호출하는 L5/L4 Integration 재확인).
+## 3. Regression
+- A lower-level change rechecks its level and the levels above (e.g., L6 Logic change → Unit, plus the L5/L4 Integration that calls it).

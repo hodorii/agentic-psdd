@@ -20,9 +20,9 @@
 ##### L4 Step: ...
 ### L2 Activity: ...
 ### ✅ {{label.review_request}} (L1: <name>)
-승인(✓) 또는 수정 사항을 입력하세요.
+{{label.review_prompt}}
 
 ## L1 Process: <name2>  (valueChainRef: VC-...-<unit2>)
-... (동일 구조 반복)
+... (repeat the same structure)
 ### ✅ {{label.review_request}} (L1: <name2>)
 

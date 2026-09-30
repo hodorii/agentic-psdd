@@ -7,12 +7,12 @@ One criterion per line under a numbered requirement group, inside the `Requireme
 - N.M: [condition] result
 ```
 
-- Group name: subject + obligation — what the deliverable must provide (`공정변수 정의`, `PINN 예측 정확도 산출 방법`). A bare topic (`명령안`, `증빙`) or a vague link word (`연계`) is not a name.
-- `[condition]`: the triggering event, state, failure, or option; `[항상]` for invariants; combine with `+`.
+- Group name: subject + obligation — what the deliverable must provide (`Process variable definition`, `Prediction accuracy calculation method`). A bare topic (`Command draft`, `Evidence`) or a vague link word (`integration`, `linkage`) is not a name.
+- `[condition]`: the triggering event, state, failure, or option; `[{{label.always}}]` for invariants; combine with `+`.
 - `[result]`: what is observable — rendered output, exit code, file state, message. No implementation terms (framework, module, table).
-- No arrow: the closing `]` separates condition from result. One behavior per line. Measurable words (`2초 이내`), never "fast" / "robust".
+- No arrow: the closing `]` separates condition from result. One behavior per line. Measurable words (`within 2 s`), never "fast" / "robust".
 
 Examples
-- `1.3: [루트 탐색 실패] 탐색 경로 포함 오류를 stderr 출력, 비제로 종료`
-- `7.6: [감시 불가 환경] 상태 표시줄에 '감시 불가' 표시, r 키로 수동 갱신`
-- `8.1: [항상] 감시 대상 디렉터리 아래 어떤 파일도 생성/수정/삭제하지 않음`
+- `1.3: [root lookup fails] error with the searched paths on stderr, non-zero exit`
+- `7.6: [watching unavailable] status bar shows 'watch unavailable', r refreshes manually`
+- `8.1: [always] creates, modifies or deletes no file under the watched directory`

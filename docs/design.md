@@ -3,41 +3,41 @@
 > 리버스 엔지니어링 산출물. 저장소 현재 상태(커밋 `12cbe4c` + 작업 트리)를 읽어 역추출한 설계이며, 선행 `requirements.md`가 없으므로 요구사항 ID 태그는 생략한다.
 
 ## 정의
-에이전트 주도 SDLC에서 사람이 이해 기반으로 승인하는 단계별 명세(요구사항 → 비즈니스 프로세스 → 설계 → 태스크)를 거쳐 구현·검증에 이르도록 하기 위해, 라우터(`AGENTS.md`)·스킬 계약(`skills/kiro-*`)·산출물 템플릿(`templates/`)을 소비 프로젝트의 관례 경로에 링크 또는 복사로 배치하는 방법론 패키지이다.
+에이전트 주도 SDLC에서 사람이 이해 기반으로 승인하는 단계별 명세(요구사항 → 비즈니스 프로세스 → 설계 → 태스크)를 거쳐 구현, 검증에 이르도록 하기 위해, 라우터(`AGENTS.md`), 스킬 계약(`skills/kiro-*`), 산출물 템플릿(`templates/`)을 소비 프로젝트의 관례 경로에 링크 또는 복사로 배치하는 방법론 패키지이다.
 
 ## Boundary Commitments
 
 ### In-Scope (This Spec Owns)
 - **라우터**: `AGENTS.md` — 경로 이름 표(`{{SPECS}}` 등), 원칙, 산출물 규약, 워크플로, 승인 게이트 규칙, steering `inclusion` 규칙
 - **스킬 계약**: `skills/<name>/SKILL.md` 21개 — Inputs / Outputs(Core Indicators) / Boundaries / Rules 4절 고정
-- **스킬 방법·프롬프트**: 각 스킬의 `rules/`(방법), `templates/`(서브에이전트 브리프), `agents/openai.yaml`(호스트 표시 메타)
+- **스킬 방법, 프롬프트**: 각 스킬의 `rules/`(방법), `templates/`(서브에이전트 브리프), `agents/openai.yaml`(호스트 표시 메타)
 - **산출물 구조**: `templates/specs/`(7), `templates/labels.md`(라벨 표), `templates/steering/`(3), `templates/steering-custom/`(7)
 - **설치**: `install.sh link|copy` — 소비 프로젝트 배치, 재실행 갱신, 제거된 스킬 정리
 - **세션 조회 도구**: `skills/multi-agent-sessions/scripts/session.py`
 
 ### Out-of-Scope
 - **프로젝트 지식**: `.kiro/steering`, `.kiro/specs`, `.kiro/reference` — 소비 프로젝트 소유
-- **`value-chain.md`**: product owner 소유, 모든 스킬 읽기 전용(`kiro-biz-process`·`kiro-steering`이 부트스트랩 골격만 제시)
-- **에이전트 런타임**: 서브에이전트 디스패치·병렬 실행·컨텍스트 압축·워크트리 생성의 실제 수행 — 호스트 CLI(Claude Code, Kiro, opencode, agy 등) 소유. 이 패키지는 프롬프트와 프로토콜만 정의
-- **구현 코드·테스트 실행**: `kiro-impl` 서브에이전트가 소비 프로젝트 안에서 수행
+- **`value-chain.md`**: product owner 소유, 모든 스킬 읽기 전용(`kiro-biz-process`, `kiro-steering`이 부트스트랩 골격만 제시)
+- **에이전트 런타임**: 서브에이전트 디스패치, 병렬 실행, 컨텍스트 압축, 워크트리 생성의 실제 수행 — 호스트 CLI(Claude Code, Kiro, opencode, agy 등) 소유. 이 패키지는 프롬프트와 프로토콜만 정의
+- **구현 코드, 테스트 실행**: `kiro-impl` 서브에이전트가 소비 프로젝트 안에서 수행
 
 ### Allowed Dependencies
-- 외부: POSIX `sh`·`awk`·`ln`·`cp`(install.sh), Python 3 표준 라이브러리 `sqlite3`·`json`·`glob`(session.py), Mermaid(설계 다이어그램 표기), 호스트 규약 — `AGENTS.md` 루트 파일, `.agents/skills/<name>/SKILL.md` 및 `.claude/skills/<name>/SKILL.md` 발견 경로, `SKILL.md` front matter(`name`, `description`), `agents/openai.yaml`(`interface`, `policy`), Kiro IDE `.kiro/` 규약
-- 내부 의존 방향: `AGENTS.md` → `skills/*/SKILL.md` → `skills/*/rules/`·`skills/*/templates/` → `templates/` (역방향 참조 없음. `templates/`는 어떤 스킬도 참조하지 않는다)
+- 외부: POSIX `sh`, `awk`, `ln`, `cp`(install.sh), Python 3 표준 라이브러리 `sqlite3`, `json`, `glob`(session.py), Mermaid(설계 다이어그램 표기), 호스트 규약 — `AGENTS.md` 루트 파일, `.agents/skills/<name>/SKILL.md` 및 `.claude/skills/<name>/SKILL.md` 발견 경로, `SKILL.md` front matter(`name`, `description`), `agents/openai.yaml`(`interface`, `policy`), Kiro IDE `.kiro/` 규약
+- 내부 의존 방향: `AGENTS.md` → `skills/*/SKILL.md` → `skills/*/rules/`, `skills/*/templates/` → `templates/` (역방향 참조 없음. `templates/`는 어떤 스킬도 참조하지 않는다)
 - 스킬 간 교차 참조(허용 목록, SSoT 유지 목적):
   - `kiro-bugfix/rules` → `kiro-spec-requirements/rules/acceptance-criteria-format.md`
   - `kiro-steering-custom` → `kiro-steering/rules/steering-principles.md`
   - `kiro-debug` → `kiro-impl/templates/debugger-prompt.md`
   - `kiro-biz-process/rules` → `kiro-spec-design/rules/verification-mapping.md`
-  - `kiro-impl/templates/{reviewer,debugger}-prompt.md` → `kiro-review`·`kiro-debug` 프로토콜(호스트가 서브에이전트 내 스킬 호출을 지원할 때만)
+  - `kiro-impl/templates/{reviewer,debugger}-prompt.md` → `kiro-review`, `kiro-debug` 프로토콜(호스트가 서브에이전트 내 스킬 호출을 지원할 때만)
   - `kiro-steering` → `kiro-biz-process/rules/biz-process-rules.md`(value-chain 부트스트랩 골격)
 
 ### Revalidation Triggers
-- 호스트 CLI가 스킬을 발견하는 경로·front matter 규약 변경
+- 호스트 CLI가 스킬을 발견하는 경로, front matter 규약 변경
 - 호스트 CLI가 루트 `AGENTS.md`를 in-place 덮어쓰기하지 않게 되어 symlink가 안전해지는 경우(포인터 블록 방식의 전제)
 - `spec.json` 필드 또는 `phase` 값 집합 변경(`kiro-spec-status`가 SSoT)
-- Kiro IDE `.kiro/specs`·`.kiro/steering` 규약 변경
-- 스킬 추가·삭제·개명(매니페스트 정리 로직과 `AGENTS.md` Workflow 절 동시 갱신 필요)
+- Kiro IDE `.kiro/specs`, `.kiro/steering` 규약 변경
+- 스킬 추가, 삭제, 개명(매니페스트 정리 로직과 `AGENTS.md` Workflow 절 동시 갱신 필요)
 - 서브에이전트 구조화 출력(`- STATUS:`, `- VERDICT:`, `- NEXT_ACTION:`) 파싱 형식 변경
 
 ## Architecture
@@ -80,7 +80,7 @@ flowchart TB
 ```
 
 ### Keyword Map
-방법론 전반에 걸쳐 쓰이는 키워드와 그 연결. 실선 = 파생·참조(값 복제 없음), 점선 = 소비·판정.
+방법론 전반에 걸쳐 쓰이는 키워드와 그 연결. 실선 = 파생, 참조(값 복제 없음), 점선 = 소비, 판정.
 ```mermaid
 flowchart LR
   subgraph Paths
@@ -215,37 +215,37 @@ flowchart LR
 - 요구사항 ID `N.M`은 값이 아니라 참조 키다: biz-process 태그, design Component, tasks `_Requirements:`, 리뷰어 `REQUIREMENTS_CHECKED`가 모두 같은 번호를 쓰며 `REQ-*` 별칭 생성은 금지.
 - V-모델은 좌측(biz-process L1~L6)과 우측(verification mapping → Testing Strategy → VERIFICATION_EVIDENCE)이 레벨 번호로만 이어진다. biz-process.md에는 검증이 기록되지 않는다.
 - `(P)`는 `_Boundary:` 비중첩과 `_Depends:` 충족이 모두 확인될 때만 붙고, 실행 시 워크트리 격리로 실현된다.
-- Core Indicators는 산출물이 아니라 판정 기준이다: 스킬 계약이 선언하고, 리뷰어·검증 스킬이 증거로 확인한다.
+- Core Indicators는 산출물이 아니라 판정 기준이다: 스킬 계약이 선언하고, 리뷰어, 검증 스킬이 증거로 확인한다.
 
 ### Technology Stack
 | Layer | Choice | Role |
 |-------|--------|------|
 | 라우터 | Markdown (`AGENTS.md`) | 경로 이름 해석, 원칙, 워크플로 진입점 |
-| 스킬 계약 | Markdown + YAML front matter (`SKILL.md`) | 호스트가 발견·나열하는 단위, 4절 고정 계약 |
-| 호스트 메타 | YAML (`agents/openai.yaml`) | 표시명·암묵 호출 금지(`allow_implicit_invocation: false`) |
+| 스킬 계약 | Markdown + YAML front matter (`SKILL.md`) | 호스트가 발견, 나열하는 단위, 4절 고정 계약 |
+| 호스트 메타 | YAML (`agents/openai.yaml`) | 표시명, 암묵 호출 금지(`allow_implicit_invocation: false`) |
 | 방법 규칙 | Markdown (`rules/*.md`) | 스킬이 필요한 단계에서만 경로로 로드 |
-| 서브에이전트 브리프 | Markdown (`templates/*-prompt.md`) | 구현·리뷰·디버그 프로토콜과 구조화 출력 스키마 |
-| 산출물 구조 | Markdown + JSON (`templates/specs`, `templates/steering*`) | 스펙·steering 문서 골격 |
+| 서브에이전트 브리프 | Markdown (`templates/*-prompt.md`) | 구현, 리뷰, 디버그 프로토콜과 구조화 출력 스키마 |
+| 산출물 구조 | Markdown + JSON (`templates/specs`, `templates/steering*`) | 스펙, steering 문서 골격 |
 | 설치 | POSIX sh | 상대 symlink 또는 복사, 포인터 블록, 매니페스트 |
 | 세션 조회 | Python 3 표준 라이브러리 | 4종 에이전트의 세션 저장소 읽기 전용 파싱 |
 
 ### Key Decisions
 - **`AGENTS.md`는 symlink가 아닌 포인터 블록**: `<!-- methodology:begin/end -->` 사이만 관리, 나머지 보존 — 이유: 루트 `AGENTS.md`를 in-place 덮어쓰는 호스트가 symlink를 통해 원본 `methodology/AGENTS.md`를 손상시킴.
 - **스킬 개별 symlink, 템플릿 디렉터리 통째 symlink**: — 이유: 소비 프로젝트가 같은 디렉터리에 둔 자체 스킬을 가리지 않음; 템플릿은 방법론 전유.
-- **매니페스트(`.kiro/settings/.methodology-skills-manifest`)**: 배치한 스킬 이름 목록 — 이유: 상류에서 제거·개명된 스킬을 재실행 시 정리(dangling link·stale copy 방지).
+- **매니페스트(`.kiro/settings/.methodology-skills-manifest`)**: 배치한 스킬 이름 목록 — 이유: 상류에서 제거, 개명된 스킬을 재실행 시 정리(dangling link, stale copy 방지).
 - **파일 해시 매니페스트(`.kiro/settings/.methodology-files-manifest`)**: copy 모드가 배치한 파일마다 SHA-256 기록, 이후 실행은 해시가 달라진 파일을 발견하면 exit 3으로 정지(`--force`로 무시) — 이유: 프로젝트가 손댄 복사본을 재설치가 조용히 덮어쓰지 않게 함.
 - **link 모드 사전 검증**: `$ROOT/methodology`가 스크립트 자신으로 물리 해석되는지 확인 후 시작 — 이유: 상대 링크 `../../methodology/...`가 고정이라 불일치 시 dangling link 양산.
 - **경로 이름 치환(`{{SPECS}}` 등)**: 스킬은 이름만 사용, `AGENTS.md` Paths 표가 유일한 해석점 — 이유: SSoT, 표 한 곳 수정으로 재배치.
 - **스킬 = 계약 + rules + templates 3분리**: `SKILL.md`는 짧은 계약, 방법은 `rules/`, 브리프는 `templates/` — 이유: MoE, 필요한 단계에서만 로드하여 컨텍스트 절약.
 - **Core Indicators로 평가**: 산출물에 지시를 싣지 않고 계약의 출력 지표로 판정 — 이유: 지침/히스토리 분리.
 - **추론 영어, 산출물은 `spec.json.language`**: — 이유: 혼합 언어 팀에서 도구 동작 일관성, 사람 대면 문서만 지역화.
-- **V-모델 좌·우 분리**: biz-process 스킬은 좌측 전개(L1~L6)만, 검증 레벨 매핑은 `kiro-spec-design/rules/verification-mapping.md`가 소유하고 Testing Strategy가 기록 — 이유: 검증 기준의 SSoT를 설계에 둠.
+- **V-모델 좌, 우 분리**: biz-process 스킬은 좌측 전개(L1~L6)만, 검증 레벨 매핑은 `kiro-spec-design/rules/verification-mapping.md`가 소유하고 Testing Strategy가 기록 — 이유: 검증 기준의 SSoT를 설계에 둠.
 - **승인 게이트 + `-y`/`--auto` 우회**: 각 단계 사람 검토, 의도적 fast-track만 우회 — 이유: 이해 기반 동의(Informed Consent).
 - **서브에이전트 출력은 파싱 가능한 고정 블록**: `## Status Report`/`## Review Verdict`/`## Debug Report`의 정확한 필드 줄 — 이유: 부모 컨트롤러가 기계적으로 분기.
-- **리뷰어는 보고를 신뢰하지 않음**: `git diff`·테스트·grep을 직접 실행, RED 단계 증거 요구 — 이유: 구현자 자기보고는 증거가 아님.
-- **`_Difficulty:`로 구현자 매칭**: low → 소형 모델 + Procedure 부록 포함 브리프, mid/high → 최강 모델 — 이유: 비용·품질 균형.
+- **리뷰어는 보고를 신뢰하지 않음**: `git diff`, 테스트, grep을 직접 실행, RED 단계 증거 요구 — 이유: 구현자 자기보고는 증거가 아님.
+- **`_Difficulty:`로 구현자 매칭**: low → 소형 모델 + Procedure 부록 포함 브리프, mid/high → 최강 모델 — 이유: 비용, 품질 균형.
 - **워크트리 격리 + 세션 로테이션**: 병렬 구현자는 별도 git worktree, 컨텍스트 50% 지점에서 새 세션 — 이유: 재생성 산출물 충돌 방지, 압축으로 인한 맥락 손실 회피.
-- **세션 조회는 저장소 직접 읽기**: 에이전트 CLI를 기동하지 않고 파일·sqlite를 읽기 전용으로 — 이유: opencode CLI 출력 64KiB 절단 관찰, 실행 중 세션 간섭 방지.
+- **세션 조회는 저장소 직접 읽기**: 에이전트 CLI를 기동하지 않고 파일, sqlite를 읽기 전용으로 — 이유: opencode CLI 출력 64KiB 절단 관찰, 실행 중 세션 간섭 방지.
 
 ## System Flows
 
@@ -318,14 +318,14 @@ sequenceDiagram
   end
   O->>O: update tasks.md, commit
 ```
-- 결정: 구현자는 `tasks.md` 수정·커밋 금지(부모 소유). 리뷰어는 코드 변경 금지. 디버거는 수정 계획만.
-- 결정: 부모는 요구사항·설계의 태스크 관련 절만 전달하고 남은 컨텍스트 수치는 노출하지 않는다.
+- 결정: 구현자는 `tasks.md` 수정, 커밋 금지(부모 소유). 리뷰어는 코드 변경 금지. 디버거는 수정 계획만.
+- 결정: 부모는 요구사항, 설계의 태스크 관련 절만 전달하고 남은 컨텍스트 수치는 노출하지 않는다.
 
 ## Components and Interfaces
 
 ### `AGENTS.md` — Router
-- Intent: 스킬이 쓰는 경로 이름을 해석하고 원칙·워크플로·게이트 규칙을 한 곳에 둔다.
-- 절: `## Paths`(이름→기본 경로→보유물 표), `## Principles`(SSoT·SRP(Small Units)·Self-Documenting(Descriptable Name·Why-Only Comment)·Goal Delivery·지침/히스토리 분리·MoE·Lean), `## Artifacts`(`Definition` 개시, 수용 기준 형식, 추적성 체인, ~200줄 상한), `## Workflow`(Phase 0~2 명령 순서), `## Skills`(`$kiro-<name>` 호출), `## Rules`(승인 게이트, 영어 추론, 평가 보고 원칙), `## Steering`(`inclusion` 규약, 승격).
+- Intent: 스킬이 쓰는 경로 이름을 해석하고 원칙, 워크플로, 게이트 규칙을 한 곳에 둔다.
+- 절: `## Paths`(이름→기본 경로→보유물 표), `## Principles`(SSoT, SRP(Small Units), Self-Documenting(Descriptable Name, Why-Only Comment), Goal Delivery, 지침/히스토리 분리, MoE, Lean), `## Artifacts`(`Definition` 개시, 수용 기준 형식, 추적성 체인, ~200줄 상한), `## Workflow`(Phase 0~2 명령 순서), `## Skills`(`$kiro-<name>` 호출), `## Rules`(승인 게이트, 영어 추론, 평가 보고 원칙), `## Steering`(`inclusion` 규약, 승격).
 - 계약 특이사항: 소비 프로젝트에서는 원본이 아니라 포인터 블록으로 도달한다. 스킬 텍스트는 이 파일의 Paths 표 없이는 경로를 해석할 수 없다.
 
 ### `install.sh` — Installer
@@ -345,12 +345,12 @@ name: kiro-<name>            # 호스트 발견 키, 디렉터리명과 일치
 description: Lean contract for kiro-<name>: <one line>
 ---
 # kiro-<name>
-Inputs        # 읽는 산출물·인자
+Inputs        # 읽는 산출물, 인자
 Outputs       # Core Indicators: 대문자 스네이크 지표 목록
 Boundaries    # 하지 않는 것
 Rules         # 읽을 rules/template 경로, 정지 조건, 쓰는 파일, Next 명령
 ```
-- `agents/openai.yaml`: `interface.display_name`, `interface.short_description`, `policy.allow_implicit_invocation: false`. 예외 — `kiro-spec-batch`는 `name`/`description` 평면 형식; `kiro-biz-process`·`kiro-bugfix`·`kiro-orchestrate`·`multi-agent-sessions`는 파일 없음.
+- `agents/openai.yaml`: `interface.display_name`, `interface.short_description`, `policy.allow_implicit_invocation: false`. 예외 — `kiro-spec-batch`는 `name`/`description` 평면 형식; `kiro-biz-process`, `kiro-bugfix`, `kiro-orchestrate`, `multi-agent-sessions`는 파일 없음.
 - 규칙 로드는 "Read `rules/x.md` from this skill's directory" 문장으로 명시 — 경로 기반 lazy load.
 
 ### 스킬 카탈로그 (Inputs → Core Indicators → 소유 rules/templates)
@@ -394,8 +394,8 @@ Rules         # 읽을 rules/template 경로, 정지 조건, 쓰는 파일, Next
 - CATEGORY: MISSING_DEPENDENCY | RUNTIME_MISMATCH | MODULE_FORMAT | NATIVE_ABI | CONFIG_GAP | LOGIC_ERROR | SPEC_CONFLICT | EXTERNAL_DEPENDENCY
 - FIX_PLAN, VERIFICATION, NEXT_ACTION: RETRY_TASK | BLOCK_TASK | STOP_FOR_HUMAN, CONFIDENCE: HIGH | MEDIUM | LOW, NOTES
 ```
-- 구현자: 행동 태스크는 Feature Flag Protocol(OFF 플래그 → RED → GREEN → 플래그 제거), 비행동 태스크는 RED→GREEN→REFACTOR. 마지막 문단이 계획·질문·약속이면 도구 호출로 실행 후 종료.
-- 리뷰어 12항목: 기계 검사 5(테스트, TBD/TODO grep, 시크릿 grep, 경계, RED 증거) + 판단 검사 7(실물성, 수용 기준, 요구사항 정합, 설계 정합·의존 방향, 테스트 품질, 오류 처리, 렌더 출력). 하나라도 실패 → REJECTED.
+- 구현자: 행동 태스크는 Feature Flag Protocol(OFF 플래그 → RED → GREEN → 플래그 제거), 비행동 태스크는 RED→GREEN→REFACTOR. 마지막 문단이 계획, 질문, 약속이면 도구 호출로 실행 후 종료.
+- 리뷰어 12항목: 기계 검사 5(테스트, TBD/TODO grep, 시크릿 grep, 경계, RED 증거) + 판단 검사 7(실물성, 수용 기준, 요구사항 정합, 설계 정합, 의존 방향, 테스트 품질, 오류 처리, 렌더 출력). 하나라도 실패 → REJECTED.
 
 ### `multi-agent-sessions/scripts/session.py` — Session Reader
 ```text
@@ -427,7 +427,7 @@ session.py timeline [--project P] [--source S|all] [--limit N]
 - biz-process 계층: L1 Process(`BP-<이름>`, `valueChainRef: VC-<domain>-<unit>`) → L2 Activity → L3 FunctionGroup/UI → L4 Step → L5 DetailStep → L6 Logic(AST, 의사코드). L2/L3에 요구사항 ID 태그. L1마다 `### ✅ 검토 요청` 게이트.
 - value-chain: Mega(`VC-<domain>`) → Main(`VC-<domain>-<main>`) → Unit(`VC-<domain>-<unit>`, `value`, `validation`, 선택 `bizProcessRef`).
 - tasks: 최대 2단계(`1`, `1.1`), 순차 번호, `- [ ]` / `- [ ]*`(선택 테스트), `(P)` 병렬 표식은 체크박스 밖; 상세 필드 `DONE:`, `_Requirements: 1.1, 1.2_`, `_Difficulty: low|mid|high_`, `_Boundary: <design component>_`, `_Depends: 1.2_`, `_BizProcess: BP-X.L4_`, `_Verify: BP-X.L2.logic_`, `_Contracts:_`. 단계 순서 Foundation → Core → Integration → Validation.
-- 추적성 체인: value-chain Unit ↔ biz-process L1(`valueChainRef`/`bizProcessRef`) → 요구사항 ID(L2/L3) → design Boundary Commitments·Components `Requirements:` → tasks `_Requirements:`/`_Boundary:`/`_BizProcess:` → validate-impl 커버리지.
+- 추적성 체인: value-chain Unit ↔ biz-process L1(`valueChainRef`/`bizProcessRef`) → 요구사항 ID(L2/L3) → design Boundary Commitments, Components `Requirements:` → tasks `_Requirements:`/`_Boundary:`/`_BizProcess:` → validate-impl 커버리지.
 - 검증 매핑(V-모델 우측): L1 Acceptance / L2 E2E / L3 Integration(UI-API) / L4 Integration(API) / L5 Integration(Service) / L6 Unit; Depth Trivial(Unit+Acceptance 스모크) / Standard(Unit~E2E) / Complex(전 레벨).
 
 ### 설치 상태
@@ -437,27 +437,27 @@ session.py timeline [--project P] [--source S|all] [--limit N]
 - steering front matter: `inclusion: always | manual | fileMatch | auto`; 부재 = `always`.
 
 ## Error Handling
-- **사용자 입력 오류**: `install.sh` MODE 오류·link 경로 불일치 → stderr 안내 + exit 2, 프로젝트 무변경; 이전 copy 설치본의 수정 파일 발견 → 목록 출력 + exit 3, 프로젝트 무변경(`--force` 시 진행). `session.py` 세션 미발견·무일치 → stderr + exit 1.
+- **사용자 입력 오류**: `install.sh` MODE 오류, link 경로 불일치 → stderr 안내 + exit 2, 프로젝트 무변경; 이전 copy 설치본의 수정 파일 발견 → 목록 출력 + exit 3, 프로젝트 무변경(`--force` 시 진행). `session.py` 세션 미발견, 무일치 → stderr + exit 1.
 - **선행 산출물 오류**: requirements 미승인 또는 value-chain 부재 → `kiro-biz-process` 정지(부트스트랩 골격 제시, 생성 금지); 재현 불가 결함 → `kiro-bugfix`가 `kiro-debug`로 라우팅; 요구사항 ID 누락 → `kiro-spec-tasks` 정지 후 requirements 수정 요구.
-- **자기검토 루프**: requirements·design·tasks 각 self-check는 기계 검사 → 판단 검사 순, 수리 2회 초과 시 진짜 갭으로 판단해 이전 단계로 복귀. `kiro-spec-quick`은 어떤 실패든 완료 단계를 표시하고 `$kiro-spec-<next> {feature}` 제안 후 정지.
+- **자기검토 루프**: requirements, design, tasks 각 self-check는 기계 검사 → 판단 검사 순, 수리 2회 초과 시 진짜 갭으로 판단해 이전 단계로 복귀. `kiro-spec-quick`은 어떤 실패든 완료 단계를 표시하고 `$kiro-spec-<next> {feature}` 제안 후 정지.
 - **구현 실패**: 같은 태스크 2연속 실패 → 상위 모델 재배정 또는 디버거; `STOP_FOR_HUMAN`은 저장소 밖 해결이 필요할 때만; REJECTED 판정은 REMEDIATION 없이는 무효.
-- **검증 NO-GO**: `kiro-validate-impl`이 체크박스 상태와 무관하게 전 태스크를 재평가(산출물이 유일한 의도 원천, 완료 표시는 증거 아님)하고, 발견을 `missing | partial | contradicts | unrequested`로 분류해 재작업 태스크를 bugfix 순서(실패 재현 테스트 → 수정 → 통과)로 `tasks.md`에 추가(기존 태스크 재작성·재번호 금지)하고 종료 후 재검증.
+- **검증 NO-GO**: `kiro-validate-impl`이 체크박스 상태와 무관하게 전 태스크를 재평가(산출물이 유일한 의도 원천, 완료 표시는 증거 아님)하고, 발견을 `missing | partial | contradicts | unrequested`로 분류해 재작업 태스크를 bugfix 순서(실패 재현 테스트 → 수정 → 통과)로 `tasks.md`에 추가(기존 태스크 재작성, 재번호 금지)하고 종료 후 재검증.
 - **외부 자원 오류**: opencode DB 잠금 → busy_timeout 대기; agy `transcript.jsonl` 부재 → protobuf 휴리스틱 fallback(손실 경고 출력); sqlite/JSON 파싱 실패 → 해당 항목 건너뜀.
 - **기능 강등**: 호스트가 서브에이전트 내 스킬 호출을 지원하지 않으면 prompt 파일에 내장된 절차를 그대로 수행; WebSearch/WebFetch 부재 시 discovery는 로컬 분석만; `bizProcessRef` 미기재 시 `valueChainRef` 단방향 링크로 유효.
 
 ## Testing Strategy
-- **Depth**: Standard — 규칙 문서 중심 패키지에 셸·파이썬 실행 코드 2개, 상태 기계 1개.
-- **현재 상태**: 자동 테스트 없음(저장소에 테스트 파일·CI 설정 부재). 검증은 아래 실물 실행에 의존한다.
-- **Unit**: `install.sh` — `rest_without_pointer`(블록 위치·후행 빈 줄), `prune_removed_skills`(매니페스트 대비 삭제); `session.py` — `_epoch_from_iso_utc`, `_extract_readable`, 소스별 `resolve_id`.
-- **Integration**: 임시 프로젝트에 `install.sh link` 재실행 → symlink 대상·매니페스트·포인터 블록 유일성 확인; whole-dir symlink 상태에서 재실행 → 개별 링크로 마이그레이션; `copy` 모드에서 상류 스킬 제거 후 재실행 → 정리 확인; `copy` 후 배치 파일 수정 → 재실행 exit 3, `--force` 재실행 → 덮어쓰기, `link` 전환 → 파일 매니페스트 삭제(2026-09-25 실행 확인).
+- **Depth**: Standard — 규칙 문서 중심 패키지에 셸, 파이썬 실행 코드 2개, 상태 기계 1개.
+- **현재 상태**: 자동 테스트 없음(저장소에 테스트 파일, CI 설정 부재). 검증은 아래 실물 실행에 의존한다.
+- **Unit**: `install.sh` — `rest_without_pointer`(블록 위치, 후행 빈 줄), `prune_removed_skills`(매니페스트 대비 삭제); `session.py` — `_epoch_from_iso_utc`, `_extract_readable`, 소스별 `resolve_id`.
+- **Integration**: 임시 프로젝트에 `install.sh link` 재실행 → symlink 대상, 매니페스트, 포인터 블록 유일성 확인; whole-dir symlink 상태에서 재실행 → 개별 링크로 마이그레이션; `copy` 모드에서 상류 스킬 제거 후 재실행 → 정리 확인; `copy` 후 배치 파일 수정 → 재실행 exit 3, `--force` 재실행 → 덮어쓰기, `link` 전환 → 파일 매니페스트 삭제(2026-09-25 실행 확인).
 - **E2E**: 소비 프로젝트에서 `$kiro-spec-quick` → `$kiro-impl` 1회 완주하며 `spec.json.phase` 전이와 서브에이전트 출력 블록 파싱 확인.
 - **Acceptance**: link 모드 경로 불일치 시 프로젝트 무변경; 호스트 `/skills` 목록에 21개 스킬 표시; `session.py timeline --source all` 실물 출력.
 
 ## File Structure Plan
 ```
 agentic-psdd/
-├── AGENTS.md                         라우터 — Paths 표·원칙·워크플로·규칙 (SSoT)
-├── README.md                         소비 프로젝트 배치 형태·설치 방법·언어 정책
+├── AGENTS.md                         라우터 — Paths 표, 원칙, 워크플로, 규칙 (SSoT)
+├── README.md                         소비 프로젝트 배치 형태, 설치 방법, 언어 정책
 ├── LICENSE                           MIT
 ├── install.sh                        link/copy 설치, 포인터 블록, 매니페스트 정리
 ├── docs/design.md                    본 문서 (리버스 설계)
@@ -481,5 +481,5 @@ agentic-psdd/
 - 스킬 개명: 상류 개명 후 재실행 시 구 이름은 매니페스트 기준으로 삭제, 신 이름 배치.
 
 ### Security
-- steering·스펙에 자격 증명 금지(`steering-principles.md`); 리뷰어가 변경 파일에 시크릿 grep 강제.
-- `session.py`는 로컬 읽기 전용, 외부 전송 금지; `$HOME`/XDG 파생 경로만 사용하고 사용자·프로젝트 경로 하드코딩 금지.
+- steering, 스펙에 자격 증명 금지(`steering-principles.md`); 리뷰어가 변경 파일에 시크릿 grep 강제.
+- `session.py`는 로컬 읽기 전용, 외부 전송 금지; `$HOME`/XDG 파생 경로만 사용하고 사용자, 프로젝트 경로 하드코딩 금지.

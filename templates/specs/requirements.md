@@ -10,9 +10,9 @@
 
 ## {{label.requirements}}
 
-### 1. [대상과 의무]
-- 1.1: [조건] 결과
-- 1.2: [조건] 결과
+### 1. [subject and obligation]
+- 1.1: [condition] result
+- 1.2: [condition] result
 
-### 2. [대상과 의무]
-- 2.1: [조건] 결과
+### 2. [subject and obligation]
+- 2.1: [condition] result

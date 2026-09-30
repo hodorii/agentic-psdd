@@ -181,4 +181,4 @@ Before writing `tasks.md`, review the draft task plan and repair local issues un
 
 ### Bugfix Specs (when `bugfix.md` exists)
 - Fixed order: reproduction test (must fail before the fix) → unchanged-behavior tests (must pass before the fix) → the fix → both suites pass.
-- `_Requirements:` references bugfix.md IDs (`1.x` 결함, `2.x` 기대, `3.x` 불변); every `2.x` and `3.x` maps to a test task.
+- `_Requirements:` references bugfix.md IDs (`1.x` defect, `2.x` expected, `3.x` unchanged); every `2.x` and `3.x` maps to a test task.

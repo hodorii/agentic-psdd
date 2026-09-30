@@ -183,3 +183,14 @@
 | test_structure_aaa | 구조 (AAA) | Structure (AAA) |
 | mocking_data | 목과 테스트 데이터 | Mocking & Data |
 | coverage | 커버리지 | Coverage |
+| always | 항상 | always |
+| root_cause | 원인 | Root Cause |
+| fix_approach | 수정 방식 | Fix Approach |
+| verification_properties | 검증 속성 | Verification Properties |
+| impact_scope | 영향 범위 | Impact Scope |
+| value_chain_mapping_needed | 가치사슬 매핑 필요 | Value chain mapping needed |
+| review_prompt | 승인(✓) 또는 수정 사항을 입력하세요. | Approve (✓) or enter changes. |
+| title_value_chain | 가치사슬 (Value Chain) | Value Chain |
+| value_chain_definition | 가치사슬 정의서 | Value Chain Definition |
+| main_value_flow | 주요 가치 흐름 | Main Value Flow |
+| unit_process | 단위 프로세스 | Unit Process |
