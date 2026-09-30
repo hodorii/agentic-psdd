@@ -239,6 +239,7 @@ flowchart LR
 
 ### 핵심 결정
 - **`AGENTS.md`는 symlink가 아닌 포인터 블록**: `<!-- methodology:begin/end -->` 사이만 관리, 나머지 보존 — 이유: 루트 `AGENTS.md`를 in-place 덮어쓰는 호스트가 symlink를 통해 원본 `methodology/AGENTS.md`를 손상시킴.
+- **포인터는 조건부**: 스펙 작업(`$kiro-*`, `.kiro/specs`, `.kiro/steering`)일 때만 `methodology/AGENTS.md`를 읽음 — 이유: 운영 세션이 많은 프로젝트에서 라우터(약 7KB)가 매 세션 로딩되지 않게 함(MoE, 지연 로딩).
 - **스킬 개별 symlink, 템플릿 디렉터리 통째 symlink**: — 이유: 소비 프로젝트가 같은 디렉터리에 둔 자체 스킬을 가리지 않음; 템플릿은 방법론 전유.
 - **매니페스트(`.kiro/settings/.methodology-skills-manifest`)**: 배치한 스킬 이름 목록 — 이유: 상류에서 제거, 개명된 스킬을 재실행 시 정리(dangling link, stale copy 방지).
 - **파일 해시 매니페스트(`.kiro/settings/.methodology-files-manifest`)**: copy 모드가 배치한 파일마다 SHA-256 기록, 이후 실행은 해시가 달라진 파일을 발견하면 exit 3으로 정지(`--force`로 무시) — 이유: 프로젝트가 손댄 복사본을 재설치가 조용히 덮어쓰지 않게 함.

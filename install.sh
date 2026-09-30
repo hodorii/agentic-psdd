@@ -87,7 +87,7 @@ POINTER_END='<!-- methodology:end -->'
 pointer_block() {
   printf '%s\n' \
     "$POINTER_BEGIN" \
-    'Full methodology: `methodology/AGENTS.md` — read it before doing anything here.' \
+    'Spec-driven work (`$kiro-*` skills, `.kiro/specs`, `.kiro/steering`): read `methodology/AGENTS.md` first. Other work does not need it.' \
     "$POINTER_END"
 }
 rest_without_pointer() { # $1 = file; strips a prior pointer block (and the blank line after it) wherever it sits
