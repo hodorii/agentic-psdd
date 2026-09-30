@@ -13,7 +13,7 @@ Outputs
 - Core Indicators: DONE_EVIDENCE, VERIFICATION_REPORT, STEERING_SYNC
 
 Boundaries
-- Verification only; no new development.
+- Verification only; no new development. Exception: delegates steering Sync to `kiro-steering` (steering files and roadmap check only).
 
 Rules
 - Read current state produced by kiro-validate-impl

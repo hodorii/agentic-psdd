@@ -5,7 +5,7 @@
 ## 결론
 - Kiro: IDE 제품 — 사용자가 Feature / Bugfix / Quick 선택, UI 게이트, wave 동시 실행, Hooks, PBT로 자동화, 정합성 보강.
 - cc-sdd: 에이전트 스킬 묶음 — discovery 자동 경로 분류(A~E), spec.json 승인 플래그, TDD, 서브에이전트 리뷰 루프, Boundary-first 추적.
-- agentic-psdd: cc-sdd 골격 계승 + Kiro bugfix 흡수 + 가치사슬, biz-process, `## 정의` 추가. 라벨 표로 헤딩 현지화(두 원형 모두 없음).
+- agentic-psdd: cc-sdd 골격 계승 + Kiro bugfix 흡수 + 가치사슬, biz-process, `Definition` 절 추가. 라벨 표로 헤딩 현지화(두 원형 모두 없음).
 - agentic-psdd 공백과 네 방법론 비교: `sdd-comparison.md`.
 
 ## 1. 흐름

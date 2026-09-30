@@ -82,12 +82,15 @@ place() { # $1 = target path in project, $2 = relative link, $3 = source path
 # managed pointer block at the top; everything else in the file is preserved.
 # Not a symlink: a tool that overwrites AGENTS.md in place (no unlink, just
 # write) would otherwise write through the symlink and corrupt the source.
+# Router the pointer names: the submodule in link mode; a copy under
+# .kiro/settings in copy mode (copy installs have no methodology/ directory).
+if [ "$MODE" = link ]; then ROUTER=methodology/AGENTS.md; else ROUTER=.kiro/settings/methodology/AGENTS.md; fi
 POINTER_BEGIN='<!-- methodology:begin -->'
 POINTER_END='<!-- methodology:end -->'
 pointer_block() {
   printf '%s\n' \
     "$POINTER_BEGIN" \
-    'Spec-driven work (`$kiro-*` skills, `.kiro/specs`, `.kiro/steering`): read `methodology/AGENTS.md` first. Other work does not need it.' \
+    "Spec-driven work (\`\$kiro-*\` skills, \`.kiro/specs\`, \`.kiro/steering\`): read \`$ROUTER\` first. Other work does not need it." \
     "$POINTER_END"
 }
 rest_without_pointer() { # $1 = file; strips a prior pointer block (and the blank line after it) wherever it sits
@@ -144,9 +147,11 @@ place_skills .claude/skills
 for skill_dir in "$SRC"/skills/*/; do basename "$skill_dir"; done > "$SKILLS_MANIFEST"
 
 place .kiro/settings/templates ../../methodology/templates "$SRC/templates"
+rm -rf .kiro/settings/methodology
+if [ "$MODE" = copy ]; then mkdir -p .kiro/settings/methodology && cp "$SRC/AGENTS.md" .kiro/settings/methodology/AGENTS.md; fi
 
 if [ "$MODE" = copy ]; then
-  placed_dirs=.kiro/settings/templates
+  placed_dirs=".kiro/settings/templates .kiro/settings/methodology"
   for dest in .agents/skills .claude/skills; do
     for skill_dir in "$SRC"/skills/*/; do placed_dirs="$placed_dirs $dest/$(basename "$skill_dir")"; done
   done

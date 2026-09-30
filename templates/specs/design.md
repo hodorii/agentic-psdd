@@ -50,8 +50,8 @@
 
 ## {{label.error_handling}}
 - **{{label.user_input_error}}**: [handling + requirement ID]
-- **{{label.external_resource_error}}** (file, network, permission): [isolation]
-- **{{label.system_error}}** (panic, exception): [recovery or exit path]
+- **{{label.external_resource_error}}**: [file, network, permission failures — isolation]
+- **{{label.system_error}}**: [panic, exception — recovery or exit path]
 - **{{label.graceful_degradation}}**: [fallback when a dependency fails]
 
 ## {{label.testing_strategy}}
@@ -65,8 +65,8 @@
 
 ## {{label.file_structure_plan}}
 ```
-[directory tree + responsibility notes — every component has a file path]
+[directory tree + responsibility notes + deliverable type per path (code | document | data | config | analysis) — every component has a file path]
 ```
 
 ## {{label.optional_sections}}
-Security / Performance / Migration
+[Security, Performance, Migration — only when needed]

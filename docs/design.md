@@ -241,6 +241,7 @@ flowchart LR
 ### 핵심 결정
 - **`AGENTS.md`는 symlink가 아닌 포인터 블록**: `<!-- methodology:begin/end -->` 사이만 관리, 나머지 보존 — 이유: 루트 `AGENTS.md`를 in-place 덮어쓰는 호스트가 symlink를 통해 원본 `methodology/AGENTS.md`를 손상시킴.
 - **Lazy Loading(MoE 하위 원칙)**: 로딩 계층 0 항상(포인터, 스킬 설명), 1 맵에서 골라 읽음(steering, reference), 2 호출 시(계약 → 단계별 규칙), 3 경로로만(선택 스킬, 보관 문서); 라벨 표는 필요한 행만, 라우터의 워크플로와 steering 규칙은 해당 스킬 규칙으로 이동, 설계 종합 규칙은 full 조사일 때만 — 이유: 항상 로딩 면적 최소화.
+- **copy 모드 라우터 복사**: copy 설치는 `methodology/`가 없으므로 라우터를 `.kiro/settings/methodology/AGENTS.md`로 복사하고 포인터가 그 경로를 가리킴, 해시 매니페스트 포함 — 이유: 경로 이름 표 없이는 스킬이 `{{SKILLS}}` 등을 해석 못 함.
 - **포인터는 조건부**: 스펙 작업(`$kiro-*`, `.kiro/specs`, `.kiro/steering`)일 때만 `methodology/AGENTS.md`를 읽음 — 이유: 운영 세션이 많은 프로젝트에서 라우터(약 7KB)가 매 세션 로딩되지 않게 함(MoE, 지연 로딩).
 - **스킬 개별 symlink, 템플릿 디렉터리 통째 symlink**: — 이유: 소비 프로젝트가 같은 디렉터리에 둔 자체 스킬을 가리지 않음; 템플릿은 방법론 전유.
 - **매니페스트(`.kiro/settings/.methodology-skills-manifest`)**: 배치한 스킬 이름 목록 — 이유: 상류에서 제거, 개명된 스킬을 재실행 시 정리(dangling link, stale copy 방지).
@@ -353,7 +354,7 @@ sequenceDiagram
 ### `install.sh` — Installer
 ```sh
 install.sh link [project-root] [--force]   # 상대 symlink 배치, project-root/methodology == 이 저장소여야 함
-install.sh copy [project-root] [--force]   # 실 파일 복사, 의존 없음
+install.sh copy [project-root] [--force]   # 실 파일 복사, 의존 없음, 라우터는 .kiro/settings/methodology/AGENTS.md
 # exit 2: 잘못된 MODE, 또는 link 모드에서 methodology 경로 불일치. set -eu.
 # exit 3: 이전 copy 설치본을 프로젝트가 수정한 파일 존재(목록 출력). --force 로 덮어씀.
 ```
