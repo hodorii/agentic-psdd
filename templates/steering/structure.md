@@ -1,10 +1,10 @@
-# Project Structure
+# {{label.title_project_structure}}
 
-## Organization Philosophy
+## {{label.organization_philosophy}}
 
 [Describe approach: feature-first, layered, domain-driven, etc.]
 
-## Directory Patterns
+## {{label.directory_patterns}}
 
 ### [Pattern Name]
 **Location**: `/path/`  
@@ -16,13 +16,13 @@
 **Purpose**: [What belongs here]  
 **Example**: [Brief example]
 
-## Naming Conventions
+## {{label.naming_conventions}}
 
-- **Files**: [Pattern, e.g., PascalCase, kebab-case]
-- **Components**: [Pattern]
-- **Functions**: [Pattern]
+- **{{label.naming_files}}**: [Pattern, e.g., PascalCase, kebab-case]
+- **{{label.naming_components}}**: [Pattern]
+- **{{label.naming_functions}}**: [Pattern]
 
-## Import Organization
+## {{label.import_organization}}
 
 ```typescript
 // Example import patterns
@@ -33,7 +33,7 @@ import { Local } from './local'     // Relative
 **Path Aliases**:
 - `@/`: [Maps to]
 
-## Code Organization Principles
+## {{label.code_organization_principles}}
 
 [Key architectural patterns and dependency rules]
 

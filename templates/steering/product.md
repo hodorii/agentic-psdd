@@ -1,16 +1,16 @@
-# Product Overview
+# {{label.title_product_overview}}
 
 [Brief description of what this product does and who it serves]
 
-## Core Capabilities
+## {{label.core_capabilities}}
 
 [3-5 key capabilities, not exhaustive features]
 
-## Target Use Cases
+## {{label.target_use_cases}}
 
 [Primary scenarios this product addresses]
 
-## Value Proposition
+## {{label.value_proposition}}
 
 [What makes this product unique or valuable]
 

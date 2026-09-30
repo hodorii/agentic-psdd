@@ -1,22 +1,22 @@
-# Bugfix — <fix>
+# {{label.title_bugfix}} — <fix>
 
-## 정의
-[A]를 위해 [B]를 하는 [C]이다.
+## {{label.definition}}
+{{label.definition_sentence}}
 
-## 재현 절차
+## {{label.reproduction_steps}}
 1. [환경·입력·관찰 결과]
 
-## Boundary Context
-- **In scope**: 
-- **Out of scope**: 
+## {{label.scope}}
+- **{{label.in_scope}}**: 
+- **{{label.out_of_scope}}**: 
 
-## Behaviors
+## {{label.behaviors}}
 
-### 1. 현재 동작 (결함)
-- 1.1: [조건] → [잘못된 결과]
+### 1. {{label.current_behavior}}
+- 1.1: [조건] 잘못된 결과
 
-### 2. 기대 동작
-- 2.1: [조건] → [올바른 결과]
+### 2. {{label.expected_behavior}}
+- 2.1: [조건] 올바른 결과
 
-### 3. 불변 동작 (회귀 방지)
-- 3.1: [조건] → [계속 유지되는 결과]
+### 3. {{label.unchanged_behavior}}
+- 3.1: [조건] 계속 유지되는 결과

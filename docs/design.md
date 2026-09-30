@@ -11,7 +11,7 @@
 - **라우터**: `AGENTS.md` — 경로 이름 표(`{{SPECS}}` 등), 원칙, 산출물 규약, 워크플로, 승인 게이트 규칙, steering `inclusion` 규칙
 - **스킬 계약**: `skills/<name>/SKILL.md` 21개 — Inputs / Outputs(Core Indicators) / Boundaries / Rules 4절 고정
 - **스킬 방법·프롬프트**: 각 스킬의 `rules/`(방법), `templates/`(서브에이전트 브리프), `agents/openai.yaml`(호스트 표시 메타)
-- **산출물 구조**: `templates/specs/`(7), `templates/steering/`(3), `templates/steering-custom/`(7)
+- **산출물 구조**: `templates/specs/`(7), `templates/labels.md`(라벨 표), `templates/steering/`(3), `templates/steering-custom/`(7)
 - **설치**: `install.sh link|copy` — 소비 프로젝트 배치, 재실행 갱신, 제거된 스킬 정리
 - **세션 조회 도구**: `skills/multi-agent-sessions/scripts/session.py`
 
@@ -120,7 +120,7 @@ flowchart LR
   end
   subgraph Boundary
     B_CAND[Boundary Candidates brief]
-    B_CTX[Boundary Context requirements]
+    B_CTX[Scope requirements]
     B_COMMIT[Boundary Commitments design]
     B_TASK[_Boundary_ tasks]
     DEP_DIR[dependency direction]
@@ -325,7 +325,7 @@ sequenceDiagram
 
 ### `AGENTS.md` — Router
 - Intent: 스킬이 쓰는 경로 이름을 해석하고 원칙·워크플로·게이트 규칙을 한 곳에 둔다.
-- 절: `## Paths`(이름→기본 경로→보유물 표), `## Principles`(SSoT·SRP·Descriptable Name·지침/히스토리 분리·MoE·Lean), `## Artifacts`(`## 정의` 개시, 수용 기준 형식, 추적성 체인, ~200줄 상한), `## Workflow`(Phase 0~2 명령 순서), `## Skills`(`$kiro-<name>` 호출), `## Rules`(승인 게이트, 영어 추론, 평가 보고 원칙), `## Steering`(`inclusion` 규약, 승격).
+- 절: `## Paths`(이름→기본 경로→보유물 표), `## Principles`(SSoT·SRP(Small Units)·Self-Documenting(Descriptable Name·Why-Only Comment)·Goal Delivery·지침/히스토리 분리·MoE·Lean), `## Artifacts`(`Definition` 개시, 수용 기준 형식, 추적성 체인, ~200줄 상한), `## Workflow`(Phase 0~2 명령 순서), `## Skills`(`$kiro-<name>` 호출), `## Rules`(승인 게이트, 영어 추론, 평가 보고 원칙), `## Steering`(`inclusion` 규약, 승격).
 - 계약 특이사항: 소비 프로젝트에서는 원본이 아니라 포인터 블록으로 도달한다. 스킬 텍스트는 이 파일의 Paths 표 없이는 경로를 해석할 수 없다.
 
 ### `install.sh` — Installer
@@ -370,7 +370,7 @@ Rules         # 읽을 rules/template 경로, 정지 조건, 쓰는 파일, Next
 | Spec | `kiro-spec-status` | spec.json, milestones.md(선택) | STATUS_REPORT, PROGRESS, NEXT_GATES | — (phase 값 집합의 SSoT) |
 | Validate | `kiro-validate-gap` | requirements.md, design.md | GAP_ANALYSIS, RECOMMENDATIONS | `rules/gap-analysis.md` |
 | Validate | `kiro-validate-design` | design.md, requirements.md | DESIGN_VALID, BOUNDARY_COMPLIANCE, ISSUES | `rules/design-go-nogo.md` |
-| Impl | `kiro-impl` | brief, requirements, design, tasks | STATUS, TEST_RESULTS, CODE_CHANGES, TASKS_UPDATE, ERROR_FLAGS | `templates/{implementer,reviewer,debugger}-prompt.md` |
+| Impl | `kiro-impl` | brief, requirements, design, tasks | STATUS, VERIFICATION_RESULTS, DELIVERABLE_CHANGES, TASKS_UPDATE, ERROR_FLAGS | `templates/{implementer,reviewer,debugger}-prompt.md` |
 | Impl | `kiro-review` | TASK_ID, TASK_TEXT, 3문서, git_diff | VERDICT, REASONS, REMEDIATION | (reviewer-prompt가 프로토콜) |
 | Impl | `kiro-debug` | brief.md, spec.json (+3문서) | ROOT_CAUSE, CATEGORY, FIX_PLAN, VERIFICATION, NEXT_ACTION, CONFIDENCE, NOTES | (debugger-prompt가 프로토콜) |
 | Validate | `kiro-validate-impl` | tasks.md, 테스트 결과, design, requirements | VALIDATION_RESULT, ISSUES, VERIFICATION_EVIDENCE | — |
@@ -423,7 +423,7 @@ session.py timeline [--project P] [--source S|all] [--limit N]
 - 불변식: `{{TIMESTAMP}}`는 `date -u +%Y-%m-%dT%H:%M:%SZ`; bugfix 스펙은 `requirements` 키 대신 `bugfix`.
 
 ### 스펙 산출물 문법
-- 수용 기준: `N.M: [조건] → [결과]` — 화살표 U+2192, 한 줄 한 행동, 구현 용어 금지, 측정 가능 표현. bugfix는 그룹 번호 고정 `1` 결함 / `2` 기대(1:1 대응) / `3` 불변(≥1).
+- 수용 기준: `N.M: [조건] 결과` — 화살표 없음(`]`가 조건 종료), 한 줄 한 행동, 구현 용어 금지, 측정 가능 표현. bugfix는 그룹 번호 고정 `1` 결함 / `2` 기대(1:1 대응) / `3` 불변(≥1).
 - biz-process 계층: L1 Process(`BP-<이름>`, `valueChainRef: VC-<domain>-<unit>`) → L2 Activity → L3 FunctionGroup/UI → L4 Step → L5 DetailStep → L6 Logic(AST, 의사코드). L2/L3에 요구사항 ID 태그. L1마다 `### ✅ 검토 요청` 게이트.
 - value-chain: Mega(`VC-<domain>`) → Main(`VC-<domain>-<main>`) → Unit(`VC-<domain>-<unit>`, `value`, `validation`, 선택 `bizProcessRef`).
 - tasks: 최대 2단계(`1`, `1.1`), 순차 번호, `- [ ]` / `- [ ]*`(선택 테스트), `(P)` 병렬 표식은 체크박스 밖; 상세 필드 `DONE:`, `_Requirements: 1.1, 1.2_`, `_Difficulty: low|mid|high_`, `_Boundary: <design component>_`, `_Depends: 1.2_`, `_BizProcess: BP-X.L4_`, `_Verify: BP-X.L2.logic_`, `_Contracts:_`. 단계 순서 Foundation → Core → Integration → Validation.

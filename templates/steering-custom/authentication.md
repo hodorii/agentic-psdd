@@ -1,19 +1,19 @@
-# Authentication & Authorization Standards
+# {{label.title_authentication_standards}}
 
 [Purpose: unify auth model, token/session lifecycle, permission checks, and security]
 
-## Philosophy
+## {{label.philosophy}}
 - Clear separation: authentication (who) vs authorization (what)
 - Secure by default: least privilege, fail closed, short-lived tokens
 - UX-aware: friction where risk is high, smooth otherwise
 
-## Authentication
+## {{label.authentication}}
 
-### Method (choose + rationale)
+### {{label.auth_method}}
 - Options: JWT, Session, OAuth2, hybrid
 - Choice: [our method] because [reason]
 
-### Flow (high-level)
+### {{label.auth_flow}}
 ```
 1) User proves identity (credentials or provider)
 2) Server verifies and issues token/session
@@ -21,24 +21,24 @@
 4) Server verifies token and proceeds
 ```
 
-### Token/Session Lifecycle
+### {{label.token_session_lifecycle}}
 - Storage: httpOnly cookie or Authorization header
 - Expiration: short-lived access, longer refresh (if used)
 - Refresh: rotate tokens; respect revocation
 - Revocation: blacklist/rotate on logout/compromise
 
-### Security Pattern
+### {{label.security_pattern}}
 - Enforce TLS; never expose tokens to JS when avoidable
 - Bind token to audience/issuer; include minimal claims
 - Consider device binding and IP/risk checks for sensitive actions
 
-## Authorization
+## {{label.authorization}}
 
-### Permission Model
+### {{label.permission_model}}
 - Choose one: RBAC / ABAC / ownership-based / hybrid
 - Define roles/attributes centrally; avoid hardcoding across codebase
 
-### Checks (where to enforce)
+### {{label.authorization_checks}}
 - Route/middleware: coarse-grained gate
 - Domain/service: fine-grained decisions
 - UI: conditional rendering (no security reliance)
@@ -49,16 +49,16 @@ requirePermission('resource:action'); // route
 if (!user.can('resource:action')) throw ForbiddenError(); // domain
 ```
 
-### Ownership
+### {{label.ownership}}
 - Pattern: owner OR privileged role can act
 - Verify on entity boundary before mutation
 
-## Passwords & MFA
+## {{label.passwords_mfa}}
 - Passwords: strong policy, hashed (bcrypt/argon2), never plaintext
 - Reset: time-limited token, single-use, notify user
 - MFA: step-up for risky operations (policy-driven)
 
-## API-to-API Auth
+## {{label.api_to_api_auth}}
 - Use API keys or OAuth client credentials
 - Scope keys minimally; rotate and audit usage
 - Rate limit by identity (user/key)

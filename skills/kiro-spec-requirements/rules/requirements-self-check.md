@@ -41,7 +41,7 @@ Requirements should clarify the feature boundary in user- or operator-observable
 
 Before applying judgment, verify these mechanically:
 - **Numeric IDs present**: Every requirement heading has a numeric ID (1, 1.1, 2, etc.). Scan the draft for headings without IDs.
-- **Acceptance criteria exist**: Every requirement group has at least one `N.M: [condition] → [result]` line; flag `$\rightarrow$` or `->` in place of `→`.
+- **Acceptance criteria exist**: Every requirement group has at least one `N.M: [condition] result` line; flag any arrow (`→`, `->`, `$\rightarrow$`) between condition and result.
 - **Cross-requirement analysis**: flag logical inconsistencies (individually valid, jointly impossible), conflicting constraints, unstated assumptions (undefined terms or referenced behaviors), and missing failure/boundary cases.
 - **No implementation language**: Scan for technology-specific terms (database names, framework names, API patterns) that belong in design, not requirements. Flag any found.
 - **Tagged findings**: every issue the gate raises carries one tag — `[Gap]` (obligation absent), `[Ambiguity]` (two readings), `[Conflict]` (criteria jointly impossible), `[Assumption]` (undefined term or unstated dependency) — and names the criterion ID or section it applies to. A finding phrased as implementation verification ("verify that the service…") is a design or test concern, not a requirements finding.

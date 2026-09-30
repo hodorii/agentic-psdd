@@ -1,7 +1,7 @@
-# Implementation Plan — <feature>
+# {{label.title_tasks}} — <feature>
 
-## 정의
-[A]를 위해 [B]를 하는 [C]이다.
+## {{label.definition}}
+{{label.definition_sentence}}
 
 - [ ] 1. [대과제]
 - [ ] 1.1 [하위 태스크]

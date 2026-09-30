@@ -22,7 +22,7 @@ Analyze the gap between requirements and existing codebase to inform implementat
 
 ### 2. Requirements Feasibility Analysis
 
-- From the acceptance criteria (`N.M: [condition] → [result]`), list technical needs:
+- From the acceptance criteria (`N.M: [condition] result`), list technical needs:
   - Data models, APIs/services, UI/components
   - Business rules/validation
   - Non-functionals: security, performance, scalability, reliability

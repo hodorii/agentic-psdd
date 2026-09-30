@@ -1,10 +1,10 @@
-# BizProcess — <feature>
+# {{label.title_biz_process}} — <feature>
 
-## 정의
-[A]를 위해 [B]를 하는 [C]이다.
+## {{label.definition}}
+{{label.definition_sentence}}
 
-## 가치사슬 매핑
-| L1 Process | Unit Process (valueChainRef) | 가치 | 관련 요구사항 |
+## {{label.value_chain_mapping}}
+| L1 Process | Unit Process (valueChainRef) | {{label.value}} | {{label.related_requirements}} |
 |------------|------------------------------|------|---------------|
 | BP-<x>     | VC-...-<unit>                | <value> | 1.1, 2.3 |
 
@@ -19,10 +19,10 @@
 ###### L5 DetailStep: ...
 ##### L4 Step: ...
 ### L2 Activity: ...
-### ✅ 검토 요청 (L1: <name>)
+### ✅ {{label.review_request}} (L1: <name>)
 승인(✓) 또는 수정 사항을 입력하세요.
 
 ## L1 Process: <name2>  (valueChainRef: VC-...-<unit2>)
 ... (동일 구조 반복)
-### ✅ 검토 요청 (L1: <name2>)
+### ✅ {{label.review_request}} (L1: <name2>)
 
