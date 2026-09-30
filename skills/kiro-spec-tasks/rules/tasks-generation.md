@@ -90,12 +90,12 @@ Focus on capabilities and outcomes, not code structure.
 
 ### 7.5 Observable Completion
 
-**Each executable task must include at least one detail bullet that describes the observable completed state**:
+**Each executable task carries `_DoneWhen:_`, the observable completed state that justifies `[x]`** — the completion criterion set at planning time; `[ ]`/`[x]` is status only:
 - Phrase it as a deliverable, runtime behavior, persisted state, UI state, endpoint behavior, test result, or integration outcome
 - Avoid vague bullets like "implement support", "wire things up", or "handle logic" unless paired with a concrete observable result
 - Prefer making one detail bullet clearly answer: "What will be true when this task is done?"
-- Keep this within the existing task body; do not add extra bookkeeping fields
-- **User-visible output (TUI/GUI/CLI)**: the DONE bullet names what the rendered frame or output shows — cells, styles, borders, connectors, exit code. Its test asserts the rendered buffer/output, not internal data structures; a passing structure-level test does not satisfy DONE.
+- One `_DoneWhen:_` per task; add no other bookkeeping fields
+- **User-visible output (TUI/GUI/CLI)**: `_DoneWhen:_` names what the rendered frame or output shows — cells, styles, borders, connectors, exit code. Its test asserts the rendered buffer/output, not internal data structures; a passing structure-level test does not satisfy `_DoneWhen:_`.
 
 ### 7.6 Difficulty (implementer matching)
 - Every executable sub-task carries `_Difficulty: low | mid | high_`.

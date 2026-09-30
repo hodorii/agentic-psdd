@@ -25,7 +25,7 @@
 | 요구사항 | EARS 대문자 `WHEN … SHALL` | EARS 문장형, 키워드 영어 고정 | 사용자 스토리 P1~P3 + FR, SC + Given/When/Then | `N.M: [조건] 결과`, 그룹명 대상과 의무 |
 | 모호함 처리 | Analyze Requirements | validate-gap, 요구사항 review gate | 마커 3개 + informed guess, clarify | self-check 2회 초과 시 이전 단계, 질문 5개 이하 한 번에 하나, 추측 금지 |
 | 설계 | Requirements-First 또는 Design-First | research.md, Boundary Commitments, File Structure Plan | plan.md + research, data-model, contracts, quickstart | cc-sdd 계승 + `Definition`, 검증 레벨 매핑 |
-| 태스크 | 의존 그래프 | `(P)`, `_Boundary:`, `_Depends:` | `T001 [P] [US1]`, 테스트 선택 | + `_Difficulty:`, `_BizProcess:`, `DONE:` 필수 |
+| 태스크 | 의존 그래프 | `(P)`, `_Boundary:`, `_Depends:` | `T001 [P] [US1]`, 테스트 선택 | + `_Difficulty:`, `_BizProcess:`, `_DoneWhen:` 필수 |
 | 게이트 | UI Continue, CLI 체크포인트 | spec.json 플래그, `-y`도 review gate 유지 | 게이트 없음, "a map, not a required sequence" | spec.json 플래그, biz-process 포함 5단계 승인 |
 
 ## 3. 구현과 검증
