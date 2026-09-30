@@ -17,8 +17,8 @@
 ## 3. Value chain links (SSoT)
 - L1 Process id is `BP-<meaningful-name>` (Descriptable).
 - `valueChainRef` matches a `value-chain.md` Unit id exactly (case included).
-- A Unit's `value` and `validation` are never copied; link only.
-- Two-way check (recommended): Unit id as `valueChainRef` in biz-process, `bizProcessRef` in value-chain.
+- A Unit's Value and Validation columns are never copied; link only.
+- Two-way check (recommended): Unit id as `valueChainRef` in biz-process, `bizProcessRef` column in value-chain.
 - `value-chain.md` is the product or business owner's SSoT: this skill never edits it. Without `bizProcessRef` the link is valid one-way (`valueChainRef` only); ask the owner to add it.
 
 ## 4. V-model left side (progressive unfold)
