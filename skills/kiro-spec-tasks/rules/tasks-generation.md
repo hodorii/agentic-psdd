@@ -95,6 +95,7 @@ Focus on capabilities and outcomes, not code structure.
 - Avoid vague bullets like "implement support", "wire things up", or "handle logic" unless paired with a concrete observable result
 - Prefer making one detail bullet clearly answer: "What will be true when this task is done?"
 - One `_DoneWhen:_` per task; add no other bookkeeping fields
+- `_DoneWhen:_` states only this task's slice of the criteria its `_Requirements:` point to; never restate a requirement. A task without requirements (Foundation, test infrastructure) states the deliverable state instead
 - **User-visible output (TUI/GUI/CLI)**: `_DoneWhen:_` names what the rendered frame or output shows — cells, styles, borders, connectors, exit code. Its test asserts the rendered buffer/output, not internal data structures; a passing structure-level test does not satisfy `_DoneWhen:_`.
 
 ### 7.6 Difficulty (implementer matching)
