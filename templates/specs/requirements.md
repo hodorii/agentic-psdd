@@ -15,4 +15,5 @@
 - 1.2: [condition] result
 
 ### 2. [subject and obligation]
+<!-- Cases differing only in value: prefer a decision table with N.M row IDs (acceptance-criteria-format.md). -->
 - 2.1: [condition] result
