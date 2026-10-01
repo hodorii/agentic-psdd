@@ -42,9 +42,11 @@ Requirements should clarify the feature boundary in user- or operator-observable
 Before applying judgment, verify these mechanically:
 - **Numeric IDs present**: Every requirement heading has a numeric ID (1, 1.1, 2, etc.). Scan the draft for headings without IDs.
 - **Group names**: every group heading is subject + obligation per `acceptance-criteria-format.md`; flag bare topics, vague link words (integration, linkage), non-ASCII symbols in names (`Human-Typeable`), a role that is an organization, and a role or purpose prefix repeating the spec `Definition`.
-- **Acceptance criteria exist**: Every requirement group has at least one `N.M: [condition] result` line; flag any arrow (`->`, `->`, `$\rightarrow$`) between condition and result.
+- **Acceptance criteria exist**: Every requirement group has at least one criterion (`N.M: [condition] result` line or `| N.M |` table row).
 - **Cross-requirement analysis**: flag logical inconsistencies (individually valid, jointly impossible), conflicting constraints, unstated assumptions (undefined terms or referenced behaviors), and missing failure/boundary cases.
-- **No implementation language**: Scan for technology-specific terms (database names, framework names, API patterns) that belong in design, not requirements. Flag any found.
+- **No implementation language**: Scan for technology-specific terms (database names, framework names, API patterns) that belong in design, not requirements. Flag any found, including in decision-table column names and cells.
+- **Decision tables**: overlap stated (`first match`, `all apply`, `disjoint`); no collapsed row; every row has an `N.M` ID. Three or more lines sharing the same condition variables -> suggest a table.
+- **ID continuity** (revising an approved spec): existing IDs kept; none reused.
 - **Tagged findings**: every issue the gate raises carries one tag - `[Gap]` (obligation absent), `[Ambiguity]` (two readings), `[Conflict]` (criteria jointly impossible), `[Assumption]` (undefined term or unstated dependency) - and names the criterion ID or section it applies to. A finding phrased as implementation verification ("verify that the service...") is a design or test concern, not a requirements finding.
 
 ## Review Loop

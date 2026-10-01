@@ -7,7 +7,7 @@ Conduct comprehensive research and analysis to ensure the technical design is ba
 
 ### 1. Requirements Analysis
 **Map Requirements to Technical Needs**
-- Extract all functional requirements from the acceptance criteria (`N.M: [condition] result`)
+- Extract all functional requirements from the acceptance criteria (`N.M: [condition] result` lines and `| N.M |` decision-table rows)
 - Identify non-functional requirements (performance, security, scalability)
 - Determine technical constraints and dependencies
 - List core technical challenges
