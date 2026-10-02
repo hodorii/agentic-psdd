@@ -8,9 +8,9 @@ V-model right side: test level and pass criteria per biz-process level (L1~L6). 
 |---|---|---|---|
 | L1 | Process | Acceptance | every requirements.md criterion met + runnable artifacts run for real |
 | L2 | Activity | E2E | user scenario flow succeeds |
-| L3 | FunctionGroup/UI | Integration (UI-API) | screen-to-API wiring succeeds, failure paths included |
-| L4 | Step | Integration (API) | single API or service boundary contract met |
-| L5 | DetailStep | Integration (Service) | internal service collaboration behaves |
+| L3 | FunctionGroup/UI (business task) | Integration (UI-API) | the task result reaches the role through the system, failure paths included |
+| L4 | Step (business step) | Integration (API) | the components serving the step meet their contracts |
+| L5 | DetailStep (business conditions) | Integration (Service) | each condition and branch of the step holds across collaborating components |
 | L6 | Logic (business rules `BR-`) | Unit | each business rule holds in the functions that enforce it |
 
 Tools and frameworks: steering `tech.md`. Volume: Unit most, Acceptance least.
@@ -26,7 +26,7 @@ Tools and frameworks: steering `tech.md`. Volume: Unit most, Acceptance least.
 Judge Depth from requirements.md; state it on the first line of Testing Strategy.
 
 ## 3. Regression
-- A lower-level change rechecks its level and the levels above (e.g., L6 Logic change -> Unit, plus the L5/L4 Integration that calls it).
+- A lower-level change rechecks its level and the levels above (e.g., a business rule change -> its Unit tests, plus the L5 and L4 tests of the step that applies it). The left column names business levels; the test columns describe how the system is verified against them.
 
 ## 4. Properties (code deliverables)
 - Derive a property from each `[{{label.always}}]` criterion, each criterion over an input range or class, and each bugfix `3.x` unchanged behavior with a broad input space.

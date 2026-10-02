@@ -107,7 +107,7 @@ Focus on capabilities and outcomes, not code structure.
 
 ### 7.7 BizProcess Traceability (when `biz-process.md` exists)
 - If a task realizes a biz-process node, add `_BizProcess: <node id>` with the L1~L4 id (e.g., `_BizProcess: BP-SIGNUP.A1.F1.S2`) to its detail section.
-- Add `_Verify:` only when the task's verification method is directly derived from a business rule or step flow (e.g., `_Verify: BR-SIGNUP-03`).
+- Add `_Verify:` only when the task's verification method is directly derived from a business rule or step flow (e.g., `_Verify: BR-SIGNUP-003`).
 - E2E/Validation tasks (phase 4) must derive their scenarios from `biz-process.md` L1~L4 user flows, cross-checked against requirements, and reference the source node via `_BizProcess:`.
 - The Coverage Review (section Coverage Review) should report biz-process node coverage when `biz-process.md` is present - every L1~L3 node traced to at least one task.
 

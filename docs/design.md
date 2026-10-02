@@ -97,7 +97,7 @@ flowchart LR
     VC_UNIT[value chain Unit id]
     BP_L1[BP L1 Process]
     BP_L2L3[L2 Activity and L3 FunctionGroup]
-    BP_L4L6[L4 Step L5 DetailStep L6 Logic AST]
+    BP_L4L6[L4 Step L5 DetailStep L6 business rules BR]
     REQ_ID[requirement ID N_M]
     AC[acceptance criterion condition then result]
     DEF[Definition section A for B does C]
@@ -450,10 +450,10 @@ session.py timeline [--project P] [--source S|all] [--limit N]
 
 ### 스펙 산출물 문법
 - 수용 기준: `N.M: [조건] 결과` - 화살표 없음(`]`가 조건 종료), 한 줄 한 행동, 구현 용어 금지, 측정 가능 표현, 불변은 `[{{label.always}}]`. 그룹명 `### N. 대상과 의무`. bugfix는 그룹 번호 고정 `1` 결함 / `2` 기대(1:1 대응) / `3` 불변(>=1).
-- biz-process 계층: L1 Process(`BP-<x>`, `valueChainRef`) -> L2 Activity(`BP-<x>.A<n>`) -> L3 FunctionGroup/UI(`.F<n>`) -> L4 Step(`.S<n>`) -> L5 DetailStep(이름) -> L6 업무 규칙(`BR-<x>-<nn>`, DMN과 SBVR 기준). L4~L6은 업무 절차와 규칙만, 구현은 design.md. 번호는 부모 안 순차, 덧붙이기만, 재사용 금지. L2/L3에 요구사항 ID 태그. L1마다 `### 검토 요청` 게이트.
+- biz-process 계층: L1 Process(`BP-<x>`, `valueChainRef`) -> L2 Activity(`BP-<x>.A<n>`) -> L3 FunctionGroup/UI(`.F<n>`) -> L4 Step(`.S<n>`) -> L5 DetailStep(이름) -> L6 업무 규칙(`BR-<x>-<nnn>`, DMN과 SBVR 기준). L4~L6은 업무 절차와 규칙만, 구현은 design.md. 번호는 부모 안 순차, 덧붙이기만, 재사용 금지. L2/L3에 요구사항 ID 태그. L1마다 `### 검토 요청` 게이트.
 - value-chain: 앞부분 정보 `status: draft | approved`, `owner`; 트리형 - Value(`VC-<domain>`, 사업) -> Mega(PCF Category, `kind: primary | support`) -> Main(PCF Process Group) -> Unit(PCF Process = biz-process L1). 노드는 명칭, 태그 `role`, `kpi`(product.md KPI id), `pcf`, `evidence`, `bizProcessRef`. 수치와 가치 서술 없음. 용어 대응은 `kiro-steering/rules/standards-glossary.md`.
-- tasks: 최대 2단계(`1`, `1.1`), 순차 번호, `- [ ]` / `- [ ]*`(선택 테스트), `(P)` 병렬 표식은 체크박스 밖; 상세 필드 `_DoneWhen:_`(완료 기준, `[x]`는 상태), `_Requirements: 1.1, 1.2_`, `_Difficulty: low|mid|high_`, `_Boundary: <design component>_`, `_Depends: 1.2_`, `_BizProcess: BP-X.L4_`, `_Verify: BP-X.L2.logic_`, `_Contracts:_`. 단계 순서 Foundation -> Core -> Integration -> Validation.
-- 추적성 체인: value-chain Unit <-> biz-process L1(`valueChainRef`/`bizProcessRef`) -> 요구사항 ID(L2/L3) -> design Boundary Commitments, Components `Requirements:` -> tasks `_Requirements:`/`_Boundary:`/`_BizProcess:` -> validate-impl 커버리지.
+- tasks: 최대 2단계(`1`, `1.1`), 순차 번호, `- [ ]` / `- [ ]*`(선택 테스트), `(P)` 병렬 표식은 체크박스 밖; 상세 필드 `_DoneWhen:_`(완료 기준, `[x]`는 상태), `_Requirements: 1.1, 1.2_`, `_Difficulty: low|mid|high_`, `_Boundary: <design component>_`, `_Depends: 1.2_`, `_BizProcess: BP-X.A1.F1.S2_`, `_Verify: BR-X-001_`, `_Contracts:_`. 단계 순서 Foundation -> Core -> Integration -> Validation.
+- 추적성 체인: value-chain Unit <-> biz-process L1(`valueChainRef`/`bizProcessRef`) -> 요구사항 ID(L2/L3) -> L4 id와 `BR-` 규칙 -> design Boundary Commitments, Components `Requirements:` -> tasks `_Requirements:`/`_Boundary:`/`_BizProcess:` -> validate-impl 커버리지.
 - 검증 매핑(V-모델 우측): L1 Acceptance / L2 E2E / L3 Integration(UI-API) / L4 Integration(API) / L5 Integration(Service) / L6 Unit; Depth Trivial(Unit+Acceptance 스모크) / Standard(Unit~E2E) / Complex(전 레벨); 코드 산출물 속성 `P<n>: 명제 - 요구사항 ID - 입력 영역`.
 
 ### 설치 상태

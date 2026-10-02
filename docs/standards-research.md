@@ -11,7 +11,8 @@
 | BPMN | 2.0.2 (OMG formal/2013-12-09) | 확인: Process, Activity, Task, Sub-Process, Pool, Lane. 범위 밖에 "functional breakdowns" 명시. ISO/IEC 19510과 동일 여부 UNVERIFIED | https://www.omg.org/spec/BPMN/2.0.2/PDF |
 | ArchiMate | 3.2 | 확인: Business Process, Function, Service, Role, Application Service, Capability, Value Stream | https://www.opengroup.org/sites/default/files/docs/downloads/n221p.pdf |
 | BIZBOK | 10, Metamodel V3.0 | 확인: 역량은 자동화 이전에도 존재, 가치흐름 순서는 실제 업무 순서가 아님 | https://cdn.ymaws.com/www.businessarchitectureguild.org/resource/resmgr/bizbok_10/introduction_v10_final.pdf |
-| PMI WBS | Practice Standard 3판 (2019) | 원문 UNVERIFIED(403). 정의는 2차 자료 | https://www.pmi.org/standards/work-breakdown-structures-third-edition |
+| PMI WBS | Practice Standard 3판 (2019) | 원문 UNVERIFIED(403). 정의는 2차 자료. 'project = temporary endeavor'는 PMBOK Guide의 정의 | https://www.pmi.org/standards/work-breakdown-structures-third-edition |
 | ISO/IEC/IEEE 12207 | 2017 | 미리보기로 확인: 4개 프로세스 그룹, 기술 프로세스에 개발, 운영, 유지보수 | https://www.iso.org/standard/63712.html |
-| DMN, SBVR | OMG | 이번 조사에서 원문 미확인(UNVERIFIED). 업무 규칙(L6) 표현 기준으로 채택 | https://www.omg.org/spec/DMN , https://www.omg.org/spec/SBVR |
+| DMN | 1.5 (OMG formal/24-01-01, 2024-08) | 판번호와 날짜 확인(OMG 페이지). 본문 세부는 미검토. L6 판정형 규칙 기준 | https://www.omg.org/spec/DMN |
+| SBVR | 1.5 (OMG formal/19-10-02, 2019-12) | 판번호와 날짜 확인(OMG 페이지). 본문 세부는 미검토. L6 의무형 규칙 기준 | https://www.omg.org/spec/SBVR |
 | 범정부 EA BRM | - | 6단계 구조는 학술지로만 확인, 현행 지침 UNVERIFIED. 공공 제출 시 선택 참고 | https://accesson.kr/jksarm/assets/pdf/1369/journal-17-2-129.pdf |

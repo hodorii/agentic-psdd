@@ -16,7 +16,7 @@
 
 ## 3. Value chain links (SSoT)
 - L1 Process id is `BP-<meaningful-name>` (Descriptable); one L1 Process per value-chain Unit (Unit = PCF Process = biz-process L1).
-- `valueChainRef` matches a `value-chain.md` Unit id exactly (case included); find it with `grep -n "^ *- <id> "`.
+- `valueChainRef` matches a `value-chain.md` Unit id exactly (case included); find it with `grep -n "^      - <id> "` (six spaces: Unit is the fourth tree level; shallower matches are Megas or Mains).
 - Nothing from the value chain is copied (names aside): link only.
 - Two-way check (recommended): Unit id as `valueChainRef` in biz-process, `bizProcessRef` tag in value-chain.
 - `value-chain.md` is the product or business owner's SSoT: this skill never edits it. Without `bizProcessRef` the link is valid one-way (`valueChainRef` only); ask the owner to add it.
@@ -31,8 +31,10 @@
 - L4 Step: a business step a role performs. L5 DetailStep: its business conditions and branches. L6 Logic: business rules and decisions as rule statements or decision tables (standards: DMN, SBVR; see `{{SKILLS}}/kiro-steering/rules/standards-glossary.md`).
 - Not here: API calls, function, table or variable names, internal processing order. Those belong to design.md; work items belong to tasks.md.
 
-## 4b. Numbering
-- L1 `BP-<x>`, L2 `BP-<x>.A<n>`, L3 `BP-<x>.A<n>.F<n>`, L4 `BP-<x>.A<n>.F<n>.S<n>`; L5 is named under its L4; L6 rules carry `BR-<x>-<nn>`.
+## 4b. Numbering and ownership
+- One `BP-<x>` per value-chain Unit across the whole project. The spec that first writes it owns that L1 block; a later feature touching the same Unit appends Activities, Steps and rules to the owning file and references them, never a second `BP-<x>`. `bizProcessRef` names the BP id; locate the owning file with `grep -rn "(BP-<x>;" {{SPECS}}`.
+- `BR-<x>-<nnn>` is scoped by its BP name, so rule ids are unique project-wide.
+- L1 `BP-<x>`, L2 `BP-<x>.A<n>`, L3 `BP-<x>.A<n>.F<n>`, L4 `BP-<x>.A<n>.F<n>.S<n>`; L5 is named under its L4; L6 rules carry `BR-<x>-<nnn>`.
 - Numbers run in order within the parent, new nodes are appended, existing numbers never change, retired numbers are not reused.
 
 ## 5. Drill-down notation
@@ -47,4 +49,7 @@
 ## 7. Value chain status
 - Missing: `$kiro-steering` Bootstrap drafts it from `{{TEMPLATES}}/steering/value-chain.md`.
 - `status: draft`: present it to the owner for approval; never approve it or proceed on it.
-- `status: approved`, or no `status` at all (a file from before drafts existed): read-only SSoT; suggest the owner add `status: approved`. `bizProcessRef` is optional; the BizProcess -> Unit link (`valueChainRef`) alone is valid. A table-format value chain from an earlier template stays readable; suggest converting it to the tree template.
+- `status: approved`, or no `status` at all (a file from before drafts existed): read-only SSoT; suggest the owner add `status: approved`. `bizProcessRef` is optional; the BizProcess -> Unit link (`valueChainRef`) alone is valid. Earlier formats (upgrade path):
+  - Table-format value chain: a Unit id is the first cell (`grep -n "^| <id> |"`); suggest converting to the tree. When converting, keep each old id as an `alias: <old id>` tag so existing `valueChainRef` values still resolve (`grep -n "alias: <old id>"`), and move new references to the path id.
+  - `Logic(AST)` blocks: read them as L6 content; rewrite them as `BR-` business rules (implementation lines go to design.md) the next time the spec is edited.
+  - `_BizProcess: BP-X.L<n>` tags: read as "a node at level n of BP-X"; replace with the L1~L4 id when the tasks are regenerated.

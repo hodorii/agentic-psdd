@@ -14,8 +14,8 @@
 ##### L4 Step: <name>  (BP-<x>.A1.F1.S1)
 ###### L5 DetailStep: <name>
         Logic (business rules):
-          - BR-<x>-01: IF <business condition> THEN <business outcome>
-          - BR-<x>-02: <rule statement a business owner can approve>
+          - BR-<x>-001: IF <business condition> THEN <business outcome>
+          - BR-<x>-002: <rule statement a business owner can approve>
 ###### L5 DetailStep: ...
 ##### L4 Step: ...  (BP-<x>.A1.F1.S2)
 ### L2 Activity: ...  (BP-<x>.A2)
