@@ -11,7 +11,7 @@ V-model right side: test level and pass criteria per biz-process level (L1~L6). 
 | L3 | FunctionGroup/UI | Integration (UI-API) | screen-to-API wiring succeeds, failure paths included |
 | L4 | Step | Integration (API) | single API or service boundary contract met |
 | L5 | DetailStep | Integration (Service) | internal service collaboration behaves |
-| L6 | Logic (AST) | Unit | function or method logic correct |
+| L6 | Logic (business rules `BR-`) | Unit | each business rule holds in the functions that enforce it |
 
 Tools and frameworks: steering `tech.md`. Volume: Unit most, Acceptance least.
 

@@ -18,6 +18,7 @@ Boundaries
 - Never edit value-chain.md or steering.
 
 Rules
+- Read rows of `{{SKILLS}}/kiro-steering/rules/standards-glossary.md` for level meanings and the process vs work item test
 - Read `rules/biz-process-rules.md` from this skill's directory for viewpoint, BPMN, value-chain linkage, drill-down levels, approval gates, and value chain status handling
 - Read `{{TEMPLATES}}/specs/biz-process.md` for document structure
 - Stop if requirements.md is unapproved, or value-chain.md is missing (point to `$kiro-steering`, which drafts it) or `status: draft` (present the draft for owner approval; never approve it); a file without `status` counts as approved

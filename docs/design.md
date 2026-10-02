@@ -240,6 +240,8 @@ flowchart LR
 
 ### 핵심 결정
 - **`AGENTS.md`는 symlink가 아닌 포인터 블록**: `<!-- methodology:begin/end -->` 사이만 관리, 나머지 보존 - 이유: 루트 `AGENTS.md`를 in-place 덮어쓰는 호스트가 symlink를 통해 원본 `methodology/AGENTS.md`를 손상시킴.
+- **가치사슬 = 프로세스 분류(PCF 정렬)**: 이름은 가치사슬, 계층 뜻은 Value 아래 Mega(Category), Main(Process Group), Unit(Process); 포터는 Mega의 primary와 support 구분에만 - 이유: 개발 WBS 오인과 Mega 해석 충돌을 막고, 누구나 표준 용어로 읽게 함.
+- **biz-process L4~L6은 업무 절차와 규칙**: 업무 책임자가 코드 없이 승인할 수 있는 내용만, L6은 `BR-` 규칙 id - 이유: 구현 절차가 섞여 tasks.md와 구분이 사라지던 문제 방지.
 - **Human-Typeable**: 리치 에디터(이메일 수준 굵게, 기울임, 취소선, 목록, 표, 링크)나 Markdown으로 사람이 쓸 수 있는 표현만, 글자는 보이는 ASCII와 해당 언어 글자, 번호는 1. 1) (1) 순서, 원문자와 이모지 불가, 외부 문법 원문 인용 예외 - 이유: 사람이 직접 고치고, 기계가 쓴 글로 읽히지 않게.
 - **Lazy Loading(MoE 하위 원칙)**: 로딩 계층 0 항상(포인터, 스킬 설명), 1 맵에서 골라 읽음(steering, reference), 2 호출 시(계약 -> 단계별 규칙), 3 경로로만(선택 스킬, 보관 문서); 라벨 표는 필요한 행만, 라우터의 워크플로와 steering 규칙은 해당 스킬 규칙으로 이동, 설계 종합 규칙은 full 조사일 때만 - 이유: 항상 로딩 면적 최소화.
 - **copy 모드 라우터 복사**: copy 설치는 `methodology/`가 없으므로 라우터를 `.kiro/settings/methodology/AGENTS.md`로 복사하고 포인터가 그 경로를 가리킴, 해시 매니페스트 포함 - 이유: 경로 이름 표 없이는 스킬이 `{{SKILLS}}` 등을 해석 못 함.
@@ -448,8 +450,8 @@ session.py timeline [--project P] [--source S|all] [--limit N]
 
 ### 스펙 산출물 문법
 - 수용 기준: `N.M: [조건] 결과` - 화살표 없음(`]`가 조건 종료), 한 줄 한 행동, 구현 용어 금지, 측정 가능 표현, 불변은 `[{{label.always}}]`. 그룹명 `### N. 대상과 의무`. bugfix는 그룹 번호 고정 `1` 결함 / `2` 기대(1:1 대응) / `3` 불변(>=1).
-- biz-process 계층: L1 Process(`BP-<이름>`, `valueChainRef: VC-<domain>-<unit>`) -> L2 Activity -> L3 FunctionGroup/UI -> L4 Step -> L5 DetailStep -> L6 Logic(AST, 의사코드). L2/L3에 요구사항 ID 태그. L1마다 `### 검토 요청` 게이트.
-- value-chain: 앞부분 정보 `status: draft | approved`, `owner`; 계층별 표 - Mega(`VC-<domain>`) -> Main(`VC-<domain>-<main>`, 상위) -> Unit(`VC-<domain>-<unit>`, 상위, 가치, 검증 조건, 근거 `cited | assumption`, 선택 `bizProcessRef`), 한 행에 한 항목. 골격은 `templates/steering/value-chain.md`.
+- biz-process 계층: L1 Process(`BP-<x>`, `valueChainRef`) -> L2 Activity(`BP-<x>.A<n>`) -> L3 FunctionGroup/UI(`.F<n>`) -> L4 Step(`.S<n>`) -> L5 DetailStep(이름) -> L6 업무 규칙(`BR-<x>-<nn>`, DMN과 SBVR 기준). L4~L6은 업무 절차와 규칙만, 구현은 design.md. 번호는 부모 안 순차, 덧붙이기만, 재사용 금지. L2/L3에 요구사항 ID 태그. L1마다 `### 검토 요청` 게이트.
+- value-chain: 앞부분 정보 `status: draft | approved`, `owner`; 트리형 - Value(`VC-<domain>`, 사업) -> Mega(PCF Category, `kind: primary | support`) -> Main(PCF Process Group) -> Unit(PCF Process = biz-process L1). 노드는 명칭, 태그 `role`, `kpi`(product.md KPI id), `pcf`, `evidence`, `bizProcessRef`. 수치와 가치 서술 없음. 용어 대응은 `kiro-steering/rules/standards-glossary.md`.
 - tasks: 최대 2단계(`1`, `1.1`), 순차 번호, `- [ ]` / `- [ ]*`(선택 테스트), `(P)` 병렬 표식은 체크박스 밖; 상세 필드 `_DoneWhen:_`(완료 기준, `[x]`는 상태), `_Requirements: 1.1, 1.2_`, `_Difficulty: low|mid|high_`, `_Boundary: <design component>_`, `_Depends: 1.2_`, `_BizProcess: BP-X.L4_`, `_Verify: BP-X.L2.logic_`, `_Contracts:_`. 단계 순서 Foundation -> Core -> Integration -> Validation.
 - 추적성 체인: value-chain Unit <-> biz-process L1(`valueChainRef`/`bizProcessRef`) -> 요구사항 ID(L2/L3) -> design Boundary Commitments, Components `Requirements:` -> tasks `_Requirements:`/`_Boundary:`/`_BizProcess:` -> validate-impl 커버리지.
 - 검증 매핑(V-모델 우측): L1 Acceptance / L2 E2E / L3 Integration(UI-API) / L4 Integration(API) / L5 Integration(Service) / L6 Unit; Depth Trivial(Unit+Acceptance 스모크) / Standard(Unit~E2E) / Complex(전 레벨); 코드 산출물 속성 `P<n>: 명제 - 요구사항 ID - 입력 영역`.
