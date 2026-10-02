@@ -30,13 +30,15 @@ Our terms mapped to standard terms so anyone reads them the same way. Read only 
 | capability | Capability | BIZBOK (capabilities exist before automation) |
 | tasks.md item | work package in a Work Breakdown Structure | PMI Practice Standard for WBS |
 | development, QA, deployment, operation, maintenance | technical processes | ISO/IEC/IEEE 12207 |
-| standing IT service management | Manage Information Technology (PCF Cross-Industry 7.4, category 8.0) | APQC PCF |
+| standing IT process (operation, maintenance, enhancement) | a value-chain support Mega: Manage Information Technology (PCF Cross-Industry 7.4, category 8.0), Units at its level 3 processes | APQC PCF; engineering detail of each stage: ISO/IEC/IEEE 12207 technical processes |
+| dated IT project (migration, optimization) | WBS rows referencing the IT Units they change | PMI Practice Standard for WBS |
+| contract management of a vendor | program and project management (PCF Cross-Industry 7.4, 13.2) | APQC PCF |
 
 ## 3. Telling them apart
 A value-chain node or a biz-process L1~L4 node belongs there only when all three answers are yes (L5 conditions and L6 rules use the business content test in biz-process rules instead; tasks.md items are expected to fail question 2):
-1. Who: a business role performs it, or a business role directly uses it as a service (ArchiMate Business Role, Business Service). Work on the software itself is a 12207 technical process.
+1. Who: a business role performs it, a business role directly uses it as a service (ArchiMate Business Role, Business Service), or an IT role performs a standing IT process at PCF 8.0 level 3. One-off work on the software is a project item.
 2. Does it end: no. It repeats with no completion date (a project is a temporary endeavor, PMBOK Guide definition; project work goes to WBS and tasks.md).
-3. Does it survive without the system: yes. It would exist even if the system were rebuilt (BIZBOK: a capability exists regardless of automation). A system behavior a role uses directly goes to the system function map.
+3. Does it survive the change: for business Megas, it would exist even if the system were rebuilt (BIZBOK: a capability exists regardless of automation); for the IT Mega, it continues when the vendor or contract changes. A system behavior a role uses directly goes to the system function map.
 Hint: a name ending in develop, improve, migrate, verify, deploy, inspect, update or respond usually marks a work item, not a process.
 
 ## 4. Tags
