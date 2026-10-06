@@ -14,4 +14,11 @@
 
 [What makes this product unique or valuable]
 
+## {{label.kpis}}
+| id | {{label.name}} | {{label.target}} | {{label.owner}} | {{label.evidence}} |
+|---|---|---|---|---|
+| KPI-1 | [indicator] | [target per period] | [accountable party] | [cited source] |
+
+<!-- The only place KPI numbers live; value-chain Units and specs reference KPI ids. -->
+
 <!-- Focus on patterns and purpose, not exhaustive feature lists -->

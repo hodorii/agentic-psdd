@@ -6,19 +6,9 @@ updated_at: <YYYY-MM-DD>
 ---
 # {{label.title_value_chain}} - SSoT
 
-## Mega ({{label.value_chain_definition}})
-| id | {{label.name}} | {{label.value}} | {{label.evidence}} |
-|---|---|---|---|
-| VC-<domain> | <domain value chain> | <top-level customer value> | <cited source, or assumption> |
+- VC-<domain> <business name> (evidence: <cited source, or assumption>)
+  - VC-<domain>-<mega> <Mega name> (kind: <primary or support>; pcf: <see standards-glossary tag format>; evidence: <cited source, or assumption>)
+    - VC-<domain>-<mega>-<main> <Main name> (pcf: <see standards-glossary tag format>; evidence: <cited source, or assumption>)
+      - VC-<domain>-<mega>-<main>-<unit> <Unit name> (role: <business role>; kpi: <KPI id from product.md, or none>; pcf: <see standards-glossary tag format>; evidence: <cited source, or assumption>; bizProcessRef: <BP id, or gap>)
 
-## Main ({{label.main_value_flow}})
-| id | {{label.name}} | {{label.parent}} | {{label.evidence}} |
-|---|---|---|---|
-| VC-<domain>-<main> | <main flow> | VC-<domain> | <cited source, or assumption> |
-
-## Unit ({{label.unit_process}})
-| id | {{label.name}} | {{label.parent}} | {{label.value}} | {{label.validation}} | {{label.evidence}} | bizProcessRef |
-|---|---|---|---|---|---|---|
-| VC-<domain>-<unit> | <unit process name> | VC-<domain>-<main> | <value this unit delivers> | <condition the value is met> | <cited source, or assumption> | <optional BP-<name>> |
-
-<!-- One row per item. Long text belongs in the source cited, not in the cell. bizProcessRef is optional: the BizProcess -> Unit link (valueChainRef) alone is valid. -->
+<!-- Levels: Value (the business) > Mega (PCF Category, primary or support) > Main (PCF Process Group) > Unit (PCF Process = biz-process L1). Meanings and standards: kiro-steering rules/standards-glossary.md. Names are noun phrases; the performing role goes in role:. No value prose and no KPI numbers here: numbers live in the product.md KPI table. One line per node; add nodes on discovery or owner approval. -->

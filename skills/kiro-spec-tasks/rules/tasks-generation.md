@@ -106,8 +106,8 @@ Focus on capabilities and outcomes, not code structure.
 - `kiro-impl` uses this field to pick the implementer; a `low` brief must be self-contained (files, signatures, tests, verify command).
 
 ### 7.7 BizProcess Traceability (when `biz-process.md` exists)
-- If a task realizes a biz-process node, add `_BizProcess: <BP-ID>.<L-level>` (e.g., `_BizProcess: BP-SIGNUP.L4`) to its detail section.
-- Add `_Verify:` only when the task's verification method is directly derived from that node's Logic(AST)/step flow (e.g., `_Verify: BP-SIGNUP.L2.logic`).
+- If a task realizes a biz-process node, add `_BizProcess: <node id>` with the L1~L4 id (e.g., `_BizProcess: BP-SIGNUP.A1.F1.S2`) to its detail section.
+- Add `_Verify:` only when the task's verification method is directly derived from a business rule or step flow (e.g., `_Verify: BR-SIGNUP-003`).
 - E2E/Validation tasks (phase 4) must derive their scenarios from `biz-process.md` L1~L4 user flows, cross-checked against requirements, and reference the source node via `_BizProcess:`.
 - The Coverage Review (section Coverage Review) should report biz-process node coverage when `biz-process.md` is present - every L1~L3 node traced to at least one task.
 

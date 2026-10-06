@@ -97,7 +97,6 @@
 | specs_dependency_order | 스펙 (의존 순서) | Specs (dependency order) |
 | existing_spec_updates | 기존 스펙 갱신 | Existing Spec Updates |
 | direct_implementation_candidates | 직접 구현 후보 | Direct Implementation Candidates |
-| value | 가치 | Value |
 | related_requirements | 관련 요구사항 | Related Requirements |
 | title_product_overview | 제품 개요 | Product Overview |
 | core_capabilities | 핵심 기능 | Core Capabilities |
@@ -191,9 +190,6 @@
 | value_chain_mapping_needed | 가치사슬 매핑 필요 | Value chain mapping needed |
 | review_prompt | 승인 또는 수정 사항을 입력하세요. | Approve or enter changes. |
 | title_value_chain | 가치사슬 (Value Chain) | Value Chain |
-| value_chain_definition | 가치사슬 정의서 | Value Chain Definition |
-| main_value_flow | 주요 가치 흐름 | Main Value Flow |
-| unit_process | 단위 프로세스 | Unit Process |
 | location | 위치 | Location |
 | purpose | 목적 | Purpose |
 | example | 예시 | Example |
@@ -208,5 +204,6 @@
 | role | 역할 | Role |
 | property_test | 속성 기반 | Property-based |
 | name | 이름 | Name |
-| parent | 상위 | Parent |
-| validation | 검증 조건 | Validation |
+| kpis | 성과지표 | Key Indicators |
+| target | 목표 | Target |
+| owner | 책임 주체 | Owner |

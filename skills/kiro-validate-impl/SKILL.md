@@ -24,6 +24,7 @@ Rules
 - Non-runnable deliverables (document, data, analysis): map every requirement ID to its location in the deliverable; the map with unmet IDs is VERIFICATION_EVIDENCE
 - Code: list functions/classes/files over steering `tech.md` size limits without stated reason as ISSUES
 - requirements.md, design.md and tasks.md are the sole source of intent; re-assess every task regardless of its checkbox state - a `[x]` or an implementer's report is a claim, not evidence
+- When biz-process.md exists, every `BR-` rule must be enforced by a component and covered by a test; an uncovered rule is a `missing` finding
 - Classify each finding as `missing` (intent with no implementation), `partial`, `contradicts` (implementation defies a requirement, Boundary Commitment or dependency direction) or `unrequested` (content no artifact asked for); cite the artifact ID and the deliverable location
 - NO-GO findings are appended to tasks.md as rework tasks in bugfix order (code: failing reproduction test -> fix -> pass; non-code: gap statement -> fix -> recheck), each traced to requirement IDs; never rewrite or renumber existing tasks; re-validate after they close. Zero findings -> GO with tasks.md unchanged
 - Output VALIDATION_RESULT and VERIFICATION_EVIDENCE
