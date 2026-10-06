@@ -34,6 +34,7 @@
 - Kiro 다중 spec 기능 없음(Web은 다중 저장소 단일 spec) - /specs
 - Steering(Kiro): product/tech/structure, `inclusion: always | fileMatch | manual | auto`, `#[[file:...]]`, AGENTS.md 상시 포함, CLI는 inclusion 무시 - /steering
 - Steering(cc-sdd): Bootstrap / Sync(drift 감지, 추가 보존), Golden Rule "기존 패턴을 따르는 새 코드는 steering 수정 불필요", 주제당 1파일, 100~200줄; inclusion front matter 없음 - SK/kiro-steering
+- product.md 역할(Kiro, cc-sdd, agentic-psdd 동일): 제품의 why(목적, 대상 사용자, 핵심 기능, 비즈니스 목표). Kiro는 공식 문서, cc-sdd는 템플릿(Overview, Core Capabilities, Target Use Cases, Value Proposition)으로 확인. agentic-psdd는 같은 섹션에 KPI 표를 더해 KPI 수치의 유일한 정본으로 삼고, value-chain Unit의 `kpi:`가 id로 참조하며 doc lint가 참조를 검증 - kiro.dev/docs/steering, cc-sdd 템플릿 steering/product.md
 
 ## 4. 템플릿
 | 파일 | cc-sdd 헤딩(순서) - T |
@@ -66,3 +67,4 @@
 ## 검증 범위
 - cc-sdd: 고정 커밋 원본 직접 확인. `ready_for_implementation` 전환 시점, hook 연동 UNVERIFIED
 - Kiro: 공식 문서만. 템플릿 헤딩 원문, Design-First 승인 UI 세부, 태스크 실패 재시도 정책, Powers의 spec 연동 UNVERIFIED
+- product.md: Kiro의 갱신 규칙과 수치 규칙은 문서에 없음. cc-sdd의 inclusion 모드 사용 여부와 `/kiro:steering`의 product.md 생성 방식은 cc-sdd 자체 문서로 UNVERIFIED(검색 결과 보조 설명만)
