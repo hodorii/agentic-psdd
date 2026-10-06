@@ -86,4 +86,4 @@
 - cc-sdd: 고정 커밋 원본 직접 확인. `ready_for_implementation` 전환 시점, hook 연동 UNVERIFIED
 - Kiro: 공식 문서만. 템플릿 헤딩 원문, Design-First 승인 UI 세부, 태스크 실패 재시도 정책, Powers의 spec 연동 UNVERIFIED
 - product.md: Kiro의 갱신 규칙과 수치 규칙은 문서에 없음. cc-sdd의 inclusion 모드 사용 여부와 `/kiro:steering`의 product.md 생성 방식은 cc-sdd 자체 문서로 UNVERIFIED(검색 결과 보조 설명만)
-- 4a절: Kiro는 steering, specs 공식 문서와 feature-specs 문서, cc-sdd는 고정 커밋이 아니라 main 브랜치의 템플릿 원본(steering, steering-custom, specs 디렉터리 목록과 requirements.md, requirements-init.md, init.json, tech.md, structure.md, product.md)을 열람. Kiro의 tech.md, structure.md는 설명만 확인했고 템플릿 헤딩 원문은 UNVERIFIED. Kiro 스펙 파일 저장 경로와 설정 파일(`.config.kiro` 여부)은 열람한 문서에 없어 UNVERIFIED
+- 4a절: Kiro는 steering, specs 공식 문서와 feature-specs 문서, cc-sdd는 고정 커밋이 아니라 main 브랜치의 템플릿 원본(steering, steering-custom, specs 디렉터리 목록과 requirements.md, requirements-init.md, init.json, tech.md, structure.md, product.md)을 열람. Kiro의 tech.md, structure.md는 공식 steering 문서와 외부 가이드 2건(dev.to Sienna, kirodotdev Roblox 글)을 확인했으나 설명만 있고 생성 파일 본문 예시가 없어 템플릿 헤딩 원문은 UNVERIFIED(Kiro IDE의 Generate Steering Docs 실행 결과로 확인 가능). Kiro 스펙 파일 저장 경로와 설정 파일(`.config.kiro` 여부)은 열람한 문서에 없어 UNVERIFIED
