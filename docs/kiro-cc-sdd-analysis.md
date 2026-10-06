@@ -49,6 +49,24 @@
 - Kiro 템플릿 헤딩 원문, ID 체계: 공식 문서 없음(UNVERIFIED). 비공식 재구성본 github.com/jasonkneen/kiro
 - ID(cc-sdd): 숫자 전용 `N` / `N.M` - T/requirements.md L15
 
+## 4a. 같은 이름 문서의 역할 비교
+같은 이름의 문서는 같은 역할을 기대한다. 아래 문서는 모두 역할이 일치하고 표기만 다르다.
+
+| 문서 | Kiro | cc-sdd | agentic-psdd |
+|---|---|---|---|
+| product.md | 제품 목적, 대상 사용자, 핵심 기능, 비즈니스 목표 | 템플릿 Overview, Core Capabilities, Target Use Cases, Value Proposition | 같은 섹션 + KPI 표(KPI 수치의 유일한 정본, value-chain `kpi:`가 id로 참조, doc lint 검증) |
+| tech.md | 프레임워크, 라이브러리, 개발 도구, 기술 제약 | 템플릿 Architecture, Core Technologies, 개발 표준, Key Technical Decisions; "표준과 패턴, 의존성 전부 아님" | cc-sdd 구조 + 코드 품질 크기 한도 |
+| structure.md | 파일 구성, 이름 규칙, import 패턴, 아키텍처 결정 | 템플릿 Organization Philosophy, Directory Patterns, Naming, Import, Code Organization; "트리가 아니라 패턴" | cc-sdd 구조 |
+| steering-custom | 사용자 정의 steering(예시 `api-standards.md`, `testing-standards.md`, `security-policies.md`); 위치 `.kiro/steering/`, 전역 `~/.kiro/steering/` | 7종 api-standards, authentication, database, deployment, error-handling, security, testing | cc-sdd와 같은 7종 |
+| requirements.md | EARS 인수 기준 `WHEN ... THE SYSTEM SHALL` | 사용자 스토리 `As a / I want / so that` + When, If, While, Where 인수 기준; 제목은 숫자 ID만 | `Definition`, `Scope`, `N.M: [조건] 결과`; 사용자 스토리와 EARS 문장형은 쓰지 않음 |
+| design.md, tasks.md | 아키텍처, 컴포넌트, 흐름, 테스트 전략 / 개별 실행 태스크 | 4절 표 | cc-sdd 계승 + `Definition`; tasks는 `_DoneWhen:_`, `_Difficulty:_`, `_BizProcess:_` 추가 |
+| bugfix.md, research.md | 현재, 기대, 불변 동작 / 없음 | 없음 / 4절 표 | bugfix는 Kiro, research는 cc-sdd 계승 |
+| init.json | 확인 못 함 | `feature_name`, 시각, `language`, `phase`, `approvals`, `ready_for_implementation` | `{{TIMESTAMP}}` 기반 init.json(`language` 기본 `ko`) |
+
+- requirements.md 표기 차이의 이유: `N.M`은 값이 아니라 참조 키라 biz-process, design, tasks, 리뷰가 같은 번호를 쓴다(`design.md` 요구사항 ID 규칙). 수용 기준 형식은 화살표 없이 `[조건] 결과`(`design.md` 수용 기준 항목). 사용자 스토리와 EARS를 쓰지 않는 선택의 비교는 `sdd-comparison.md` 요구사항 행.
+- cc-sdd에만 있는 `requirements-init.md`(프로젝트 설명 입력 + 생성 예정 표시 자리)는 agentic-psdd에 대응 파일이 없다. spec-init은 `spec.json`만 만들고 `requirements.md`는 kiro-spec-requirements가 처음 쓴다.
+- Kiro 사용자 정의 steering 예시 파일명은 cc-sdd, agentic-psdd 이름과 다르다(`testing-standards.md` 대 `testing.md`). 역할은 같다.
+
 ## 5. 언어
 - cc-sdd: 설치 `--lang`(14개), spec-init이 입력 언어 감지해 `spec.json.language` 기록, 기본 `en`; 언어별 차이는 `DEV_GUIDELINES` 한 문장 - README "Language", SK/kiro-spec-init L26, `tools/cc-sdd/src/template/context.ts` L21-35
 - 헤딩 사전 없음, 번역 여부 LLM 재량(UNVERIFIED); EARS 키워드만 영어 고정 - `rules/ears-format.md`
@@ -68,3 +86,4 @@
 - cc-sdd: 고정 커밋 원본 직접 확인. `ready_for_implementation` 전환 시점, hook 연동 UNVERIFIED
 - Kiro: 공식 문서만. 템플릿 헤딩 원문, Design-First 승인 UI 세부, 태스크 실패 재시도 정책, Powers의 spec 연동 UNVERIFIED
 - product.md: Kiro의 갱신 규칙과 수치 규칙은 문서에 없음. cc-sdd의 inclusion 모드 사용 여부와 `/kiro:steering`의 product.md 생성 방식은 cc-sdd 자체 문서로 UNVERIFIED(검색 결과 보조 설명만)
+- 4a절: Kiro는 steering, specs 공식 문서와 feature-specs 문서, cc-sdd는 고정 커밋이 아니라 main 브랜치의 템플릿 원본(steering, steering-custom, specs 디렉터리 목록과 requirements.md, requirements-init.md, init.json, tech.md, structure.md, product.md)을 열람. Kiro의 tech.md, structure.md는 설명만 확인했고 템플릿 헤딩 원문은 UNVERIFIED. Kiro 스펙 파일 저장 경로와 설정 파일(`.config.kiro` 여부)은 열람한 문서에 없어 UNVERIFIED
