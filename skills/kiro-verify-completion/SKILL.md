@@ -17,6 +17,7 @@ Boundaries
 
 Rules
 - Read current state produced by kiro-validate-impl
+- Run doc lint (`{{SKILLS}}/kiro-steering/rules/doc-lint.md`) before DONE_EVIDENCE: errors block completion, warnings go into VERIFICATION_REPORT
 - Produce VERIFICATION_REPORT and DONE_EVIDENCE
 - On a passing verification, run `kiro-steering` Sync for the feature and include its STEERING_SYNC
 - Record lessons in the harness memory outside the repository (one note per lesson, one-line summary first; corrections and confirmed approaches with why they mattered; nothing the repo or git already records). A lesson that proves stable is promoted to `{{STEERING}}` as a rule

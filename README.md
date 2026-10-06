@@ -36,6 +36,9 @@ Spec artifacts are written in whatever `spec.json.language` says for that spec (
 ## Upgrading
 Re-run `install.sh` after pulling. Artifacts written with earlier templates stay readable; the skills convert them the next time they edit them. Value chains in the earlier table format convert to the tree template with old ids kept as `alias:` tags; `Logic(AST)` blocks in biz-process become `BR-` business rules; `_BizProcess: BP-X.L<n>` task tags become L1~L4 ids. Details: `skills/kiro-biz-process/rules/biz-process-rules.md` (value chain status).
 
+## Doc lint
+`skills/kiro-steering/scripts/doc_lint.py` checks a project's `.kiro/steering` and `.kiro/specs` (Human-Typeable characters, value-chain tree, KPI, `valueChainRef`, `bizProcessRef` and `BR-` reference integrity). Rules, exit codes and where skills run it: `skills/kiro-steering/rules/doc-lint.md`. Hook or CI: run `python3 .agents/skills/kiro-steering/scripts/doc_lint.py --strict` from the project root (pre-commit hook or CI step). Tests: `python3 -m unittest tests/doc-lint/test_doc_lint.py`.
+
 ## Skills
 `skills/kiro-*` - one directory per skill, each a `SKILL.md` contract (Inputs / Outputs / Boundaries / Rules) plus its own `rules/` and `templates/`. See `skills/kiro-spec-status/rules/workflow.md` for how they chain together (discovery -> requirements -> biz-process -> design -> tasks -> implementation -> validation) and `## Skills` for invocation (`$kiro-<name>`).
 
