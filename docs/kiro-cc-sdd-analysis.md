@@ -32,7 +32,7 @@
 - cc-sdd discovery 경로: A 기존 spec 확장 / B spec 불필요(버그, 설정, 사소) / C 새 단일 spec / D 다중(여러 도메인 또는 태스크 20개 이상) / E 혼합 - SK/kiro-discovery. 접근안 2~3개, 서브에이전트 타당성 검증, 파일 기록 후 정지.
 - cc-sdd spec-batch: roadmap 의존 wave, wave 내 서브에이전트 병렬로 init->tasks(design, tasks `-y`), cross-spec review(데이터 모델, 인터페이스, 공유 인프라, `_Boundary:_` 파일 중복) 최대 3라운드, 분해 결함이면 discovery 복귀 - SK/kiro-spec-batch
 - Kiro 다중 spec 기능 없음(Web은 다중 저장소 단일 spec) - /specs
-- Steering(Kiro): product/tech/structure, `inclusion: always | fileMatch | manual | auto`, `#[[file:...]]`, AGENTS.md 상시 포함, CLI는 inclusion 무시 - /steering
+- Steering(Kiro): product/tech/structure, `inclusion: always | fileMatch | manual | auto`, `#[[file:...]]`, AGENTS.md 상시 포함(inclusion 모드 없음, 하위 디렉터리의 AGENTS.md도 탐색), 커스텀 에이전트는 steering을 자동 포함하지 않고 `resources`에 지정해야 함, 작업공간(`.kiro/steering/`)과 전역(`~/.kiro/steering/`) 범위에서 충돌 시 작업공간 우선, CLI는 inclusion 무시 - /steering
 - Steering(cc-sdd): Bootstrap / Sync(drift 감지, 추가 보존), Golden Rule "기존 패턴을 따르는 새 코드는 steering 수정 불필요", 주제당 1파일, 100~200줄; inclusion front matter 없음 - SK/kiro-steering
 - product.md 역할(Kiro, cc-sdd, agentic-psdd 동일): 제품의 why(목적, 대상 사용자, 핵심 기능, 비즈니스 목표). Kiro는 공식 문서, cc-sdd는 템플릿(Overview, Core Capabilities, Target Use Cases, Value Proposition)으로 확인. agentic-psdd는 같은 섹션에 KPI 표를 더해 KPI 수치의 유일한 정본으로 삼고, value-chain Unit의 `kpi:`가 id로 참조하며 doc lint가 참조를 검증 - kiro.dev/docs/steering, cc-sdd 템플릿 steering/product.md
 
@@ -85,5 +85,5 @@
 ## 검증 범위
 - cc-sdd: 고정 커밋 원본 직접 확인. `ready_for_implementation` 전환 시점, hook 연동 UNVERIFIED
 - Kiro: 공식 문서만. 템플릿 헤딩 원문, Design-First 승인 UI 세부, 태스크 실패 재시도 정책, Powers의 spec 연동 UNVERIFIED
-- product.md: Kiro의 갱신 규칙과 수치 규칙은 문서에 없음. cc-sdd의 inclusion 모드 사용 여부와 `/kiro:steering`의 product.md 생성 방식은 cc-sdd 자체 문서로 UNVERIFIED(검색 결과 보조 설명만)
-- 4a절: Kiro는 steering, specs 공식 문서와 feature-specs 문서, cc-sdd는 고정 커밋이 아니라 main 브랜치의 템플릿 원본(steering, steering-custom, specs 디렉터리 목록과 requirements.md, requirements-init.md, init.json, tech.md, structure.md, product.md)을 열람. Kiro의 tech.md, structure.md는 공식 steering 문서와 외부 가이드 2건(dev.to Sienna, kirodotdev Roblox 글)을 확인했으나 설명만 있고 생성 파일 본문 예시가 없어 템플릿 헤딩 원문은 UNVERIFIED(Kiro IDE의 Generate Steering Docs 실행 결과로 확인 가능). Kiro 스펙 파일 저장 경로와 설정 파일(`.config.kiro` 여부)은 열람한 문서에 없어 UNVERIFIED
+- product.md: Kiro 공식 steering 문서(`kiro.dev/docs/steering.md` 원문 확인)에는 파일별 역할 설명과 유지 지침("Maintain Regularly": 스프린트 계획과 아키텍처 변경 때 검토, steering 변경도 코드처럼 리뷰)이 있고, product.md만의 갱신 규칙과 수치 규칙은 없음. cc-sdd의 inclusion 모드 사용 여부와 `/kiro:steering`의 product.md 생성 방식은 cc-sdd 자체 문서로 UNVERIFIED(검색 결과 보조 설명만)
+- 4a절: Kiro는 steering 공식 문서 원문(curl로 `.md` 수신)과 specs, feature-specs 문서, cc-sdd는 고정 커밋이 아니라 main 브랜치의 템플릿 원본(steering, steering-custom, specs 디렉터리 목록과 requirements.md, requirements-init.md, init.json, tech.md, structure.md, product.md)을 열람. Kiro 공식 문서에는 product.md, tech.md, structure.md의 역할 설명만 있고 템플릿 헤딩이나 생성 파일 예시는 없음(외부 가이드 2건 dev.to Sienna, kirodotdev Roblox 글도 설명뿐); 헤딩 원문은 Kiro IDE의 Generate Steering Docs 실행 결과로만 확인 가능. Kiro 스펙 파일 저장 경로와 설정 파일(`.config.kiro` 여부)은 열람한 문서에 없어 UNVERIFIED
