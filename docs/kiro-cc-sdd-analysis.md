@@ -32,8 +32,9 @@
 - cc-sdd discovery 경로: A 기존 spec 확장 / B spec 불필요(버그, 설정, 사소) / C 새 단일 spec / D 다중(여러 도메인 또는 태스크 20개 이상) / E 혼합 - SK/kiro-discovery. 접근안 2~3개, 서브에이전트 타당성 검증, 파일 기록 후 정지.
 - cc-sdd spec-batch: roadmap 의존 wave, wave 내 서브에이전트 병렬로 init->tasks(design, tasks `-y`), cross-spec review(데이터 모델, 인터페이스, 공유 인프라, `_Boundary:_` 파일 중복) 최대 3라운드, 분해 결함이면 discovery 복귀 - SK/kiro-spec-batch
 - Kiro 다중 spec 기능 없음(Web은 다중 저장소 단일 spec) - /specs
-- Steering(Kiro): product/tech/structure, `inclusion: always | fileMatch | manual | auto`, `#[[file:...]]`, AGENTS.md 상시 포함, CLI는 inclusion 무시 - /steering
+- Steering(Kiro): product/tech/structure, `inclusion: always | fileMatch | manual | auto`, `#[[file:...]]`, AGENTS.md 상시 포함(inclusion 모드 없음, 하위 디렉터리의 AGENTS.md도 탐색), 커스텀 에이전트는 steering을 자동 포함하지 않고 `resources`에 지정해야 함, 작업공간(`.kiro/steering/`)과 전역(`~/.kiro/steering/`) 범위에서 충돌 시 작업공간 우선, CLI는 inclusion 무시 - /steering
 - Steering(cc-sdd): Bootstrap / Sync(drift 감지, 추가 보존), Golden Rule "기존 패턴을 따르는 새 코드는 steering 수정 불필요", 주제당 1파일, 100~200줄; inclusion front matter 없음 - SK/kiro-steering
+- product.md 역할(Kiro, cc-sdd, agentic-psdd 동일): 제품의 why(목적, 대상 사용자, 핵심 기능, 비즈니스 목표). Kiro는 공식 문서, cc-sdd는 템플릿(Overview, Core Capabilities, Target Use Cases, Value Proposition)으로 확인. agentic-psdd는 같은 섹션에 KPI 표를 더해 KPI 수치의 유일한 정본으로 삼고, value-chain Unit의 `kpi:`가 id로 참조하며 doc lint가 참조를 검증 - kiro.dev/docs/steering, cc-sdd 템플릿 steering/product.md
 
 ## 4. 템플릿
 | 파일 | cc-sdd 헤딩(순서) - T |
@@ -47,6 +48,24 @@
 - Kiro bugfix.md: Current Behavior (Defect) `WHEN ... THEN` / Expected Behavior (Correct) `SHALL` / Unchanged Behavior (Regression Prevention) `SHALL CONTINUE TO`; design에 근본 원인 + 속성 3종, tasks는 PBT - /specs/bugfix-specs
 - Kiro 템플릿 헤딩 원문, ID 체계: 공식 문서 없음(UNVERIFIED). 비공식 재구성본 github.com/jasonkneen/kiro
 - ID(cc-sdd): 숫자 전용 `N` / `N.M` - T/requirements.md L15
+
+## 4a. 같은 이름 문서의 역할 비교
+같은 이름의 문서는 같은 역할을 기대한다. 아래 문서는 모두 역할이 일치하고 표기만 다르다.
+
+| 문서 | Kiro | cc-sdd | agentic-psdd |
+|---|---|---|---|
+| product.md | 제품 목적, 대상 사용자, 핵심 기능, 비즈니스 목표 | 템플릿 Overview, Core Capabilities, Target Use Cases, Value Proposition | 같은 섹션 + KPI 표(KPI 수치의 유일한 정본, value-chain `kpi:`가 id로 참조, doc lint 검증) |
+| tech.md | 프레임워크, 라이브러리, 개발 도구, 기술 제약 | 템플릿 Architecture, Core Technologies, 개발 표준, Key Technical Decisions; "표준과 패턴, 의존성 전부 아님" | cc-sdd 구조 + 코드 품질 크기 한도 |
+| structure.md | 파일 구성, 이름 규칙, import 패턴, 아키텍처 결정 | 템플릿 Organization Philosophy, Directory Patterns, Naming, Import, Code Organization; "트리가 아니라 패턴" | cc-sdd 구조 |
+| steering-custom | 사용자 정의 steering(예시 `api-standards.md`, `testing-standards.md`, `security-policies.md`); 위치 `.kiro/steering/`, 전역 `~/.kiro/steering/` | 7종 api-standards, authentication, database, deployment, error-handling, security, testing | cc-sdd와 같은 7종 |
+| requirements.md | EARS 인수 기준 `WHEN ... THE SYSTEM SHALL` | 사용자 스토리 `As a / I want / so that` + When, If, While, Where 인수 기준; 제목은 숫자 ID만 | `Definition`, `Scope`, `N.M: [조건] 결과`; 사용자 스토리와 EARS 문장형은 쓰지 않음 |
+| design.md, tasks.md | 아키텍처, 컴포넌트, 흐름, 테스트 전략 / 개별 실행 태스크 | 4절 표 | cc-sdd 계승 + `Definition`; tasks는 `_DoneWhen:_`, `_Difficulty:_`, `_BizProcess:_` 추가 |
+| bugfix.md, research.md | 현재, 기대, 불변 동작 / 없음 | 없음 / 4절 표 | bugfix는 Kiro, research는 cc-sdd 계승 |
+| init.json | 확인 못 함 | `feature_name`, 시각, `language`, `phase`, `approvals`, `ready_for_implementation` | `{{TIMESTAMP}}` 기반 init.json(`language` 기본 `ko`) |
+
+- requirements.md 표기 차이의 이유: `N.M`은 값이 아니라 참조 키라 biz-process, design, tasks, 리뷰가 같은 번호를 쓴다(`design.md` 요구사항 ID 규칙). 수용 기준 형식은 화살표 없이 `[조건] 결과`(`design.md` 수용 기준 항목). 사용자 스토리와 EARS를 쓰지 않는 선택의 비교는 `sdd-comparison.md` 요구사항 행.
+- cc-sdd에만 있는 `requirements-init.md`(프로젝트 설명 입력 + 생성 예정 표시 자리)는 agentic-psdd에 대응 파일이 없다. spec-init은 `spec.json`만 만들고 `requirements.md`는 kiro-spec-requirements가 처음 쓴다.
+- Kiro 사용자 정의 steering 예시 파일명은 cc-sdd, agentic-psdd 이름과 다르다(`testing-standards.md` 대 `testing.md`). 역할은 같다.
 
 ## 5. 언어
 - cc-sdd: 설치 `--lang`(14개), spec-init이 입력 언어 감지해 `spec.json.language` 기록, 기본 `en`; 언어별 차이는 `DEV_GUIDELINES` 한 문장 - README "Language", SK/kiro-spec-init L26, `tools/cc-sdd/src/template/context.ts` L21-35
@@ -66,3 +85,5 @@
 ## 검증 범위
 - cc-sdd: 고정 커밋 원본 직접 확인. `ready_for_implementation` 전환 시점, hook 연동 UNVERIFIED
 - Kiro: 공식 문서만. 템플릿 헤딩 원문, Design-First 승인 UI 세부, 태스크 실패 재시도 정책, Powers의 spec 연동 UNVERIFIED
+- product.md: Kiro 공식 steering 문서(`kiro.dev/docs/steering.md` 원문 확인)에는 파일별 역할 설명과 유지 지침("Maintain Regularly": 스프린트 계획과 아키텍처 변경 때 검토, steering 변경도 코드처럼 리뷰)이 있고, product.md만의 갱신 규칙과 수치 규칙은 없음. cc-sdd의 inclusion 모드 사용 여부와 `/kiro:steering`의 product.md 생성 방식은 cc-sdd 자체 문서로 UNVERIFIED(검색 결과 보조 설명만)
+- 4a절: Kiro는 steering 공식 문서 원문(curl로 `.md` 수신)과 specs, feature-specs 문서, cc-sdd는 고정 커밋이 아니라 main 브랜치의 템플릿 원본(steering, steering-custom, specs 디렉터리 목록과 requirements.md, requirements-init.md, init.json, tech.md, structure.md, product.md)을 열람. Kiro 공식 문서에는 product.md, tech.md, structure.md의 역할 설명만 있고 템플릿 헤딩이나 생성 파일 예시는 없음(외부 가이드 2건 dev.to Sienna, kirodotdev Roblox 글도 설명뿐); 헤딩 원문은 Kiro IDE의 Generate Steering Docs 실행 결과로만 확인 가능. Kiro 스펙 파일 저장 경로와 설정 파일(`.config.kiro` 여부)은 열람한 문서에 없어 UNVERIFIED
