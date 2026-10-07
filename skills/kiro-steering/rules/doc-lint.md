@@ -1,6 +1,6 @@
 # Doc Lint
 
-Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs `python3` (standard library only).
+Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs `python3` 3.9 or newer (standard library only).
 
 ## Run
 - `python3 {{SKILLS}}/kiro-steering/scripts/doc_lint.py [project-root] [--also PATH]... [--strict]`

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Deterministic lint of a project's .kiro steering and specs; see kiro-steering rules/doc-lint.md."""
+from __future__ import annotations
+
 import argparse
 import sys
 from pathlib import Path
