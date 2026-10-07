@@ -10,6 +10,7 @@ import lint_business_rules as business_rules
 import lint_references as references
 from lint_findings import ERROR, WARNING, Finding
 from lint_human_typeable import check_human_typeable
+from lint_traceability import check_requirements_traceability
 from lint_value_chain import UNIT_LEVEL, check_value_chain
 
 
@@ -35,6 +36,7 @@ def check_cross_references(root: Path, steering: Path, specs: Path) -> list[Find
     findings += definition_findings + business_rules.check_biz_process_refs(units, processes, root, steering)
     findings += business_rules.check_task_process_tags(specs, processes, root)
     findings += business_rules.check_rule_references(specs, rules, root) + business_rules.check_rule_prefixes(processes, rules)
+    findings += check_requirements_traceability(specs, root)
     return findings
 
 

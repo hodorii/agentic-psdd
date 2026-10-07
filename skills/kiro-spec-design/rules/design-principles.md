@@ -11,6 +11,7 @@
 - **Boundary Commitments**: In-Scope (This Spec Owns) / Out-of-Scope / Allowed Dependencies (external libs + version, internal direction) / Revalidation Triggers - all four non-empty.
 - **Architecture**: Boundary Map (Mermaid) when 3+ components interact. Technology Stack only for layers this feature touches (tool + version + role). Key Decisions as `decision - reason` one-liners; alternatives in research.md.
 - **System Flows**: Mermaid sequence/state for non-obvious flows only; omit the section otherwise. Tag decisions with requirement IDs.
+- **Requirements Traceability** (optional table): requirement ID -> realizing component, flow, or decision, for specs where one requirement spans several components; otherwise each component's Requirements line is the mapping.
 - **Components and Interfaces**: one block per component - Intent, Requirements (IDs), business rules it enforces (`BR-` ids when biz-process.md exists), public signatures in the implementation language including error types. Dependencies table (Inbound/Outbound/External, P0/P1/P2) only for external integrations or cross-boundary contracts. Presentational/UI components: summary bullets only.
 - **Data Models**: domain types, persistence, invariants; if the interface blocks already cover it, say so.
 - **Error Handling / Testing Strategy**: feature-specific decisions only, tagged with requirement IDs; level mapping and Depth from `rules/verification-mapping.md`; baseline practices live in steering.

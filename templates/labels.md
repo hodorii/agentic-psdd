@@ -30,6 +30,9 @@
 | technology_stack | 기술 스택 | Technology Stack |
 | key_decisions | 핵심 결정 | Key Decisions |
 | system_flows | 시스템 흐름 | System Flows |
+| requirements_traceability | 요구사항 추적 | Requirements Traceability |
+| requirement_id | 요구사항 ID | Requirement ID |
+| realized_by | 구현 요소 | Realized by |
 | components_and_interfaces | 컴포넌트와 인터페이스 | Components and Interfaces |
 | intent | 의도 | Intent |
 | data_models | 데이터 모델 | Data Models |
