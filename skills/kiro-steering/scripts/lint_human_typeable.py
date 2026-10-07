@@ -7,6 +7,8 @@ RULE = "human-typeable"
 SUPPRESS_MARKER = "lint-ignore: human-typeable"
 CHECKED_SUFFIXES = {".md", ".json"}
 ALLOWED_CONTROL_CHARACTERS = {"\t"}
+FENCE_MARK = "```"
+EXEMPT_FENCE_KINDS = {"quote", "output"}
 
 
 def is_typeable(character: str) -> bool:
@@ -26,9 +28,21 @@ def forbidden_characters(line: str) -> list[str]:
     return [character for character in line if not is_typeable(character)]
 
 
+def checked_lines(lines: list[str]) -> list[tuple[int, str]]:
+    kept, fence_kind = [], None
+    for number, line in enumerate(lines, start=1):
+        stripped = line.strip()
+        if stripped.startswith(FENCE_MARK):
+            fence_kind = None if fence_kind is not None else stripped[len(FENCE_MARK):].strip()
+            kept.append((number, line))
+        elif fence_kind not in EXEMPT_FENCE_KINDS:
+            kept.append((number, line))
+    return kept
+
+
 def check_file(path: Path, project_root: Path) -> list[Finding]:
     findings = []
-    for line_number, line in enumerate(read_lines(path), start=1):
+    for line_number, line in checked_lines(read_lines(path)):
         if SUPPRESS_MARKER in line:
             continue
         found = forbidden_characters(line)

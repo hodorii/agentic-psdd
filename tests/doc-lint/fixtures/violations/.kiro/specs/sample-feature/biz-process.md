@@ -7,3 +7,7 @@
           - BR-ghost-001: rule with no process
 
 ## L1 Process: Other  (BP-orphan; valueChainRef: VC-nowhere-at-all)
+
+```text
+unmarked fence {{ARROW}} is still checked
+```

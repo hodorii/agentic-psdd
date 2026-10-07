@@ -6,7 +6,7 @@ Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs 
 - `python3 {{SKILLS}}/kiro-steering/scripts/doc_lint.py [project-root] [--also PATH]... [--strict]`
 - Output `path:line: error|warning [rule] message`, then `N errors, M warnings`. Exit 0 clean (or warnings only), 1 errors (or warnings with `--strict`), 2 no `.kiro` directory.
 - `--also` adds files or directories to the human-typeable check (e.g. the project `AGENTS.md`).
-- A line holding a verbatim quote of external syntax carries `lint-ignore: human-typeable` (the Human-Typeable exception).
+- Human-Typeable exceptions: a code fence opened with ```` ```quote ```` (verbatim external syntax) or ```` ```output ```` (captured tool output) is skipped; any other fence is checked. A single line carries `lint-ignore: human-typeable`.
 
 ## Rules
 | rule | level | meaning |

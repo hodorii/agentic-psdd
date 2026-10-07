@@ -8,10 +8,10 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 DOC_LINT = HERE.parents[1] / "skills" / "kiro-steering" / "scripts" / "doc_lint.py"
-PLACEHOLDERS = {"{{MIDDLE_DOT}}": "\u00b7", "{{ARROW}}": "\u2192"}
+PLACEHOLDERS = {"{{MIDDLE_DOT}}": "\u00b7", "{{ARROW}}": "\u2192", "{{BOX_VERTICAL}}": "\u2502"}
 
 EXPECTED_VIOLATION_RULES = Counter({
-    ("error", "human-typeable"): 2,
+    ("error", "human-typeable"): 3,
     ("error", "required-tag"): 1,
     ("error", "mega-kind"): 1,
     ("error", "kpi-number"): 2,
