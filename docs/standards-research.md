@@ -13,6 +13,8 @@
 | BIZBOK | 10, Metamodel V3.0 | 확인: 역량은 자동화 이전에도 존재, 가치흐름 순서는 실제 업무 순서가 아님 | https://cdn.ymaws.com/www.businessarchitectureguild.org/resource/resmgr/bizbok_10/introduction_v10_final.pdf |
 | PMI WBS | Practice Standard 3판 (2019) | 원문 UNVERIFIED(403). 정의는 2차 자료. 'project = temporary endeavor'는 PMBOK Guide의 정의 | https://www.pmi.org/standards/work-breakdown-structures-third-edition |
 | ISO/IEC/IEEE 12207 | 2017 | 미리보기로 확인: 4개 프로세스 그룹, 기술 프로세스에 개발, 운영, 유지보수 | https://www.iso.org/standard/63712.html |
+| IEEE 1016 | 2009 (SDD) | 본문 확인(IEEE Xplore 기관 다운로드 사본): 설계 관점 12종(5.2~5.13), SDD 식별 정보와 이해관계자, 관심사 필수(4.2, 4.3), 설계 근거는 purpose 속성만 필수(4.8), 부록 C 템플릿은 예시. design.md 대응은 glossary 2a, 대응 판단은 우리 해석 | https://seng.cankaya.edu.tr/wp-content/uploads/sites/53/2024/09/IEEE-SDD-1016-2009.pdf |
+| ISO/IEC/IEEE 42010, arc42 | 2022, - | 검색 요약으로만 확인(이해관계자, 관심사, 뷰포인트, 뷰, 대응, 근거 / 12개 절). 본문 UNVERIFIED, glossary에 대응 미반영 | https://scc-ccn.ca/standardsdb/standards/8177792 , https://arc42-template.atlassian.net/wiki/spaces/7FE/overview |
 | DMN | 1.5 (OMG formal/24-01-01, 2024-08) | 판번호와 날짜 확인(OMG 페이지). 본문 세부는 미검토. L6 판정형 규칙 기준 | https://www.omg.org/spec/DMN |
 | SBVR | 1.5 (OMG formal/19-10-02, 2019-12) | 판번호와 날짜 확인(OMG 페이지). 본문 세부는 미검토. L6 의무형 규칙 기준 | https://www.omg.org/spec/SBVR |
 | 범정부 EA BRM | - | 6단계 구조는 학술지로만 확인, 현행 지침 UNVERIFIED. 공공 제출 시 선택 참고 | https://accesson.kr/jksarm/assets/pdf/1369/journal-17-2-129.pdf |
