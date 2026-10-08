@@ -76,11 +76,11 @@
 네 방법론 비교와 agentic-psdd 공백: `sdd-comparison.md`.
 
 ## 7. 라벨 표 결정
-- `en` 열: bugfix는 Kiro 원명, 나머지는 기존 agentic-psdd 이름 유지(cc-sdd 개명 `This Spec Owns`, `Out of Boundary`는 규칙 참조 안정성 위해 미채택)
+- `en` 열: bugfix는 Kiro 원명, 나머지는 기존 agentic-psdd 이름 유지(설계서 소유 칸은 cc-sdd `This Spec Owns`를 채택, 비소유 칸은 brief의 `Out of Boundary`(비목표)와 구별되게 `Not Owned`(소유자 명시)로 개명)
 - 표에 없는 언어 -> `en`(cc-sdd 기본값과 동일)
 - 대상: 스펙, steering, steering-custom, discovery 템플릿의 고정 헤딩, 굵은 라벨, 표 열 머리. 스펙은 `spec.json.language`, 스펙 밖 산출물은 `specs/init.json`의 `language`
 - 제외: 기계 태그(`_Requirements:` 등), 식별자(`L1 Process`, `valueChainRef`)
-- 키 분리: 설계 `not_owned`(Out-of-Scope, 비소유) != brief `out_of_boundary`(Out of Boundary, 비목표)
+- 키 분리: 설계 `not_owned`(Not Owned, 비소유, 소유자를 적음) != brief `out_of_boundary`(Out of Boundary, 비목표)
 
 ## 검증 범위
 - cc-sdd: 고정 커밋 원본 직접 확인. `ready_for_implementation` 전환 시점, hook 연동 UNVERIFIED

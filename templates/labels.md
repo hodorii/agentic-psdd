@@ -21,8 +21,8 @@
 | review_request | 검토 요청 | Review Request |
 | title_design | 설계서 | Design |
 | boundary_commitments | 경계 확정 | Boundary Commitments |
-| this_spec_owns | 소유 범위 (이 스펙) | In-Scope (This Spec Owns) |
-| not_owned | 비소유 범위 | Out-of-Scope |
+| this_spec_owns | 소유 범위 (이 스펙) | This Spec Owns |
+| not_owned | 비소유 범위 | Not Owned |
 | allowed_dependencies | 허용 의존 | Allowed Dependencies |
 | revalidation_triggers | 재검증 조건 | Revalidation Triggers |
 | architecture | 아키텍처 | Architecture |

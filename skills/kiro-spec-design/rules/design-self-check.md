@@ -37,7 +37,7 @@ Before writing `design.md`, review the draft design and repair local issues unti
 
 Before applying judgment, verify these mechanically:
 - **Requirements traceability**: Extract all numeric requirement IDs from `requirements.md`. Scan the design draft for each ID. Report any IDs not found in the design. Doc lint (`{{SKILLS}}/kiro-steering/rules/doc-lint.md`) runs the same check as rule `requirement-not-in-design`.
-- **Boundary section populated**: under `Boundary Commitments`, the `In-Scope (This Spec Owns)`, `Out-of-Scope`, `Allowed Dependencies`, and `Revalidation Triggers` subsections must not be empty or placeholder-only.
+- **Boundary section populated**: under `Boundary Commitments`, the `This Spec Owns`, `Not Owned`, `Allowed Dependencies`, and `Revalidation Triggers` subsections must not be empty or placeholder-only.
 - **File Structure Plan populated**: The File Structure Plan section must contain concrete file paths (not just "TBD" or empty). Scan for placeholder text in that section.
 - **Boundary <-> file structure alignment**: The File Structure Plan must reflect the stated responsibility boundary. If files imply broader ownership than the boundary section claims, report a mismatch.
 - **No orphan components**: Every component mentioned in the design must appear in the File Structure Plan with a file path. Scan for component names that have no corresponding file entry.
