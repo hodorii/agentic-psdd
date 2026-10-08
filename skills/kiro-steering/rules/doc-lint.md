@@ -1,6 +1,6 @@
 # Doc Lint
 
-Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs `python3` (standard library only).
+Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs `python3` 3.9 or newer (standard library only).
 
 ## Run
 - `python3 {{SKILLS}}/kiro-steering/scripts/doc_lint.py [project-root] [--also PATH]... [--strict]`
@@ -15,6 +15,7 @@ Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs 
 | tree-root, tree-level, id-format, id-unique | error | value-chain tree shape: one Value root, 2-space levels, id `<parent id>-<segment>`, ids and aliases unique |
 | required-tag, mega-kind, biz-process-ref-format | error | tags per level (Value: evidence; Mega: kind, pcf, evidence; Main: pcf, evidence; Unit: role, kpi, pcf, evidence, bizProcessRef); `kind` primary or support |
 | kpi-number | error | `kpi:` holds `none` or KPI ids; no percent target in a node |
+| requirement-not-in-design | error | a requirement ID `N.M` in requirements.md (criterion line or decision table row) appears nowhere in design.md of the same spec; ranges `2.1~2.5` count |
 | value-chain-prose | warning | value-chain.md holds lines other than the tree, headings and comments |
 | kpi-undefined, value-chain-ref, biz-process-ref, br-ref, br-prefix, bp-unique, br-unique | error | a reference with no definition: KPI id absent from the product.md KPI table; `valueChainRef` not a Unit id or alias; `bizProcessRef` or `_BizProcess:` BP id without an L1 Process heading; `BR-` id undefined or without its `BP-<x>`; duplicate definitions |
 | kpi-unused, bp-unused, br-unused, back-link | warning | a definition nothing uses; a Unit naming a BP that no spec points back to |

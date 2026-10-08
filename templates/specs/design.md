@@ -35,6 +35,12 @@
 [non-obvious flows only, Mermaid sequence or state; omit the section if none]
 - [decision per flow - requirement ID tag (e.g., 7.2)]
 
+## {{label.requirements_traceability}}
+<!-- Optional: for specs where a requirement spans several components. Otherwise the Requirements line of each component is the mapping. Either form must cover every requirement ID; doc lint checks it. Ranges like 2.1~2.5 are allowed. -->
+| {{label.requirement_id}} | {{label.realized_by}} |
+|---|---|
+| 1.1 | [component, flow, or decision] |
+
 ## {{label.components_and_interfaces}}
 
 ### [module] - [Component]

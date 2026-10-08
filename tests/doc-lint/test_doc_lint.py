@@ -21,6 +21,7 @@ EXPECTED_VIOLATION_RULES = Counter({
     ("error", "biz-process-ref"): 2,
     ("error", "br-ref"): 1,
     ("error", "br-prefix"): 1,
+    ("error", "requirement-not-in-design"): 2,
     ("warning", "value-chain-prose"): 1,
     ("warning", "kpi-unused"): 2,
     ("warning", "bp-unused"): 1,

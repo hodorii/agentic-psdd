@@ -21,8 +21,8 @@
 | review_request | 검토 요청 | Review Request |
 | title_design | 설계서 | Design |
 | boundary_commitments | 경계 확정 | Boundary Commitments |
-| this_spec_owns | 소유 범위 (이 스펙) | In-Scope (This Spec Owns) |
-| not_owned | 비소유 범위 | Out-of-Scope |
+| this_spec_owns | 소유 범위 (이 스펙) | This Spec Owns |
+| not_owned | 비소유 범위 | Not Owned |
 | allowed_dependencies | 허용 의존 | Allowed Dependencies |
 | revalidation_triggers | 재검증 조건 | Revalidation Triggers |
 | architecture | 아키텍처 | Architecture |
@@ -30,6 +30,9 @@
 | technology_stack | 기술 스택 | Technology Stack |
 | key_decisions | 핵심 결정 | Key Decisions |
 | system_flows | 시스템 흐름 | System Flows |
+| requirements_traceability | 요구사항 추적 | Requirements Traceability |
+| requirement_id | 요구사항 ID | Requirement ID |
+| realized_by | 구현 요소 | Realized by |
 | components_and_interfaces | 컴포넌트와 인터페이스 | Components and Interfaces |
 | intent | 의도 | Intent |
 | data_models | 데이터 모델 | Data Models |
