@@ -34,6 +34,27 @@ Our terms mapped to standard terms so anyone reads them the same way. Read only 
 | dated IT project (migration, optimization) | WBS rows referencing the IT Units they change | PMI Practice Standard for WBS |
 | contract management of a vendor | program and project management (PCF Cross-Industry 7.4, 13.2) | APQC PCF |
 
+## 2a. design.md sections
+
+Our sections mapped to IEEE 1016-2009 design viewpoints (clause 5). Our structure comes from cc-sdd and is not derived from the standard; the map shows where each section answers a viewpoint's concern.
+
+| design.md section | IEEE 1016 viewpoint | Fit |
+|---|---|---|
+| Boundary Commitments: This Spec Owns, Not Owned | Context (5.2): system boundary and scope of use | direct |
+| Boundary Commitments: Allowed Dependencies | Dependency (5.5): interconnection and access among entities | direct |
+| Boundary Commitments: Revalidation Triggers | Dependency (5.5): impact assessment of changes | partial |
+| Architecture: Boundary Map | Composition (5.3): constituent parts and allocated responsibilities | direct |
+| Architecture: Key Decisions | design rationale (4.8) | direct |
+| Architecture: Technology Stack | Patterns use (5.7): framework templates | partial |
+| System Flows | Interaction (5.10); State dynamics (5.11) when states matter | direct |
+| Components and Interfaces | Interface (5.8): binding contract; Logical (5.4): types | direct |
+| Data Models | Information (5.6): applies when persistent data is substantial | direct |
+| File Structure Plan | Composition (5.3): work allocation | partial |
+| Error Handling, Testing Strategy | no viewpoint (1016 names testers as consumers of views, not a view) | none |
+| Requirements Traceability | no required counterpart | none |
+
+Not covered by our template: stakeholders and their concerns (1016 clause 4.3 requires identifying them and addressing each), Resource viewpoint (5.13, utilization and availability; use an Optional section), Algorithm viewpoint (5.12; internal logic stays in code). Product.md roles and the spec `Definition` carry the stakeholder information.
+
 ## 3. Telling them apart
 A value-chain node or a biz-process L1~L4 node belongs there only when all three answers are yes (L5 conditions and L6 rules use the business content test in biz-process rules instead; tasks.md items are expected to fail question 2):
 1. Who: a business role performs it, a business role directly uses it as a service (ArchiMate Business Role, Business Service), or an IT role performs a standing IT process at PCF 8.0 level 3. One-off work on the software is a project item.
