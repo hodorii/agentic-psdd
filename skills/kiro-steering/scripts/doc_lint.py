@@ -4,12 +4,14 @@ from __future__ import annotations
 
 import argparse
 import sys
+from datetime import date
 from pathlib import Path
 
 import lint_business_rules as business_rules
 import lint_references as references
 from lint_findings import ERROR, WARNING, Finding
 from lint_human_typeable import check_human_typeable
+from lint_staleness import parse_asof, check_staleness
 from lint_traceability import check_requirements_traceability
 from lint_value_chain import UNIT_LEVEL, check_value_chain
 
@@ -19,10 +21,12 @@ def parse_arguments(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("project_root", nargs="?", default=".", type=Path)
     parser.add_argument("--also", action="append", default=[], type=Path, metavar="PATH", help="extra file or directory for the human-typeable check")
     parser.add_argument("--strict", action="store_true", help="exit 1 on warnings too")
+    parser.add_argument("--asof", default=date.today(), type=parse_asof, metavar="YYYY-MM-DD", help="reference date for staleness (default today)")
+    parser.add_argument("--max-age-days", default=180, type=int, help="warn when updated_at or an asof tag is older than this (default 180)")
     return parser.parse_args(argv)
 
 
-def check_cross_references(root: Path, steering: Path, specs: Path) -> list[Finding]:
+def check_cross_references(root: Path, steering: Path, specs: Path, arguments: argparse.Namespace) -> list[Finding]:
     value_chain_path = steering / "value-chain.md"
     nodes, findings = [], []
     if value_chain_path.is_file():
@@ -37,13 +41,14 @@ def check_cross_references(root: Path, steering: Path, specs: Path) -> list[Find
     findings += business_rules.check_task_process_tags(specs, processes, root)
     findings += business_rules.check_rule_references(specs, rules, root) + business_rules.check_rule_prefixes(processes, rules)
     findings += check_requirements_traceability(specs, root)
+    findings += check_staleness(nodes, steering, root, arguments.asof, arguments.max_age_days)
     return findings
 
 
-def lint_project(root: Path, extra_targets: list[Path]) -> list[Finding]:
+def lint_project(root: Path, arguments: argparse.Namespace) -> list[Finding]:
     steering, specs = root / ".kiro" / "steering", root / ".kiro" / "specs"
-    findings = check_human_typeable([steering, specs] + extra_targets, root)
-    return findings + check_cross_references(root, steering, specs)
+    findings = check_human_typeable([steering, specs] + arguments.also, root)
+    return findings + check_cross_references(root, steering, specs, arguments)
 
 
 def main(argv: list[str]) -> int:
@@ -52,7 +57,7 @@ def main(argv: list[str]) -> int:
     if not (root / ".kiro").is_dir():
         print(f"error: {root} has no .kiro directory", file=sys.stderr)
         return 2
-    findings = sorted(lint_project(root, arguments.also), key=lambda f: (f.path, f.line, f.rule))
+    findings = sorted(lint_project(root, arguments), key=lambda f: (f.path, f.line, f.rule))
     for finding in findings:
         print(finding.render())
     errors = sum(1 for f in findings if f.level == ERROR)

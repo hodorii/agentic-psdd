@@ -3,8 +3,9 @@
 Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs `python3` 3.9 or newer (standard library only).
 
 ## Run
-- `python3 {{SKILLS}}/kiro-steering/scripts/doc_lint.py [project-root] [--also PATH]... [--strict]`
+- `python3 {{SKILLS}}/kiro-steering/scripts/doc_lint.py [project-root] [--also PATH]... [--strict] [--asof YYYY-MM-DD] [--max-age-days N]`
 - Output `path:line: error|warning [rule] message`, then `N errors, M warnings`. Exit 0 clean (or warnings only), 1 errors (or warnings with `--strict`), 2 no `.kiro` directory.
+- `--asof` is the reference date for staleness (default today); `--max-age-days` the age limit (default 180).
 - `--also` adds files or directories to the human-typeable check (e.g. the project `AGENTS.md`).
 - Human-Typeable exceptions: a code fence opened with ```` ```quote ```` (verbatim external syntax) or ```` ```output ```` (captured tool output) is skipped; any other fence is checked. A single line carries `lint-ignore: human-typeable`.
 
@@ -18,6 +19,8 @@ Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs 
 | requirement-not-in-design | error | a requirement ID `N.M` in requirements.md (criterion line or decision table row) appears nowhere in design.md of the same spec; ranges `2.1~2.5` count |
 | value-chain-prose | warning | value-chain.md holds lines other than the tree, headings and comments |
 | kpi-undefined, value-chain-ref, biz-process-ref, br-ref, br-prefix, bp-unique, br-unique | error | a reference with no definition: KPI id absent from the product.md KPI table; `valueChainRef` not a Unit id or alias; `bizProcessRef` or `_BizProcess:` BP id without an L1 Process heading; `BR-` id undefined or without its `BP-<x>`; duplicate definitions |
+| stale-file, stale-node | warning | steering front matter `updated_at` or a value-chain node tag `asof` is older than `--max-age-days` before `--asof` |
+| date-format | error | `updated_at` or `asof` is not `YYYY-MM-DD` (`updated_at` may continue with a time, e.g. `2026-10-01T09:00`); a `<...>` placeholder `updated_at` is skipped |
 | kpi-unused, bp-unused, br-unused, back-link | warning | a definition nothing uses; a Unit naming a BP that no spec points back to |
 
 ## When to run
