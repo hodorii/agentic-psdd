@@ -6,6 +6,8 @@ updated_at: <YYYY-MM-DD>
 ---
 # {{label.title_value_chain}} - SSoT
 
+<!-- Optional tag on any node: asof: <YYYY-MM-DD> = date its evidence was last confirmed; doc lint warns when older than 180 days. -->
+
 - VC-<domain> <business name> (evidence: <cited source, or assumption>)
   - VC-<domain>-<mega> <Mega name> (kind: <primary or support>; pcf: <see standards-glossary tag format>; evidence: <cited source, or assumption>)
     - VC-<domain>-<mega>-<main> <Main name> (pcf: <see standards-glossary tag format>; evidence: <cited source, or assumption>)

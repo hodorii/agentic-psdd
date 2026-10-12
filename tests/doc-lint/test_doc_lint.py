@@ -8,6 +8,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 DOC_LINT = HERE.parents[1] / "skills" / "kiro-steering" / "scripts" / "doc_lint.py"
+FIXED_ASOF = "2026-10-10"
 PLACEHOLDERS = {"{{MIDDLE_DOT}}": "\u00b7", "{{ARROW}}": "\u2192", "{{BOX_VERTICAL}}": "\u2502"}
 
 EXPECTED_VIOLATION_RULES = Counter({
@@ -27,6 +28,9 @@ EXPECTED_VIOLATION_RULES = Counter({
     ("warning", "bp-unused"): 1,
     ("warning", "br-unused"): 2,
     ("warning", "back-link"): 1,
+    ("warning", "stale-file"): 1,
+    ("warning", "stale-node"): 1,
+    ("error", "date-format"): 1,
 })
 
 
@@ -42,7 +46,7 @@ def materialize_fixture(name: str, destination: Path) -> Path:
 
 
 def run_lint(project: Path) -> tuple[int, list[str]]:
-    result = subprocess.run([sys.executable, str(DOC_LINT), str(project)], capture_output=True, text=True, env={"PYTHONDONTWRITEBYTECODE": "1"})
+    result = subprocess.run([sys.executable, str(DOC_LINT), str(project), "--asof", FIXED_ASOF], capture_output=True, text=True, env={"PYTHONDONTWRITEBYTECODE": "1"})
     return result.returncode, result.stdout.splitlines()
 
 
