@@ -18,7 +18,6 @@
 | unchanged_behavior | 불변 동작 (회귀 방지) | Unchanged Behavior (Regression Prevention) |
 | title_biz_process | 업무 프로세스 | BizProcess |
 | value_chain_mapping | 가치사슬 매핑 | Value Chain Mapping |
-| review_request | 검토 요청 | Review Request |
 | title_design | 설계서 | Design |
 | boundary_commitments | 경계 확정 | Boundary Commitments |
 | this_spec_owns | 소유 범위 (이 스펙) | This Spec Owns |
@@ -191,7 +190,6 @@
 | verification_properties | 검증 속성 | Verification Properties |
 | impact_scope | 영향 범위 | Impact Scope |
 | value_chain_mapping_needed | 가치사슬 매핑 필요 | Value chain mapping needed |
-| review_prompt | 승인 또는 수정 사항을 입력하세요. | Approve or enter changes. |
 | title_value_chain | 가치사슬 (Value Chain) | Value Chain |
 | location | 위치 | Location |
 | purpose | 목적 | Purpose |

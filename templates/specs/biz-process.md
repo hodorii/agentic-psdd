@@ -19,10 +19,6 @@
 ###### L5 DetailStep: ...
 ##### L4 Step: ...  (BP-<x>.A1.F1.S2)
 ### L2 Activity: ...  (BP-<x>.A2)
-### {{label.review_request}} (L1: <name>)
-{{label.review_prompt}}
 
 ## L1 Process: <name2>  (valueChainRef: VC-...-<unit2>)
 ... (repeat the same structure)
-### {{label.review_request}} (L1: <name2>)
-

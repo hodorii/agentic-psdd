@@ -39,12 +39,13 @@
 
 ## 5. Drill-down notation
 - Levels as heading depth per `{{TEMPLATES}}/specs/biz-process.md` (L1 `##` to L5 `######`), each L1~L4 heading carrying its id; L6 rules indented under their DetailStep, one `BR-` id per rule.
-- Each **L1 Process** closes with an approval gate (`### Review Request (L1: <name>)`). Non-interactive (`-y`): full drill-down, then one gate for all.
 - L2/L3 blocks carry related requirement IDs for traceability to `requirements.md` (also in the mapping table).
 
 ## 6. Approval gate (informed consent)
-- Ask for user review right after each L1 Process: understanding-based consent, not a rubber stamp.
+- Ask for user review in conversation right after each L1 Process: understanding-based consent, not a rubber stamp.
 - `-y`: full drill-down, then a single gate for all levels (requirements and value chain approved beforehand).
+- biz-process.md holds content only: no review request block, no approval state. Approval state lives in `spec.json` `approvals.bizProcess` (SSoT); derived views refer to it and never copy it.
+- A review request block from earlier templates (`### Review Request`, L1 or L2) is deleted the next time the file is edited.
 
 ## 7. Value chain status
 - Missing: `$kiro-steering` Bootstrap drafts it from `{{TEMPLATES}}/steering/value-chain.md`.

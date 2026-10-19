@@ -23,6 +23,6 @@ Rules
 - Read `{{TEMPLATES}}/specs/biz-process.md` for document structure
 - Stop if requirements.md is unapproved, or value-chain.md is missing (point to `$kiro-steering`, which drafts it) or `status: draft` (present the draft for owner approval; never approve it); a file without `status` counts as approved
 - Each matched Unit -> one L1 Process with `valueChainRef`; no match -> mark `({{label.value_chain_mapping_needed}})` and continue after user ack
-- Gate each L1 with the user (`-y`: single gate after full drill-down); on rejection revise that level only
-- Write `{{SPECS}}/{feature}/biz-process.md`; update spec.json (`phase`, `approvals.bizProcess`, `updated_at`)
+- Gate each L1 with the user in conversation, nothing written to biz-process.md (`-y`: single gate after full drill-down); on rejection revise that level only
+- Write `{{SPECS}}/{feature}/biz-process.md`; update spec.json (`phase`, `approvals.bizProcess`, `updated_at`), the only record of approval
 - Next: `$kiro-spec-design {feature}`
