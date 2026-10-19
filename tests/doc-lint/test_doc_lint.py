@@ -9,10 +9,10 @@ from pathlib import Path
 HERE = Path(__file__).parent
 DOC_LINT = HERE.parents[1] / "skills" / "kiro-steering" / "scripts" / "doc_lint.py"
 FIXED_ASOF = "2026-10-10"
-PLACEHOLDERS = {"{{MIDDLE_DOT}}": "\u00b7", "{{ARROW}}": "\u2192", "{{BOX_VERTICAL}}": "\u2502"}
+PLACEHOLDERS = {"{{MIDDLE_DOT}}": "\u00b7", "{{ARROW}}": "\u2192", "{{SQUARE}}": "\u25a0", "{{BOX_VERTICAL}}": "\u2502"}
 
 EXPECTED_VIOLATION_RULES = Counter({
-    ("error", "human-typeable"): 3,
+    ("error", "human-typeable"): 4,
     ("error", "required-tag"): 1,
     ("error", "mega-kind"): 1,
     ("error", "kpi-number"): 2,
@@ -23,6 +23,11 @@ EXPECTED_VIOLATION_RULES = Counter({
     ("error", "br-ref"): 1,
     ("error", "br-prefix"): 1,
     ("error", "requirement-not-in-design"): 2,
+    ("error", "tree-id-missing"): 3,
+    ("error", "tree-id-extra"): 2,
+    ("error", "tree-detail-step-missing"): 1,
+    ("error", "tree-detail-step-extra"): 1,
+    ("error", "tree-source-missing"): 1,
     ("warning", "value-chain-prose"): 1,
     ("warning", "kpi-unused"): 2,
     ("warning", "bp-unused"): 1,

@@ -210,3 +210,10 @@
 | kpis | 성과지표 | Key Indicators |
 | target | 목표 | Target |
 | owner | 책임 주체 | Owner |
+| title_biz_process_tree | 업무 프로세스 트리 뷰 | BizProcess Tree View |
+| tree_view_notice | 이 문서는 biz-process.md의 읽기용 뷰이며, 정본과 어긋나면 정본이 우선한다. 번호를 새로 매기지 않았다. 기호 정의: .agents/skills/kiro-biz-process-tree/rules/tree-view-rules.md 2절. | Read-only view of biz-process.md; the source wins on any mismatch. No ids were assigned here. Symbols: .agents/skills/kiro-biz-process-tree/rules/tree-view-rules.md section 2. |
+| tree_overview | 전체 구조 | Overview |
+| tree_open_items | 미결 항목 | Open Items |
+| reference_generated | 생성 | Generated |
+| reference_basis | 기준 | As of |
+| reference_source | 출처 | Source |

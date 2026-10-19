@@ -512,3 +512,4 @@ agentic-psdd/
 ### 보안
 - steering, 스펙에 자격 증명 금지(`steering-principles.md`); 리뷰어가 변경 파일에 시크릿 grep 강제.
 - `session.py`는 로컬 읽기 전용, 외부 전송 금지; `$HOME`/XDG 파생 경로만 사용하고 사용자, 프로젝트 경로 하드코딩 금지.
+| Spec | `kiro-biz-process-tree` | biz-process.md(읽기 전용), spec.json | BIZ_PROCESS_TREE_MD, TREE_ID_PARITY | `rules/tree-view-rules.md` |

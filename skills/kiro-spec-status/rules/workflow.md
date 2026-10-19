@@ -9,6 +9,7 @@ Command order across phases. Read when choosing or reporting the next command.
   - `$kiro-spec-requirements {feature}`
   - `$kiro-validate-gap {feature}` (optional)
   - `$kiro-biz-process {feature}`
+  - `$kiro-biz-process-tree {feature}` (optional read-only view)
   - `$kiro-spec-design {feature} [-y]`
   - `$kiro-validate-design {feature}` (optional)
   - `$kiro-spec-tasks {feature} [-y]`

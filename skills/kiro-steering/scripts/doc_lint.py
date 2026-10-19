@@ -13,6 +13,7 @@ from lint_findings import ERROR, WARNING, Finding
 from lint_human_typeable import check_human_typeable
 from lint_staleness import parse_asof, check_staleness
 from lint_traceability import check_requirements_traceability
+from lint_tree_view import TREE_VIEW_DIRECTORY, check_tree_views
 from lint_value_chain import UNIT_LEVEL, check_value_chain
 
 
@@ -41,13 +42,14 @@ def check_cross_references(root: Path, steering: Path, specs: Path, arguments: a
     findings += business_rules.check_task_process_tags(specs, processes, root)
     findings += business_rules.check_rule_references(specs, rules, root) + business_rules.check_rule_prefixes(processes, rules)
     findings += check_requirements_traceability(specs, root)
+    findings += check_tree_views(root, specs)
     findings += check_staleness(nodes, steering, root, arguments.asof, arguments.max_age_days)
     return findings
 
 
 def lint_project(root: Path, arguments: argparse.Namespace) -> list[Finding]:
     steering, specs = root / ".kiro" / "steering", root / ".kiro" / "specs"
-    findings = check_human_typeable([steering, specs] + arguments.also, root)
+    findings = check_human_typeable([steering, specs, root / TREE_VIEW_DIRECTORY] + arguments.also, root)
     return findings + check_cross_references(root, steering, specs, arguments)
 
 
