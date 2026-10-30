@@ -1,6 +1,6 @@
 # Kiro, cc-sdd 방법론, 템플릿 분석 - agentic-psdd 대조
 
-> 분석 기준: gotalab/cc-sdd 커밋 `e2a0c67`(2026-09-23) 원본 파일, kiro.dev 공식 문서 `.md` 원문(2026-09-30 열람). 경로 약어 `G = https://github.com/gotalab/cc-sdd/blob/e2a0c67/`, `SK/x = G/tools/cc-sdd/templates/agents/claude-code-skills/skills/x/SKILL.md`, `T = G/tools/cc-sdd/templates/shared/settings/templates/specs/`. 확인 못 한 항목은 `UNVERIFIED`.
+> 분석 기준: gotalab/cc-sdd v3.1.0(커밋 `e2a0c67`, 2026-09-23) 원본 파일, kiro.dev 공식 문서 `.md` 원문(2026-09-30 열람). 경로 약어 `G = https://github.com/gotalab/cc-sdd/blob/e2a0c67/`, `SK/x = G/tools/cc-sdd/templates/agents/claude-code-skills/skills/x/SKILL.md`, `T = G/tools/cc-sdd/templates/shared/settings/templates/specs/`. 확인 못 한 항목은 `UNVERIFIED`.
 
 ## 결론
 - Kiro: IDE 제품 - 사용자가 Feature / Bugfix / Quick 선택, UI 게이트, wave 동시 실행, Hooks, PBT로 자동화, 정합성 보강.
@@ -16,8 +16,8 @@
 | 갭 | - | validate-gap(선택지 제공, brownfield 권장) - SK/kiro-validate-gap |
 | 설계 | Design-First 가능; PBT 속성 도출(IDE) - /specs/correctness | 조사 full/light/minimal, research.md, Boundary Commitments, File Structure Plan 필수, 요구사항 갭이면 되돌림 - SK/kiro-spec-design |
 | 설계 검증 | - | validate-design(핵심 이슈 <=3, GO/NO-GO) - SK/kiro-validate-design |
-| 태스크 | 의존 그래프 | `(P)` `_Boundary:_` `_Depends:_`, 전 요구사항 ID 포함 게이트, sanity review PASS/RETURN_TO_DESIGN - SK/kiro-spec-tasks |
-| 구현 | Run all Tasks: wave 내 동시, wave 간 순차; Autopilot / Supervised - /specs, /ide/chat/autopilot | 하위 태스크 1개씩 순차; implementer -> reviewer -> verify-completion -> 파일 지정 커밋 - SK/kiro-impl |
+| 태스크 | 의존 그래프 | `(P)` `_Boundary:_` `_Depends:_`, 전 요구사항 ID 포함 게이트, sanity review PASS/RETURN_TO_DESIGN, 리뷰 모드 `independent`/`inline` 기록, 2차 비PASS면 tasks.md 미작성, `-y`는 게이트 우회 안 함 - SK/kiro-spec-tasks |
+| 구현 | Run all Tasks: wave 내 동시, wave 간 순차; Autopilot / Supervised - /specs, /ide/chat/autopilot | 하위 태스크 1개씩 순차; implementer -> reviewer(`--review required\|inline\|off`, 기본 required) -> verify-completion -> 파일 지정 커밋 - SK/kiro-impl |
 | 완료 | PBT 실패 시 shrinking 반례, Web은 PR | validate-impl GO/NO-GO/MANUAL_VERIFY_REQUIRED, verify-completion 신규 증거 필수 - SK/kiro-validate-impl, SK/kiro-verify-completion |
 | 변경 추종 | Sync Files(태스크 재생성, 완료분 유지) - /specs/best-practices | Revalidation Triggers, upstream spec 수정 후 의존 spec 재검증 - G/docs/guides/spec-driven.md |
 

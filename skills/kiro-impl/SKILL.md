@@ -30,6 +30,7 @@ Rules
 - Effort by `_Difficulty:` for implementers that expose it - low: medium, mid: high, high: xhigh
 - The brief opens with the spec's `Definition` section. A `low` brief includes the Procedure appendix of `templates/implementer-prompt.md`; capable implementers get the Contract sections only. Never show sub-agents remaining-context counts
 - Match implementer to `_Difficulty:` - `low` may go to a small-context model with a self-contained brief; `mid`/`high` go to the strongest available. Two consecutive failures on a task -> reassign upward or dispatch the debugger
+- Reviewer gate mode: `independent` (fresh sub-agent from `templates/reviewer-prompt.md`) by default; `inline` (apply `kiro-review` in the parent context on the actual `git diff`) only when the host cannot dispatch fresh sub-agents. The gate is never skipped; record the mode per task in STATUS
 - The reviewer gate runs the verification itself and, for user-visible output, inspects the rendered frame/output; the implementer's claim is not evidence
 - Real runs start from the default launch (no flags, every panel visible) and add one narrow width; a run in the configuration easiest to capture verifies the renderer, not the product
 - Update STATUS and DELIVERABLE_CHANGES upon completion

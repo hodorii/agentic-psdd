@@ -155,6 +155,9 @@ Before writing `tasks.md`, review the draft task plan and repair local issues un
 - If issues are task-plan-local, repair the draft and re-run the review gate.
 - Keep the loop bounded: no more than 2 review-and-repair passes before escalating a real spec gap.
 - Write `tasks.md` only after the review gate passes.
+- Review mode: `independent` (fresh sub-agent) when the host can dispatch one, otherwise `inline` (current context); report the actual mode with the verdict.
+- Second pass not `PASS`: stop without writing `tasks.md` or approving the task plan; report the remaining findings, no third pass.
+- `-y` never bypasses this gate.
 
 ### Optional Test Coverage Tasks
 

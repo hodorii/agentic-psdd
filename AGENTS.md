@@ -46,6 +46,7 @@ Command order: `{{SKILLS}}/kiro-spec-status/rules/workflow.md` - read only when 
 ## Skills
 - Invoke with `$kiro-<name>`; `/skills` lists them with their contracts' descriptions.
 - If there is even a 1% chance a skill applies, invoke it.
+- Every phase, even with steering/spec context already loaded: use explicitly requested skills and task-relevant local skills/playbooks (design, accessibility, UX included). Select by description, read only the guidance needed, keep required checks and host/project rules.
 
 ## Rules
 - Approval gates: Requirements or Bugfix -> BizProcess -> Design -> Tasks -> Implementation. Human review at each gate; `-y` only for an intentional fast-track.

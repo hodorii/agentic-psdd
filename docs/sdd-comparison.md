@@ -1,6 +1,6 @@
 # SDD 방법론 비교 - Kiro, cc-sdd, spec-kit, agentic-psdd
 
-> 기준(2026-09-30): Kiro 공식 문서, cc-sdd 커밋 `e2a0c67`, spec-kit v1.0.13(`f1a548a`), agentic-psdd `main`. 원형별 근거와 출처는 `kiro-cc-sdd-analysis.md`, `spec-kit-analysis.md`. 이 문서가 비교의 SSoT.
+> 기준(2026-09-30): Kiro 공식 문서, cc-sdd v3.1.0(커밋 `e2a0c67`), spec-kit v1.0.13(`f1a548a`), agentic-psdd `main`. 원형별 근거와 출처는 `kiro-cc-sdd-analysis.md`, `spec-kit-analysis.md`. 이 문서가 비교의 SSoT.
 
 ## 결론
 - Kiro: IDE 제품. 사용자가 진입 유형 선택, UI 게이트, wave 동시 실행, Hooks와 PBT로 보강.
