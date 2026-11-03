@@ -4,7 +4,8 @@ A user-visible change landing on `main` triggers a release without waiting for a
 
 - **Releasable**: changes under `skills/`, `templates/`, `AGENTS.md`, `install.sh` that alter skill behavior, artifact structure, or lint results
 - **Not releasable**: README or `docs/` wording, `tests/` only, `.gitignore`, `LICENSE`; they ride the next release
-- **Bump** (`0.x`): new skill, rule, lint check, or template change is MINOR; an artifact format change that needs migration is MINOR plus an upgrade note in `README.md`; bug fix or wording fix is PATCH; mixed takes the largest
+- **Start**: the first release is `1.4.0`
+- **Bump**: new skill, rule, lint check, or compatible template change is MINOR; an artifact format change that needs migration, or a removed or renamed skill, path, or label, is MAJOR plus an upgrade note in `README.md`; bug fix or wording fix is PATCH; mixed takes the largest
 - **Version**: `VERSION` only; the tag `vX.Y.Z` mirrors it
 - **Steps**
   1. `git fetch --tags`, then `git log vX.Y.Z..HEAD` to judge releasability and bump size
