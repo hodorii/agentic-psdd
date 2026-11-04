@@ -357,6 +357,7 @@ sequenceDiagram
 ### `install.sh` - Installer
 ```sh
 install.sh link [project-root] [--force]   # 상대 symlink 배치, project-root/methodology == 이 저장소여야 함
+                                           # methodology 없음 + git 저장소: origin을 submodule로 추가, 현재 커밋 고정, submodule의 install.sh로 재실행
 install.sh copy [project-root] [--force]   # 실 파일 복사, 의존 없음, 라우터는 .kiro/settings/methodology/AGENTS.md
 # exit 2: 잘못된 MODE, 또는 link 모드에서 methodology 경로 불일치. set -eu.
 # exit 3: 이전 copy 설치본을 프로젝트가 수정한 파일 존재(목록 출력). --force 로 덮어씀.

@@ -27,7 +27,7 @@ The block goes to the top of the project's own `AGENTS.md` and leaves everything
 SemVer, single source `VERSION`, tags `vX.Y.Z`. Release rules and the `release.sh` procedure: `RELEASING.md`.
 
 ## Install
-- Submodule: `git submodule add <url> methodology && methodology/install.sh link`
+- Submodule: `git submodule add <url> methodology && methodology/install.sh link`, or from a local clone `install.sh link /path/to/project` (no `methodology/` there yet: adds this repo's `origin` as the submodule, pins it to the clone's commit, then runs the submodule's `install.sh link`)
 - Subtree: `git subtree add --prefix=methodology <url> main --squash && methodology/install.sh link`
 - Copy (no dependency): `git clone <url> /tmp/m && /tmp/m/install.sh copy /path/to/project`
 
