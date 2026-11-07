@@ -8,6 +8,11 @@
 |------------|----------------------|---------------|
 | BP-<x>     | VC-...-<unit>        | 1.1, 2.3 |
 
+<!-- Optional section: omit when the feature handles no business objects. Nouns only, no attributes. -->
+## {{label.business_objects}}
+- <business object noun>
+- ...
+
 ## L1 Process: <name>  (BP-<x>; valueChainRef: VC-...-<unit>)
 ### L2 Activity: <name>  (BP-<x>.A1; 1.1)
 #### L3 FunctionGroup/UI: <name>  (BP-<x>.A1.F1; 1.1, 1.2)

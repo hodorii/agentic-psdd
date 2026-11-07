@@ -18,6 +18,7 @@
 | unchanged_behavior | 불변 동작 (회귀 방지) | Unchanged Behavior (Regression Prevention) |
 | title_biz_process | 업무 프로세스 | BizProcess |
 | value_chain_mapping | 가치사슬 매핑 | Value Chain Mapping |
+| business_objects | 업무 대상 | Business Objects |
 | title_design | 설계서 | Design |
 | boundary_commitments | 경계 확정 | Boundary Commitments |
 | this_spec_owns | 소유 범위 (이 스펙) | This Spec Owns |

@@ -37,6 +37,11 @@
 - L1 `BP-<x>`, L2 `BP-<x>.A<n>`, L3 `BP-<x>.A<n>.F<n>`, L4 `BP-<x>.A<n>.F<n>.S<n>`; L5 is named under its L4; L6 rules carry `BR-<x>-<nnn>`.
 - Numbers run in order within the parent, new nodes are appended, existing numbers never change, retired numbers are not reused.
 
+## 4c. Business objects (optional section)
+- Section `Business Objects` (`{{label.business_objects}}`) between the value chain mapping and the first L1 Process; omit it when the feature handles no business objects.
+- Content: one business-term noun per bullet (e.g., order, member). Nothing else: no attributes, types, formats or table names (4a).
+- Attributes grow in later artifacts (screen data tables, design Data Models) and cite their origin by id only (screen row id or `BR-`); the object name is the only link, nothing is copied back here.
+
 ## 5. Drill-down notation
 - Levels as heading depth per `{{TEMPLATES}}/specs/biz-process.md` (L1 `##` to L5 `######`), each L1~L4 heading carrying its id; L6 rules indented under their DetailStep, one `BR-` id per rule.
 - L2/L3 blocks carry related requirement IDs for traceability to `requirements.md` (also in the mapping table).
