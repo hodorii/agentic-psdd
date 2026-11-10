@@ -47,7 +47,9 @@
 - L2/L3 blocks carry related requirement IDs for traceability to `requirements.md` (also in the mapping table).
 
 ## 6. Approval gate (informed consent)
-- Ask for user review in conversation right after each L1 Process: understanding-based consent, not a rubber stamp.
+- Write the L1 Process to biz-process.md first, then ask for user review right after each L1 Process: understanding-based consent, not a rubber stamp. The user reviews the file section (L1 id), not a copy in the conversation.
+- The conversation carries only what changed, the items needing a decision, and the section id; revisions are edits to the file (versions are git diff, never re-pasted drafts).
+- First write sets `approvals.bizProcess` to `generated: true, approved: false`; `approved: true` only after the last L1 is accepted. An optional overview: `$kiro-biz-process-tree`.
 - `-y`: full drill-down, then a single gate for all levels (requirements and value chain approved beforehand).
 - biz-process.md holds content only: no review request block, no approval state. Approval state lives in `spec.json` `approvals.bizProcess` (SSoT); derived views refer to it and never copy it.
 - A review request block from earlier templates (`### Review Request`, L1 or L2) is deleted the next time the file is edited.
