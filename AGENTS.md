@@ -25,7 +25,7 @@ Common principles (SSoT, SRP, Small Units, Self-Documenting, Descriptable Name, 
 - **Small Units**: sizes stay within the steering `tech.md` code-quality limits.
 - **Why-Only Comment**: tracing is `_Requirements:` and git.
 - **Guidance vs history**: `{{SKILLS}}` and `{{STEERING}}` are guidance; background, decisions and verification records live in `{{SPECS}}` and git.
-- **MoE**: each skill is an expert - its own rules and artifacts, loaded only at its phase; evaluation criteria are SKILL.md `Core Indicators`.
+- **MoE**: each skill is an expert - its own rules and artifacts, loaded only at its phase; evaluation criteria are SKILL.md `Core Indicators`; the work grade is the task `_Difficulty:`, mapped to a model in `kiro-impl` SKILL.md.
 - **Lazy Loading**: tier follows location - tier 0 = router pointer, skill descriptions; tier 1 = `{{STEERING}}` and `{{REFERENCE}}` by `inclusion`; tier 2 = skill contract, then `rules/` and `templates/` per phase; tier 3 = `docs/`, optional skills, archives. A project file outside these states its tier; an unplaced file is not tier 0.
 - **Lean**: blockquotes (`>`) for side notes. In names and inline lists, join two items with a conjunction, three or more with commas.
 
