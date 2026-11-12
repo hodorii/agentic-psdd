@@ -21,11 +21,12 @@ Deterministic check of `{{STEERING}}` and `{{SPECS}}`; no agent judgment. Needs 
 | value-chain-prose | warning | value-chain.md holds lines other than the tree, headings and comments |
 | kpi-undefined, value-chain-ref, biz-process-ref, br-ref, br-prefix, bp-unique, br-unique | error | a reference with no definition: KPI id absent from the product.md KPI table; `valueChainRef` not a Unit id or alias; `bizProcessRef` or `_BizProcess:` BP id without an L1 Process heading; `BR-` id undefined or without its `BP-<x>`; duplicate definitions |
 | tree-id-missing, tree-id-extra, tree-detail-step-missing, tree-detail-step-extra, tree-source-missing | error | `{{REFERENCE}}/biz-process-tree/<feature>.md` and `{{SPECS}}/<feature>/biz-process.md` disagree: an L1~L4 id or `BR-` id on one side only; an L5 DetailStep name (detail node or id-less decision node in the view) with a different count; or no biz-process.md for the view |
+| edition-source-missing, edition-decision-extra, edition-omission-undeclared, edition-omission-invalid | error | a file in a spec directory declares itself an edition of another file (`<!-- derived-from: design.md; omitted: ... -->`, see `kiro-spec-design/rules/review-edition.md`) and: the named file is missing or is the edition itself; the edition has a decision id `D<n>` the original lacks; an original id is neither in the edition nor in `omitted`; an `omitted` entry is not an id of the original, or its id still appears in the edition. A spec with no declaration gets no output |
 | stale-file, stale-node | warning | steering front matter `updated_at` or a value-chain node tag `asof` is older than `--max-age-days` before `--asof` |
 | date-format | error | `updated_at` or `asof` is not `YYYY-MM-DD` (`updated_at` may continue with a time, e.g. `2026-10-01T09:00`); a `<...>` placeholder `updated_at` is skipped |
 | kpi-unused, bp-unused, br-unused, back-link | warning | a definition nothing uses; a Unit naming a BP that no spec points back to |
 
-- Not detected: user viewpoint violations in a view (status codes, API names, system as subject) and wording drift inside a node; both stay text rules of `kiro-biz-process-tree`.
+- Not detected: a value or wording in an edition that differs from the original; user viewpoint violations in a view (status codes, API names, system as subject) and wording drift inside a node; both stay text rules of `kiro-biz-process-tree`.
 
 ## When to run
 - `kiro-steering` Bootstrap after drafting value-chain.md, and Sync before reporting: fix errors in files the skill may edit, list the rest as proposals.

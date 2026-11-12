@@ -11,6 +11,7 @@ import lint_business_rules as business_rules
 import lint_references as references
 from lint_findings import ERROR, WARNING, Finding
 from lint_human_typeable import check_human_typeable
+from lint_review_edition import check_review_editions
 from lint_staleness import parse_asof, check_staleness
 from lint_traceability import check_requirements_traceability
 from lint_tree_view import TREE_VIEW_DIRECTORY, check_tree_views
@@ -43,6 +44,7 @@ def check_cross_references(root: Path, steering: Path, specs: Path, arguments: a
     findings += business_rules.check_rule_references(specs, rules, root) + business_rules.check_rule_prefixes(processes, rules)
     findings += check_requirements_traceability(specs, root)
     findings += check_tree_views(root, specs)
+    findings += check_review_editions(specs, root)
     findings += check_staleness(nodes, steering, root, arguments.asof, arguments.max_age_days)
     return findings
 

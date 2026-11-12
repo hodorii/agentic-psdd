@@ -9,6 +9,8 @@ from pathlib import Path
 HERE = Path(__file__).parent
 DOC_LINT = HERE.parents[1] / "skills" / "kiro-steering" / "scripts" / "doc_lint.py"
 FIXED_ASOF = "2026-10-10"
+sys.path.insert(0, str(DOC_LINT.parent))
+from lint_review_edition import check_review_editions  # noqa: E402
 PLACEHOLDERS = {"{{MIDDLE_DOT}}": "\u00b7", "{{ARROW}}": "\u2192", "{{SQUARE}}": "\u25a0", "{{BOX_VERTICAL}}": "\u2502"}
 
 EXPECTED_VIOLATION_RULES = Counter({
@@ -28,6 +30,10 @@ EXPECTED_VIOLATION_RULES = Counter({
     ("error", "tree-detail-step-missing"): 1,
     ("error", "tree-detail-step-extra"): 1,
     ("error", "tree-source-missing"): 1,
+    ("error", "edition-source-missing"): 1,
+    ("error", "edition-decision-extra"): 1,
+    ("error", "edition-omission-undeclared"): 1,
+    ("error", "edition-omission-invalid"): 3,
     ("warning", "value-chain-prose"): 1,
     ("warning", "kpi-unused"): 2,
     ("warning", "bp-unused"): 1,
@@ -80,6 +86,52 @@ class DocLintFixtures(unittest.TestCase):
         for key, count in EXPECTED_VIOLATION_RULES.items():
             self.assertEqual(actual[key], count, f"{key}: {lines}")
         self.assertEqual(sum(actual.values()), sum(EXPECTED_VIOLATION_RULES.values()), lines)
+
+
+class ReviewEditionEdgeCases(unittest.TestCase):
+    def setUp(self):
+        self.workdir = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.workdir)
+        self.spec = self.workdir / ".kiro" / "specs" / "feature"
+        self.spec.mkdir(parents=True)
+
+    def lint_rules(self) -> Counter:
+        return rule_counts(run_lint(self.workdir)[1])
+
+    def write(self, name: str, text: str, encoding: str = "utf-8") -> None:
+        (self.spec / name).write_bytes(text.encode(encoding))
+
+    def test_unreadable_markdown_is_skipped_by_the_edition_check(self):
+        self.write("design.md", "- D1 decision\n")
+        self.write("latin.md", "caf\u00e9 - D1\n", "latin-1")
+        (self.spec / "folder.md").mkdir()
+        self.assertEqual(check_review_editions(self.workdir / ".kiro" / "specs", self.workdir), [])
+
+    def test_numbered_list_bold_and_two_digit_ids_are_read(self):
+        self.write("design.md", "1. D1 first\n- **D10 tenth**\n")
+        self.write("edition.md", "<!-- derived-from: design.md -->\n| D1 | first |\n| **D10** | tenth |\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
+    def test_prose_line_starting_with_an_id_is_not_a_decision(self):
+        self.write("design.md", "- D1 first\nD2 is mentioned in prose\n")
+        self.write("edition.md", "<!-- derived-from: design.md -->\n- D1 first\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
+    def test_omitted_entries_split_on_spaces_and_commas(self):
+        self.write("design.md", "- D1 a\n- D2 b\n- D3 c\n")
+        self.write("edition.md", "<!-- derived-from: design.md; omitted: D2 D3 -->\n- D1 a\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
+    def test_path_in_derived_from_is_not_a_declaration(self):
+        self.write("design.md", "- D1 a\n")
+        self.write("edition.md", "<!-- derived-from: ../feature/design.md -->\n- D9 x\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
+    def test_unreadable_original_is_reported_as_missing(self):
+        self.write("design.md", "caf\u00e9\n", "latin-1")
+        self.write("edition.md", "<!-- derived-from: design.md -->\n- D1 a\n")
+        findings = check_review_editions(self.workdir / ".kiro" / "specs", self.workdir)
+        self.assertEqual([finding.rule for finding in findings], ["edition-source-missing"])
 
 
 if __name__ == "__main__":
