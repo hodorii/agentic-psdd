@@ -29,7 +29,8 @@
 | | | |
 
 ### {{label.key_decisions}}
-- **[decision]**: [content] - reason: [one line]. Alternatives in research.md.
+<!-- D<n>: id numbered per design; a decision adding what already exists states why in reason -->
+- **D<n> [decision]**: [content] - reason: [one line]. Alternatives in research.md.
 
 ## {{label.system_flows}}
 [non-obvious flows only, Mermaid sequence or state; omit the section if none]
