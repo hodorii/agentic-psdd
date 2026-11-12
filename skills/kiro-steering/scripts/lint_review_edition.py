@@ -7,6 +7,7 @@ from lint_findings import ERROR, Finding, read_lines, relative_path
 
 DECLARATION_PATTERN = re.compile(r"^<!--\s*derived-from:\s*([^/\s]+\.md)\s*(?:;\s*omitted:\s*([^>]*?))?\s*-->\s*$")
 DECISION_PATTERN = re.compile(r"^\s*(?:[-*+]\s+|\d+[.)]\s+|\|\s*)(?:\*\*)?(D\d+)(?![A-Za-z0-9])")
+ID_LIST_TAIL_PATTERN = re.compile(r"^(?:\*\*)?\s*[,~]\s*(?:\*\*)?D\d")
 OMITTED_SEPARATOR_PATTERN = re.compile(r"[,;\s]+")
 DECISION_TOKEN_PATTERN = re.compile(r"^D\d+$")
 FENCE_PATTERN = re.compile(r"^\s*(`{3,}|~{3,})")
@@ -34,11 +35,11 @@ def lines_outside_fences(path: Path) -> list[tuple[int, str]]:
     return kept
 
 
-def decision_ids(path: Path) -> dict[str, int]:
+def decision_ids(path: Path, is_notice_excluded: bool = False) -> dict[str, int]:
     ids: dict[str, int] = {}
     for number, line in lines_outside_fences(path):
         match = DECISION_PATTERN.match(line)
-        if match:
+        if match and not (is_notice_excluded and ID_LIST_TAIL_PATTERN.match(line[match.end(1):])):
             ids.setdefault(match[1], number)
     return ids
 
@@ -61,7 +62,11 @@ def check_edition(edition: Path, spec_dir: Path, project_root: Path) -> list[Fin
     source = spec_dir / source_name
     if readable_lines(source) is None or source.resolve() == edition.resolve():
         return [Finding(shown_path, declared_line, ERROR, "edition-source-missing", f"derived-from {source_name} is not another file of this spec")]
-    original, shown = decision_ids(source), decision_ids(edition)
+    original, shown = decision_ids(source), decision_ids(edition, is_notice_excluded=True)
+    if not original:
+        if not shown and not omitted:
+            return []
+        return [Finding(shown_path, declared_line, ERROR, "edition-source-unnumbered", f"{source_name} has no decision id D<n>; number its decisions before the edition can be checked")]
     findings = [
         Finding(shown_path, line, ERROR, "edition-decision-extra", f"{identifier} is in the edition but not in {source_name}")
         for identifier, line in shown.items()

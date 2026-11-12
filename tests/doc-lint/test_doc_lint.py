@@ -117,6 +117,36 @@ class ReviewEditionEdgeCases(unittest.TestCase):
         self.write("edition.md", "<!-- derived-from: design.md; omitted: D2 -->\n- **D1 [decision]**: worded (D1)\n")
         self.assertEqual(self.lint_rules(), Counter())
 
+    def test_notice_line_opening_with_an_id_list_is_not_a_definition(self):
+        self.write("design.md", "- **D3 [decision]**: kept\n- **D15 [decision]**: dropped\n- **D17 [decision]**: dropped\n")
+        self.write("edition.md", "<!-- derived-from: design.md; omitted: D15, D17 -->\n| D3 | kept |\n\n- D15, D17: ids left empty\n- D15 ~ D17: same\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
+    def test_bold_and_unspaced_id_lists_are_notices_in_an_edition(self):
+        self.write("design.md", "- **D1 [decision]**: a\n- **D2 [decision]**: b\n- **D3 [decision]**: c\n")
+        self.write("edition.md", "<!-- derived-from: design.md; omitted: D2, D3 -->\n| D1 | a |\n- **D2**, **D3**: left empty\n| D2,D3 | left empty |\n- D2~D3: left empty\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
+    def test_original_definition_is_kept_even_when_it_opens_with_an_id_list(self):
+        self.write("design.md", "- D3, D4: shared decision\n")
+        self.write("edition.md", "<!-- derived-from: design.md -->\n- D3 kept\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
+    def test_single_id_notice_opening_with_the_id_is_still_a_definition(self):
+        self.write("design.md", "- **D1 [decision]**: a\n- **D2 [decision]**: b\n")
+        self.write("edition.md", "<!-- derived-from: design.md; omitted: D2 -->\n| D1 | a |\n\n- D2: id left empty\n")
+        self.assertEqual(self.lint_rules(), Counter({("error", "edition-omission-invalid"): 1}))
+
+    def test_unnumbered_original_gives_one_finding_not_one_per_id(self):
+        self.write("design.md", "- plain decision\n")
+        self.write("edition.md", "<!-- derived-from: design.md; omitted: D9 -->\n- D1 a\n- D2 b\n- D3 c\n")
+        self.assertEqual(self.lint_rules(), Counter({("error", "edition-source-unnumbered"): 1}))
+
+    def test_unnumbered_original_and_edition_without_ids_is_silent(self):
+        self.write("design.md", "- plain decision\n")
+        self.write("edition.md", "<!-- derived-from: design.md -->\nplain text\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
     def test_prose_line_starting_with_an_id_is_not_a_decision(self):
         self.write("design.md", "- D1 first\nD2 is mentioned in prose\n")
         self.write("edition.md", "<!-- derived-from: design.md -->\n- D1 first\n")

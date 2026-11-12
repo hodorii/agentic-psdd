@@ -12,10 +12,13 @@
 - An edition is a Markdown file in the same spec directory that carries one line, outside code fences: `<!-- derived-from: design.md; omitted: D15, D17 -->`
 - `derived-from` names the original file in the same directory (a bare file name, no path); `omitted` lists the decision ids the edition leaves out (drop `; omitted: ...` when none).
 - The declaration is the only way a file counts as an edition; file names carry no meaning. `omitted` entries are separated by commas or spaces; one declaration per file, the first counts.
+- A converted copy (another format) carries no declaration; the tool drops the line, and the Markdown file is the one checked.
 
 ## Decision ids
 - A decision is identified by an id `D<n>` that opens a list item (bulleted or numbered) or the first cell of a table row (bold allowed), e.g. `- **D3 [decision]**: ...` or `| D3 | ... |`.
 - The edition keeps the original's ids; it never renumbers or reuses a number for another decision.
+- Only the id that opens the line counts. In an edition, a line opening with ids joined by `,` or `~` (`- D15, D17: ids left empty`) is a notice, not a definition; any other notice does not open with an id (`Id D17 left empty`). An original's definition never opens with an id list.
+- A design with no `D<n>` definition cannot be compared: the check reports `edition-source-unnumbered` once.
 - A reference to an id inside running text, including a trailing citation `(D3)`, is not a definition and is not checked.
 - Ids are numbered within one design, never reused or renumbered.
 - An edition drops the citations of the ids it omits.
