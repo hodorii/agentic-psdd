@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
-# Usage: install.sh link [project-root] [--force] - symlink the conventional locations to methodology/ (relative links)
+# Usage: install.sh link [project-root] [--force] - symlink the conventional locations to methodology/ (relative links);
+#          a project without methodology/ gets this repo added as a git submodule first
 #        install.sh copy [project-root] [--force] - copy files instead (no dependency on methodology/)
 # --force: overwrite files a previous copy install placed and the project has since edited by hand
 set -eu
@@ -20,8 +21,28 @@ SRC=$(cd "$(dirname "$0")" && pwd -P)
 # submodule/subtree/symlink named 'methodology' at the project root). Catch a
 # mismatch here - before touching anything in the project - instead of
 # silently laying down dangling symlinks.
+#
+# Run from a standalone clone against a project that has no methodology/ yet,
+# link mode adds this repo as a git submodule there, pins it to this clone's
+# commit, and hands off to the submodule's own install.sh.
+add_methodology_submodule() {
+  [ ! -e "$ROOT/methodology" ] || return 1
+  git -C "$ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 1
+  url=$(git -C "$SRC" remote get-url origin 2>/dev/null) || return 1
+  rev=$(git -C "$SRC" rev-parse HEAD)
+  echo "adding $url as submodule '$ROOT/methodology'"
+  (cd "$ROOT" && git submodule add "$url" methodology) || exit 1
+  if ! git -C "$ROOT/methodology" checkout -q "$rev" 2>/dev/null; then
+    echo "warning: commit $rev is not on $url (unpushed?); submodule stays at the remote default branch" >&2
+  fi
+  git -C "$ROOT" add methodology
+  forward=; [ "$FORCE" = 1 ] && forward=--force
+  # shellcheck disable=SC2086
+  exec sh "$ROOT/methodology/install.sh" link "$ROOT" $forward
+}
 if [ "$MODE" = link ]; then
   target=$(cd "$ROOT/methodology" 2>/dev/null && pwd -P) || target=
+  [ -n "$target" ] || add_methodology_submodule || true
   if [ "$target" != "$SRC" ]; then
     cat >&2 <<EOF
 error: link mode requires '$ROOT/methodology' to resolve to this methodology repo ($SRC), but it $([ -z "$target" ] && echo "doesn't exist" || echo "resolves to '$target' instead").
