@@ -16,7 +16,9 @@
 ## Decision ids
 - A decision is identified by an id `D<n>` that opens a list item (bulleted or numbered) or the first cell of a table row (bold allowed), e.g. `- **D3 [decision]**: ...` or `| D3 | ... |`.
 - The edition keeps the original's ids; it never renumbers or reuses a number for another decision.
-- A reference to an id inside running text is not a definition and is not checked.
+- A reference to an id inside running text, including a trailing citation `(D3)`, is not a definition and is not checked.
+- Ids are numbered within one design, never reused or renumbered.
+- An edition drops the citations of the ids it omits.
 
 ## Verification
 - `doc_lint.py` rules `edition-source-missing`, `edition-decision-extra`, `edition-omission-undeclared`, `edition-omission-invalid` (see `{{SKILLS}}/kiro-steering/rules/doc-lint.md`): the ids of the edition are a subset of the original's, and every id of the original absent from the edition is in `omitted`.

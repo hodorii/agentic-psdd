@@ -112,6 +112,11 @@ class ReviewEditionEdgeCases(unittest.TestCase):
         self.write("edition.md", "<!-- derived-from: design.md -->\n| D1 | first |\n| **D10** | tenth |\n")
         self.assertEqual(self.lint_rules(), Counter())
 
+    def test_template_decision_line_with_trailing_citation_is_read(self):
+        self.write("design.md", "- **D1 [decision]**: content - reason: one line\n- **D2 [decision]**: other (D1)\nFlow step ends here (D2)\n")
+        self.write("edition.md", "<!-- derived-from: design.md; omitted: D2 -->\n- **D1 [decision]**: worded (D1)\n")
+        self.assertEqual(self.lint_rules(), Counter())
+
     def test_prose_line_starting_with_an_id_is_not_a_decision(self):
         self.write("design.md", "- D1 first\nD2 is mentioned in prose\n")
         self.write("edition.md", "<!-- derived-from: design.md -->\n- D1 first\n")
