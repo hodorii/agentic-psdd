@@ -169,7 +169,7 @@ for skill_dir in "$SRC"/skills/*/; do basename "$skill_dir"; done > "$SKILLS_MAN
 
 place .kiro/settings/templates ../../methodology/templates "$SRC/templates"
 rm -rf .kiro/settings/methodology
-if [ "$MODE" = copy ]; then mkdir -p .kiro/settings/methodology && cp "$SRC/AGENTS.md" .kiro/settings/methodology/AGENTS.md; fi
+if [ "$MODE" = copy ]; then mkdir -p .kiro/settings/methodology && cp "$SRC/AGENTS.md" "$SRC/PRINCIPLES.md" .kiro/settings/methodology/; fi
 
 if [ "$MODE" = copy ]; then
   placed_dirs=".kiro/settings/templates .kiro/settings/methodology"

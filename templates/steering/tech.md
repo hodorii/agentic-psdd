@@ -22,7 +22,7 @@
 ### {{label.code_quality}}
 [e.g., ESLint, Prettier rules]
 - Size limits (split signal; keep only with stated reason): function 40 lines, class 200 lines, file 300 lines, nesting depth 3, parameters 4
-- Comments: WHY only (see methodology `Why-Only Comment`)
+- Comments: WHY only (`PRINCIPLES.md` next to the methodology `AGENTS.md`, `Why-Only Comment`)
 
 ### {{label.testing}}
 [e.g., Jest, coverage requirements; property-based library, e.g., Hypothesis, fast-check]
