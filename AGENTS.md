@@ -36,6 +36,7 @@ Understanding over documents. An artifact is the minimum evidence that understan
 - `Definition` opens every spec artifact except research.md (an investigation log), one `definition_sentence`.
 - Acceptance criteria `N.M: [condition] result` (no arrow; the bracket closes the condition); IDs unprefixed as numbered in requirements.md; contiguous ranges `2.1~2.5` allowed.
 - Traceability: value-chain Unit (Value > Mega > Main > Unit = PCF Category > Process Group > Process) <-> biz-process L1 (`valueChainRef` / `bizProcessRef`, no duplication) -> requirement IDs on L2/L3 -> L4 ids and `BR-` rules -> design Boundary Commitments -> tasks `_Requirements:` / `_Boundary:` / `_BizProcess:` -> validate-impl coverage.
+- Review edition (optional): a text of design.md for reviewers outside the implementation team; design.md stays the original, the edition is a derived view with a `derived-from` declaration and decision-id parity checked by doc lint - `{{SKILLS}}/kiro-spec-design/rules/review-edition.md`.
 - Standard terms and the process vs work item test: `{{SKILLS}}/kiro-steering/rules/standards-glossary.md`.
 - Boundary term: discovery `Boundary Candidates` -> requirements `Scope` -> design `Boundary Commitments` -> tasks `_Boundary:`.
 - Written in `spec.json.language`; ~200 lines cap, over = split signal.

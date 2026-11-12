@@ -25,4 +25,5 @@ Rules
 - Read `rules/verification-mapping.md` from this skill's directory for the L1~L6 test-level mapping and verification Depth before writing Testing Strategy
 - Read `rules/design-self-check.md` from this skill's directory before finalizing to verify requirements coverage
 - If `bugfix.md` exists instead of requirements.md, read `rules/design-bugfix.md` from this skill's directory and follow it instead of the discovery/synthesis rules
+- If the spec keeps a reviewer-facing edition of design.md, read `rules/review-edition.md` from this skill's directory for the derived-view relation, declaration and decision ids
 - Do not generate tasks or code
