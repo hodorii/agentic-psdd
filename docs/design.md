@@ -245,6 +245,7 @@ flowchart LR
 - **Human-Typeable**: 리치 에디터(이메일 수준 굵게, 기울임, 취소선, 목록, 표, 링크)나 Markdown으로 사람이 쓸 수 있는 표현만, 글자는 보이는 ASCII와 해당 언어 글자, 번호는 1. 1) (1) 순서, 원문자와 이모지 불가, 외부 문법 원문 인용 예외 - 이유: 사람이 직접 고치고, 기계가 쓴 글로 읽히지 않게.
 - **Lazy Loading(MoE 하위 원칙)**: 로딩 계층 0 항상(포인터, 스킬 설명), 1 맵에서 골라 읽음(steering, reference), 2 호출 시(계약 -> 단계별 규칙), 3 경로로만(선택 스킬, 보관 문서); 라벨 표는 필요한 행만, 라우터의 워크플로와 steering 규칙은 해당 스킬 규칙으로 이동, 설계 종합 규칙은 full 조사일 때만 - 이유: 항상 로딩 면적 최소화.
 - **copy 모드 라우터 복사**: copy 설치는 `methodology/`가 없으므로 라우터를 `.kiro/settings/methodology/AGENTS.md`로 복사하고 포인터가 그 경로를 가리킴, 해시 매니페스트 포함 - 이유: 경로 이름 표 없이는 스킬이 `{{SKILLS}}` 등을 해석 못 함.
+- **공통 원칙은 `PRINCIPLES.md` 한 파일이 정본**: SSoT, SRP(Small Units), Self-Documenting(Descriptable Name, Why-Only Comment), Lean, Keep the existing system, 지침/히스토리 분리, MoE(모델 등급 포함), Lazy Loading을 영역 무관(코드, 문서, 지침, 에이전트 역할, 맥락)으로 서술하고 `AGENTS.md`는 이름으로 참조하며 이 방법론에서의 적용(스킬, tier 위치)만 둠. Goal Delivery, Human-Typeable, Knowledge layers는 스펙 작업 전용으로 `AGENTS.md`에 남김 - 이유: 사용자 전역 지침과 프로젝트에 같은 원칙이 문구만 달리 중복되는 것을 막고, 스펙 작업이 아닌 세션에도 항상 로딩할 수 있는 작은 정본(약 3.3KB)을 둠.
 - **포인터는 조건부**: 스펙 작업(`$kiro-*`, `.kiro/specs`, `.kiro/steering`)일 때만 `methodology/AGENTS.md`를 읽음 - 이유: 운영 세션이 많은 프로젝트에서 라우터(약 7KB)가 매 세션 로딩되지 않게 함(MoE, 지연 로딩).
 - **스킬 개별 symlink, 템플릿 디렉터리 통째 symlink**: - 이유: 소비 프로젝트가 같은 디렉터리에 둔 자체 스킬을 가리지 않음; 템플릿은 방법론 전유.
 - **매니페스트(`.kiro/settings/.methodology-skills-manifest`)**: 배치한 스킬 이름 목록 - 이유: 상류에서 제거, 개명된 스킬을 재실행 시 정리(dangling link, stale copy 방지).
@@ -268,7 +269,7 @@ flowchart LR
 - **승인 게이트 + `-y`/`--auto` 우회**: 각 단계 사람 검토, 의도적 fast-track만 우회 - 이유: 이해 기반 동의(Informed Consent).
 - **서브에이전트 출력은 파싱 가능한 고정 블록**: `## Status Report`/`## Review Verdict`/`## Debug Report`의 정확한 필드 줄 - 이유: 부모 컨트롤러가 기계적으로 분기.
 - **리뷰어는 보고를 신뢰하지 않음**: `git diff`, 테스트, grep을 직접 실행, RED 단계 증거 요구 - 이유: 구현자 자기보고는 증거가 아님.
-- **`_Difficulty:`로 구현자 매칭**: low -> 소형 모델 + Procedure 부록 포함 브리프, mid/high -> 최강 모델 - 이유: 비용, 품질 균형.
+- **`_Difficulty:`로 구현자 매칭**: low -> 소형 모델 + Procedure 부록 포함 브리프, mid -> 중형 모델, high -> 대형 모델 - 이유: 비용, 품질 균형, 기본은 낮게 두고 판단이 필요한 일만 올림(PRINCIPLES.md MoE).
 - **워크트리 격리 + 세션 로테이션**: 병렬 구현자는 별도 git worktree, 컨텍스트 50% 지점에서 새 세션 - 이유: 재생성 산출물 충돌 방지, 압축으로 인한 맥락 손실 회피.
 - **세션 조회는 저장소 직접 읽기**: 에이전트 CLI를 기동하지 않고 파일, sqlite를 읽기 전용으로 - 이유: opencode CLI 출력 64KiB 절단 관찰, 실행 중 세션 간섭 방지.
 
@@ -351,7 +352,7 @@ sequenceDiagram
 
 ### `AGENTS.md` - Router
 - 의도: 스킬이 쓰는 경로 이름을 해석하고 원칙, 워크플로, 게이트 규칙을 한 곳에 둔다.
-- 절: `## Paths`(이름->기본 경로->보유물 표), `## Principles`(SSoT, SRP(Small Units), Self-Documenting(Descriptable Name, Why-Only Comment), Goal Delivery, Human-Typeable, 지침/히스토리 분리, MoE(Lazy Loading), Lean), `## Artifacts`(`Definition` 개시, 라벨 행 단위 조회, 수용 기준 형식, 추적성 체인, ~200줄 상한), `## Workflow`(포인터: `kiro-spec-status/rules/workflow.md`), `## Skills`(`$kiro-<name>` 호출), `## Rules`(승인 게이트, 영어 추론, 평가 보고 원칙), `## Steering`(포인터: `kiro-steering/rules/steering-principles.md`).
+- 절: `## Paths`(이름->기본 경로->보유물 표), `## Principles`(공통 원칙은 `PRINCIPLES.md` 참조와 이 방법론에서의 적용, 스펙 작업 원칙 Goal Delivery, Human-Typeable, Knowledge layers), `## Artifacts`(`Definition` 개시, 라벨 행 단위 조회, 수용 기준 형식, 추적성 체인, ~200줄 상한), `## Workflow`(포인터: `kiro-spec-status/rules/workflow.md`), `## Skills`(`$kiro-<name>` 호출), `## Rules`(승인 게이트와 승인된 requirements 변경은 사용자 결정, 영어 추론, 평가 보고 원칙), `## Steering`(포인터: `kiro-steering/rules/steering-principles.md`).
 - 계약 특이사항: 소비 프로젝트에서는 원본이 아니라 포인터 블록으로 도달한다. 스킬 텍스트는 이 파일의 Paths 표 없이는 경로를 해석할 수 없다.
 
 ### `install.sh` - Installer
