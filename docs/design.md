@@ -269,7 +269,7 @@ flowchart LR
 - **승인 게이트 + `-y`/`--auto` 우회**: 각 단계 사람 검토, 의도적 fast-track만 우회 - 이유: 이해 기반 동의(Informed Consent).
 - **서브에이전트 출력은 파싱 가능한 고정 블록**: `## Status Report`/`## Review Verdict`/`## Debug Report`의 정확한 필드 줄 - 이유: 부모 컨트롤러가 기계적으로 분기.
 - **리뷰어는 보고를 신뢰하지 않음**: `git diff`, 테스트, grep을 직접 실행, RED 단계 증거 요구 - 이유: 구현자 자기보고는 증거가 아님.
-- **`_Difficulty:`로 구현자 매칭**: low -> 소형 모델 + Procedure 부록 포함 브리프, mid/high -> 최강 모델 - 이유: 비용, 품질 균형.
+- **`_Difficulty:`로 구현자 매칭**: low -> 소형 모델 + Procedure 부록 포함 브리프, mid -> 중형 모델, high -> 대형 모델 - 이유: 비용, 품질 균형, 기본은 낮게 두고 판단이 필요한 일만 올림(PRINCIPLES.md MoE).
 - **워크트리 격리 + 세션 로테이션**: 병렬 구현자는 별도 git worktree, 컨텍스트 50% 지점에서 새 세션 - 이유: 재생성 산출물 충돌 방지, 압축으로 인한 맥락 손실 회피.
 - **세션 조회는 저장소 직접 읽기**: 에이전트 CLI를 기동하지 않고 파일, sqlite를 읽기 전용으로 - 이유: opencode CLI 출력 64KiB 절단 관찰, 실행 중 세션 간섭 방지.
 

@@ -20,7 +20,7 @@ Skills refer to these names; relocate by editing this table.
 ## Principles
 Understanding over documents. An artifact is the minimum evidence that understanding exists.
 
-Common principles (SSoT, SRP, Small Units, Self-Documenting, Descriptable Name, Why-Only Comment, Lean, Guidance vs history, MoE, Lazy Loading): `PRINCIPLES.md` next to this file - one source; read it first. Their binding here:
+Common principles (SSoT, SRP, Small Units, Self-Documenting, Descriptable Name, Why-Only Comment, Lean, Keep the existing system, Guidance vs history, MoE, Lazy Loading): `PRINCIPLES.md` next to this file - one source; read it first. Their binding here:
 - **SSoT**: `value-chain.md` is owned by the product owner: skills may draft it (`status: draft`), only the owner approves (`status: approved`); once approved, skills read it and propose changes as drafts.
 - **Small Units**: sizes stay within the steering `tech.md` code-quality limits.
 - **Why-Only Comment**: tracing is `_Requirements:` and git.
@@ -33,7 +33,6 @@ Spec-work principles:
 - **Goal Delivery**: implementation delivers what achieves the spec `Definition`, not just a program - code, document, data, config or analysis. Evidence per deliverable type (code: failing test then pass; non-code: pre-state gap list, then a location per requirement ID).
 - **Human-Typeable**: guidance and artifacts use only what a person can write by hand in a rich text editor (email level: bold, italic, strikethrough, lists, tables, links) or in Markdown (plus code spans, code blocks, HTML comments). Characters are visible ASCII plus the letters of the artifact's language; other symbols and emoji become words or ASCII (`->`, `<->`, `-`, `...`, `<=`, `>=`, `!=`, `+/-`). Numbering levels `1.`, then `1)`, then `(1)`; circled numbers never, since editors do not produce them. Exception: verbatim quotes of external syntax, captured tool output, and derived views (a regenerable rendering of a source artifact, e.g. the biz-process tree view, which keeps its original symbols), kept in a code fence whose info string is `quote` or `output` (a single line carries `lint-ignore: human-typeable`). Reason: people edit artifacts directly, and artifacts should not read as machine-written.
 - **Knowledge layers**: three layers, each with one source of truth. Organization = this methodology and its common principles; role = rules and judgment precedents per role, shared across projects (`{{ROLES}}`); project = `{{SPECS}}`, `{{STEERING}}`, `{{REFERENCE}}`. A rule lives in the widest layer it holds for; a role precedent is advice for one role across projects, a steering rule binds this project.
-- **Keep the existing system**: where a system already exists, use its artifacts, schemas and procedures first. A proposal that adds or replaces one states why the existing cannot serve, and a replacement states its migration path.
 
 ## Artifacts
 - Labels: template headings and fixed labels are `{{label.<key>}}`; render from `{{TEMPLATES}}/labels.md` reading only the rows of keys the template uses (e.g., grep `^| <key> |`), never the whole table; column = `spec.json.language`; artifacts outside a spec (steering, discovery brief/roadmap) use the `language` of `{{TEMPLATES}}/specs/init.json`; absent column -> `en`. Machine tags (`_Requirements:`, `_Boundary:`, `_DoneWhen:` ...) and identifiers (`L1 Process`, `valueChainRef`) stay fixed. Templates hold no other fixed text: headings, bold labels and table headers are keys; author guidance is an HTML comment, never rendered; placeholder and example text sits in `[...]` or `<...>` and is replaced by the author (steering-custom example bodies included). Rules name sections by the `en` label; checks locate them through the same row.
@@ -54,7 +53,7 @@ Command order: `{{SKILLS}}/kiro-spec-status/rules/workflow.md` - read only when 
 - Every phase, even with steering/spec context already loaded: use explicitly requested skills and task-relevant local skills/playbooks (design, accessibility, UX included). Select by description, read only the guidance needed, keep required checks and host/project rules.
 
 ## Rules
-- Approval gates: Requirements or Bugfix -> BizProcess -> Design -> Tasks -> Implementation. Human review at each gate; `-y` only for an intentional fast-track.
+- Approval gates: Requirements or Bugfix -> BizProcess -> Design -> Tasks -> Implementation. Human review at each gate; `-y` only for an intentional fast-track. An approved requirements.md or bugfix.md changes only on the user's decision: work that needs a requirement the spec lacks reports it and does not write it.
 - Reason in English. Follow the user's instructions precisely; within that scope act autonomously end-to-end, asking only when essential information is missing.
 - When the user describes a problem or thinks aloud, the deliverable is an assessment: report and stop; change things only when asked.
 - Report only what a tool result in this session evidences; say plainly what is unverified. Pause for the user only for destructive or irreversible actions, real scope changes, or input only they can give.
